@@ -1,0 +1,121 @@
+.addCoauthor {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto;
+  background: #f1f2f4;
+  cursor: pointer;
+}
+
+.closeCoauthor {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto;
+  background: #f1f2f4;
+  cursor: pointer;
+}
+
+.autoSuggestInput {
+  color: #6d7f92;
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid #ced4db !important;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  width: 100%;
+  padding-bottom: 15px;
+  height: unset !important;
+  &:focus {
+    border-bottom: 1px solid #ced4db !important;
+  }
+
+  &::-webkit-input-placeholder {
+    font-size: 12px;
+    line-height: 14px;
+    color: #6d7f92;
+  }
+
+  &:-ms-input-placeholder {
+    font-size: 12px;
+    line-height: 14px;
+    color: #6d7f92;
+  }
+
+  &::placeholder {
+    font-size: 12px;
+    line-height: 14px;
+    color: #6d7f92;
+  }
+}
+
+.coauthorSuggestion {
+  padding: 0.5rem 1rem;
+  display: flex;
+
+  .imgWrap {
+    margin-right: 1rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 3rem;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .emptyAvatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    background-color: #ccc !important;
+    margin-right: 0.5rem !important;
+    margin-bottom: 0rem !important;
+    border-radius: 50% !important;
+
+    span {
+      font-size: 1.5rem !important;
+      color: #fff !important;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    max-width: 86%;
+
+    span {
+      font-size: 0.8rem;
+      color: #bbb;
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    p {
+      font-size: 0.8rem;
+      color: #999;
+    }
+  }
+}
+
+.sidebarPlaceholder {
+  opacity: 0.6;
+}

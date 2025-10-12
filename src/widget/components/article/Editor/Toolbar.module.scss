@@ -1,0 +1,202 @@
+$transitions: ();
+@for $i from 1 through 20 {
+  $transitions: append($transitions, #{$i * 0.1}s all ease-in-out);
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+
+  &__group {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  &__groupmargin {
+    span {
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__button {
+    border: none;
+    background: #f1f2f4;
+    border-radius: 2px;
+    width: 32px;
+    height: 32px;
+    color: #6d7f92;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    &:disabled {
+      color: #ccc;
+    }
+    &:hover {
+      background-color: rgba(109, 127, 146, 0.21);
+    }
+  }
+
+  &__popup {
+    z-index: 999;
+    left: calc(50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    // white-space: nowrap;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 2px;
+    transition: box-shadow 83ms;
+    box-shadow: 0 3px 12px 1px rgba(44, 43, 63, 0.1),
+      0 0 0 1px rgba(44, 43, 63, 0.13);
+    border-radius: 0.2rem;
+    line-height: 20px;
+    color: #505050;
+    position: absolute;
+    padding: 16px;
+    top: 45px;
+    display: inline-block;
+    opacity: 0;
+    text-align: left;
+    transition: nth($transitions, 3);
+
+    &_container {
+      position: relative;
+    }
+
+    &_opened {
+      opacity: 1;
+      transition: nth($transitions, 3);
+    }
+
+    &_closed {
+      opacity: 0;
+      transition: nth($transitions, 3);
+      display: none;
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    &_triangle {
+      border-top: 1px solid rgba(44, 43, 63, 0.13);
+      border-left: 1px solid rgba(44, 43, 63, 0.13);
+      top: -8px;
+      height: 16px;
+      left: 50%;
+      margin-left: -8px;
+      position: absolute;
+      width: 16px;
+      content: "";
+      display: table;
+      clear: both;
+      background-color: #fff;
+      transform: rotate(45deg);
+    }
+
+    &_link {
+      min-width: 300px;
+      input[type="text"] {
+        border: 1px solid #eee;
+        box-shadow: none;
+        padding: 5px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        min-height: 40px;
+        color: #29394d;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    &_helptext {
+      color: rgb(244, 150, 73);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__popup_table {
+    z-index: 999;
+    left: calc(50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    // white-space: nowrap;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 2px;
+    transition: box-shadow 83ms;
+    box-shadow: 0 3px 12px 1px rgba(44, 43, 63, 0.1),
+      0 0 0 1px rgba(44, 43, 63, 0.13);
+    border-radius: 0.2rem;
+    line-height: 20px;
+    color: #505050;
+    position: absolute;
+    padding: 0.5rem;
+    top: 45px;
+    display: inline-block;
+    opacity: 0;
+    text-align: left;
+    transition: nth($transitions, 3);
+
+    &_container {
+      position: relative;
+    }
+
+    &_opened {
+      opacity: 1;
+      transition: nth($transitions, 3);
+    }
+
+    &_closed {
+      opacity: 0;
+      transition: nth($transitions, 3);
+      display: none;
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    &_triangle {
+      border-top: 1px solid rgba(44, 43, 63, 0.13);
+      border-left: 1px solid rgba(44, 43, 63, 0.13);
+      top: -8px;
+      height: 16px;
+      left: 50%;
+      margin-left: -8px;
+      position: absolute;
+      width: 16px;
+      content: "";
+      display: table;
+      clear: both;
+      background-color: #fff;
+      transform: rotate(45deg);
+    }
+
+    &_link {
+      min-width: 300px;
+      input[type="text"] {
+        border: 1px solid #eee;
+        box-shadow: none;
+        padding: 5px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        min-height: 40px;
+        color: #29394d;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

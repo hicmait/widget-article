@@ -1,0 +1,91 @@
+import React, { Component } from "react";
+import Select from "react-select";
+
+import _ from "../../../../i18n";
+
+import styles from "./NotificationSwitch.module.scss";
+
+export default class MultiSwitchComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: this.props.selectedValue || this.props.vals[0],
+    };
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.state.selectedOption !== nextProps.selectedValue) {
+      this.setState({ selectedOption: nextProps.selectedValue });
+    }
+
+    if (this.props.selectedValue !== nextProps.selectedValue) {
+      this.setState({
+        selectedOption: nextProps.selectedValue,
+      });
+    }
+  }
+
+  handleChange = (e) => {
+    const val = e.target.value;
+    const { afterChange } = this.props;
+    this.setState({ selectedOption: val });
+    afterChange(val);
+  };
+
+  render() {
+    let { labels, vals, name, title, handleSelectHour, hoursOptions, hour } =
+      this.props;
+    const { selectedOption } = this.state;
+
+    if (!labels || labels.length === 0) {
+      return null;
+    }
+
+    let returnDiv = [];
+    for (let i = 0; i < labels.length; i++) {
+      returnDiv.push(
+        <li key={`switch-${vals[i]}`}>
+          <p className={styles.item}>
+            <span className={styles.itemLabel}>{labels[i]}</span>
+
+            <label>
+              <input
+                value={vals[i]}
+                name={name}
+                checked={selectedOption === vals[i]}
+                onChange={this.handleChange.bind(this)}
+                className={styles.switch}
+                type="radio"
+              />
+              <div className="switch-frame">
+                <div className="switch-handle" />
+              </div>
+            </label>
+          </p>
+
+          {/* {selectedOption === "AUTO" && vals[i] === selectedOption && (
+            <p className={styles.hours_row}>
+              <label>Notifier après:</label>
+              <p className={styles.hours_select}>
+                <Select
+                  // styles={props.selectStyles}
+                  options={hoursOptions}
+                  isSearchable={false}
+                  value={hour}
+                  onChange={handleSelectHour}
+                />
+              </p>
+            </p>
+          )} */}
+        </li>
+      );
+    }
+
+    return (
+      <div className={styles.switches}>
+        {title && <strong>{title}</strong>}
+        <ul>{returnDiv}</ul>
+      </div>
+    );
+  }
+}

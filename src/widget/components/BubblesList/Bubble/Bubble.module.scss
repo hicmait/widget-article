@@ -1,0 +1,47 @@
+@use "../../../styles/base/variables" as *;
+@use "../../../styles/base/functions" as *;
+@use "../../../styles/base/mixins" as *;
+
+.bubble {
+  background-color: #fff;
+  color: #29394d;
+  padding: 15px 20px;
+  border-radius: 2rem 0 0 2rem;
+  display: flex;
+
+  font-size: 1rem;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.25);
+  // visibility: hidden;
+  position: relative;
+  transition: visibility, transform 0.5s ease-in-out;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background-color: $portal-new-blue;
+    transform: translateX(-100%) translateX(60px);
+  }
+  i {
+    margin: 0 20px 0 10px;
+  }
+}
+
+.label {
+  white-space: nowrap;
+  font-weight: 500;
+  margin-left: 20px;
+  // position: absolute;
+  // right: 47%;
+  // background-color: #373c44;
+  // width: 16rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  // text-align: center;
+  // padding: 1.18rem 2rem;
+  // border-radius: 2rem 0 0 2rem;
+  // color: #fff;
+}
+
+.icon {
+  z-index: 2;
+}

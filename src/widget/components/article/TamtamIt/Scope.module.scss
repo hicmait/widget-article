@@ -1,0 +1,17 @@
+.switches {
+  li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #ced4db;
+    font-size: 12px;
+    line-height: 14px;
+    color: #6d7f92;
+    height: 44px;
+    text-transform: capitalize;
+    padding-left: 24px;
+    padding-right: 6px;
+  }
+}

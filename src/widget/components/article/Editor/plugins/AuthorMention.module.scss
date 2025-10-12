@@ -1,0 +1,131 @@
+.container {
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #f2f2f2; /* Sets the background of the entire container to light gray */
+  box-shadow: 0 3px 9px rgba(125, 119, 119, 0.5);
+  min-width: 300px;
+  min-height: 150px;
+  max-height: 200px;
+  overflow-y: scroll;
+  position: relative;
+  border: 1px #282828; /* Add a thin black border around the container */
+}
+
+/* Styling the scrollbar for WebKit browsers (Chrome, Safari) */
+.container::-webkit-scrollbar {
+  width: 12px; /* Width of the vertical scrollbar */
+}
+
+.container::-webkit-scrollbar-track {
+  background: #ffffff; /* Background color of the scrollbar track */
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #b0b0b0; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+  border: 3px solid #ffffff; /* Padding around the thumb to create space */
+}
+
+/* Styling the scrollbar  */
+.container {
+  scrollbar-width: thin; /* Makes the scrollbar narrower */
+  scrollbar-color: #b0b0b0 #ffffff; /* thumb color and track color */
+}
+
+/* Optional: Styling the scrollbar for Internet Explorer and Edge */
+.container {
+  -ms-overflow-style: scrollbar; /* Show a standard scrollbar */
+}
+
+.closeCoauthor {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.coauthorSuggestion {
+  padding: 0.5rem 1rem;
+  display: flex;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-bottom: 0.3rem;
+
+  &:hover {
+    background-color: #18a0fb;
+    background: linear-gradient(180deg, #3baefc, #18a0fb);
+    color: #fff;
+  }
+
+  /* Set the font weight to normal */
+  font-weight: normal;
+
+  .imgWrap {
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 3rem;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #add8e6;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .emptyAvatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    background-color: #ccc !important;
+    margin-right: 0.5rem !important;
+    margin-bottom: 0rem !important;
+    border-radius: 50% !important;
+    border: 2px solid #add8e6 !important;
+    span {
+      font-size: 1.5rem !important;
+      color: #fff !important;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    max-width: 86%;
+    span {
+      font-size: 0.8rem;
+      color: #bbb;
+    }
+    h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  /* Set the font weight to normal for span elements when hovering */
+  &:hover span {
+    font-weight: normal;
+  }
+}
+
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 24px;
+  flex-direction: column;
+}

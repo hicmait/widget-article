@@ -1,0 +1,19 @@
+@use "sass:color";
+@use "sass:math";
+
+@use "./variables" as *;
+
+// Color contrast
+@function color-yiq($color) {
+  $r: color.channel($color, "red", $space: rgb);
+  $g: color.channel($color, "green", $space: rgb);
+  $b: color.channel($color, "blue", $space: rgb);
+
+  $yiq: math.div(($r * 299) + ($g * 587) + ($b * 114), 1000);
+
+  @if ($yiq >= $yiq-contrasted-threshold) {
+    @return $yiq-text-dark;
+  } @else {
+    @return $yiq-text-light;
+  }
+}

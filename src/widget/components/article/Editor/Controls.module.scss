@@ -1,0 +1,44 @@
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid rgba(109, 127, 146, 0.1);
+  border-radius: 2px;
+  background-color: #ffffff;
+  padding: 10px 56px;
+  width: 100%;
+  z-index: 120;
+}
+
+.saveContainer {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-left: 5px;
+  }
+}
+
+.label {
+  margin-right: 10px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .controls {
+    padding: 10px 20px;
+  }
+  .label {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  .controls {
+    width: 70%;
+  }
+}

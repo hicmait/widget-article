@@ -1,0 +1,1115 @@
+import axios from "axios";
+
+import {
+  getWarningHeader,
+  trimStr,
+  getRequestCancellationToken,
+  getRequestConfig,
+  generateCancellationTokenSource,
+  throwCatchedError,
+} from "../services/utils";
+
+let getTagsCTS;
+let getAvatarsUsersCTS;
+let getCollaboratorsCTS;
+let getClientsCTS;
+let getContactsCTS;
+let getThemesCTS;
+
+export const getCategories = ({
+  ttpApiUrl,
+  token,
+  language = "fr",
+  customFilter = null,
+}) => {
+  const requestUrl = `${ttpApiUrl}/blog/category`;
+
+  let filter = [];
+
+  // filter.push({
+  //   property: "language",
+  //   value: language,
+  //   operator: Array.isArray(language) ? "in" : "like",
+  // });
+
+  if (customFilter !== null) {
+    if (Array.isArray(customFilter)) {
+      filter.push(...customFilter);
+    } else {
+      filter.push(customFilter);
+    }
+  }
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      filter: JSON.stringify(filter),
+      nolimit: 1,
+    },
+  });
+};
+
+export const getTypes = ({ TTP_API_URL, token, language = null }) => {
+  const requestUrl = `${TTP_API_URL}/blog/type`;
+
+  /*let filters = [];
+  if (language) {
+    filters.push({
+      property: "language",
+      value: language,
+      operator: "eq",
+    });
+  }
+  if (communityId) {
+    filters.push({
+      property: "organization",
+      value: communityId,
+      operator: "inWithNull",
+    });
+  }*/
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      //filter: JSON.stringify(filters),
+      fields: "*",
+    },
+  });
+};
+
+export const getThemes = ({
+  TTP_API_URL,
+  token,
+  communityId = null,
+  customFilter = null,
+  sortField = null,
+}) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getThemesCTS,
+    cancellationTokenSource
+  );
+  getThemesCTS = cancellationTokenSource;
+
+  const requestUrl = `${TTP_API_URL}/blog/theme`;
+
+  let filters = [
+    {
+      property: "isDefault",
+      value: 0,
+      operator: "eq",
+    },
+  ];
+
+  if (customFilter !== null) {
+    if (Array.isArray(customFilter)) {
+      filters.push(...customFilter);
+    } else {
+      filters.push(customFilter);
+    }
+  }
+
+  if (communityId) {
+    filters.push({
+      property: "organization",
+      value: communityId,
+      operator: "eq",
+    });
+  }
+
+  let params = {
+    access_token: token,
+    filter: JSON.stringify(filters),
+    fields: "*,mediaThemes,pages",
+    limit: 20,
+  };
+
+  if (sortField) {
+    params.sort = JSON.stringify([
+      {
+        property: sortField,
+        dir: "asc",
+      },
+    ]);
+  }
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getTheme = ({ TTP_API_URL, token, themeId }) => {
+  const filter = [{ property: "id", value: themeId, operator: "eq" }];
+
+  const requestUrl = `${TTP_API_URL}/blog/theme`;
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      filter: JSON.stringify(filter),
+      fields: "*,mediaThemes,pages",
+    },
+  });
+};
+
+export const getTags = ({
+  TTP_API_URL,
+  token,
+  language = null,
+  customFilter = null,
+}) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getTagsCTS,
+    cancellationTokenSource
+  );
+  getTagsCTS = cancellationTokenSource;
+
+  const requestUrl = `${TTP_API_URL}/blog/tag`;
+  let filter = [];
+
+  if (customFilter !== null) {
+    if (Array.isArray(customFilter)) {
+      filter.push(...customFilter);
+    } else {
+      filter.push(customFilter);
+    }
+  }
+
+  let params = {
+    access_token: token,
+    nolimit: 1,
+    fields:
+      "id, nameFr, nameEn, nameNl, counter, parent, isSynonym, isSuperTag, superTag",
+    filter: JSON.stringify(filter),
+    sort: JSON.stringify([
+      {
+        property: "counter",
+        dir: "desc",
+      },
+    ]),
+  };
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getSearchTags = ({
+  TTP_API_URL,
+  token,
+  textFilter,
+  lng,
+  lngs,
+  limit = 50,
+}) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getTagsCTS,
+    cancellationTokenSource
+  );
+  getTagsCTS = cancellationTokenSource;
+
+  const requestUrl = `${TTP_API_URL}/blog/tag/searchByName`;
+
+  let params = {
+    access_token: token,
+    start: 0,
+    limit,
+    fields:
+      "id, nameFr, nameEn, nameNl, counter, parent, isSynonym, isSuperTag, superTag",
+    // filter: JSON.stringify(filter),
+    search: textFilter,
+    lng,
+    lngs,
+  };
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getTag = ({ TTP_API_URL, token, id }) => {
+  const requestUrl = `${TTP_API_URL}/blog/tag`;
+  let filter = [
+    {
+      property: "id",
+      value: id,
+      operator: "eq",
+    },
+  ];
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      fields:
+        "id, nameFr, nameEn, nameNl, isSynonym, isSuperTag, themeAndPages,superTag",
+      filter: JSON.stringify(filter),
+    },
+  });
+};
+
+export const uploadTmpMedia = ({ TTP_API_URL, token, data }) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/upload-tmp-media`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("file", data);
+
+  return axios.post(requestUrl, formData, {
+    Warning: "413",
+  });
+};
+
+export const deleteTmpMedias = (TTP_API_URL, token) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/delete-tmp-medias`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+
+  return axios.post(requestUrl, formData);
+};
+
+export const getAvatarsAndAuthors = ({
+  token,
+  word,
+  organizationId,
+  usersOnly = false,
+}) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getAvatarsUsersCTS,
+    cancellationTokenSource
+  );
+  getAvatarsUsersCTS = cancellationTokenSource;
+
+  const fields = [
+    "*",
+    "email",
+    "mediaChain",
+    "avatar",
+    "blogRoleInOrganization",
+  ];
+
+  let requestUrl = `${TTP_API_URL}/blog/avatar/avatars-and-authors`;
+
+  let filter = [];
+
+  if (word !== "" && word.length >= 3) {
+    filter.push({
+      property: "name",
+      value: word,
+      operator: "like",
+    });
+  }
+
+  let params = {
+    access_token: token,
+    filter: JSON.stringify(filter),
+    fields: fields.join(","),
+    limit: 5,
+    start: 0,
+    organization_id: organizationId,
+  };
+
+  if (usersOnly) {
+    params.users_only = 1;
+  }
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const translateContent = async ({
+  token,
+  content,
+  translateLanguage,
+}) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/translate-article`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("content", content);
+  formData.append("targetLanguage", translateLanguage);
+
+  return axios.post(requestUrl, formData);
+};
+
+export const GenerateArticleWithAI = ({
+  token,
+  content,
+  language = "en", // default to English
+}) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/generate-article`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("content", content);
+  formData.append("language", language);
+  return axios.post(requestUrl, formData);
+};
+
+export const getTitle = async ({ token, title }) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/generate-title`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("title", title);
+
+  return axios.post(requestUrl, formData);
+};
+
+export const getArticle = ({ token, articleId }) => {
+  const filter = [
+    { property: "id", value: articleId, operator: "eq" },
+    {
+      property: "status",
+      value: ["DRAFT", "READY", "SCHEDULED", "PUBLISHED", "PROGRAMMED"],
+      operator: "in",
+    },
+  ];
+
+  const fields = [
+    "*",
+    "content",
+    "introduction",
+    "author",
+    "contactEmail",
+    "contactSocialNetworks",
+    "main_media",
+    "tags",
+    "category",
+    "organization",
+    "media_articles",
+    "theme",
+    "type",
+    "social",
+    "image_cropped",
+    "contentState",
+    "comment",
+    "url",
+    "isSharedInWorkflow",
+    "chains",
+    "pages",
+    "specCollaborators",
+    "specClients",
+    "specContacts",
+    "relatedArticles",
+    "fffLibrary",
+    "canBeShared",
+    "isRecurrent",
+    "recurrence",
+    "recurrentNextDate",
+    "mobileNotification",
+  ];
+
+  const requestUrl = `${TTP_API_URL}/blog/article`;
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      filter: JSON.stringify(filter),
+      fields: fields.join(","),
+    },
+  });
+};
+
+export const saveArticle = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/article`;
+
+  var formData = new FormData(); //TODO polyfill ?
+  formData.append("access_token", token);
+  formData.append("title", trimStr(data.title));
+  formData.append("content", trimStr(data.content));
+  formData.append("contentState", data.contentState);
+  formData.append("category", data.categoryId);
+  formData.append("theme", data.themeId);
+  formData.append("relevance", data.relevance ? data.relevance : 0);
+  if (data.creator) {
+    formData.append("creator", data.creator);
+  }
+  if (data.csScope) {
+    formData.append("csScope", data.csScope);
+  }
+  if (data.groups) {
+    formData.append("groups", data.groups);
+  }
+  if (data.typeId) {
+    formData.append("type", data.typeId);
+  }
+  formData.append("specCollaborators", data.specCollaborators.join());
+  formData.append("specClients", data.specClients.join());
+  formData.append("specContacts", data.specContacts.join());
+  formData.append("organization", data.communityId);
+  formData.append("language", data.language);
+  formData.append("publishedAt", data.publishedAt);
+  formData.append("comment", data.comment);
+  formData.append("isPrivate", data.isPrivate ? 1 : 0);
+  formData.append("fffLibrary", data.fffLibrary);
+  formData.append("canBeShared", data.canBeShared ? 1 : 0);
+
+  formData.append("isRecurrent", data.isRecurrent ? 1 : 0);
+  formData.append("recurrence", JSON.stringify(data.recurrence));
+  formData.append(
+    "recurrentNextDate",
+    data.recurrentNextDate ? data.recurrentNextDate : ""
+  );
+
+  if (data.privateGroups) {
+    formData.append("privateGroups", data.privateGroups);
+  }
+  if (data.notification) {
+    formData.append("notification", data.notification);
+  }
+  if (data.notificationToSentAt) {
+    formData.append("notificationToSentAt", data.notificationToSentAt);
+  }
+
+  if (data.pages && data.pages.length > 0) {
+    for (let i = 0; i < data.pages.length; i++) {
+      formData.append(`pages[${i}]`, data.pages[i].id);
+    }
+  }
+
+  if (data.tmpMedias) {
+    data.tmpMedias.forEach((media, i) => {
+      if (media) {
+        if (typeof media === "string") {
+          // Tmp Image
+          formData.append(`tmpMedia[${i}]`, media);
+        } else {
+          // Tmp Attachment
+          formData.append(`tmpMedia[${i}][isMain]`, 0);
+          formData.append(`tmpMedia[${i}][isAttachment]`, 1);
+          formData.append(`tmpMedia[${i}][name]`, media.name);
+          formData.append(`tmpMedia[${i}][isTmp]`, 1);
+          const urlParts = media.url.split("/");
+          if (urlParts.length > 0) {
+            formData.append(
+              `tmpMedia[${i}][file]`,
+              urlParts[urlParts.length - 1]
+            );
+          }
+
+          let type = "FILE";
+          let types = ["image", "video", "audio"];
+
+          for (let i = 0; i < types.length; i++) {
+            if (media.type.substr(0, types[i].length) === types[i]) {
+              type = types[i].toUpperCase();
+              break;
+            }
+          }
+          formData.append(`tmpMedia[${i}][type]`, type);
+        }
+      }
+    });
+  }
+
+  if (data.tags && data.tags.length > 0) {
+    data.tags.forEach((tag, i) => {
+      if (tag.id) {
+        formData.append(`tag[${i}][id]`, tag.id);
+      } else {
+        formData.append(`tag[${i}][nameFr]`, tag["nameFr"] || "");
+        formData.append(`tag[${i}][nameEn]`, tag["nameEn"] || "");
+        formData.append(`tag[${i}][nameNl]`, tag["nameNl"] || "");
+      }
+    });
+  }
+
+  let mediaArticleIndex = 0;
+
+  if (data.coverFile) {
+    formData.append(`mediaArticle[${mediaArticleIndex}][yPos]`, data.yPos);
+    formData.append(
+      `mediaArticle[${mediaArticleIndex}][yHeight]`,
+      data.yHeight
+    );
+    formData.append(`handleCropping`, data.handleCropping);
+
+    if (data.coverFile instanceof File) {
+      formData.append(`mediaArticle[${mediaArticleIndex}][isMain]`, 1);
+      formData.append(
+        `mediaArticle[${mediaArticleIndex}][file]`,
+        data.coverFile
+      );
+      formData.append(
+        `mediaArticle[${mediaArticleIndex}][name]`,
+        data.coverFile.name
+      );
+    } else {
+      if (
+        data.mainMediaArticleId !== null &&
+        undefined !== data.mainMediaArticleId
+      ) {
+        formData.append(
+          `mediaArticle[${mediaArticleIndex}][id]`,
+          data.mainMediaArticleId
+        );
+      }
+    }
+    mediaArticleIndex++;
+  } else if (data.mediaMedia && data.mediaMedia.id) {
+    formData.append("media", data.mediaMedia.id);
+  }
+
+  if (data.attachments && data.attachments.length > 0) {
+    data.attachments.forEach((attachment) => {
+      if (!attachment.isTmp) {
+        formData.append(
+          `mediaArticle[${mediaArticleIndex}][id]`,
+          attachment.id
+        );
+        formData.append(
+          `mediaArticle[${mediaArticleIndex}][inHistory]`,
+          attachment.inHistory ? 1 : 0
+        );
+        formData.append(
+          `mediaArticle[${mediaArticleIndex}][name]`,
+          attachment.name
+        );
+        mediaArticleIndex++;
+      }
+    });
+  }
+
+  if (data.deletedMediasIds && data.deletedMediasIds.length > 0) {
+    data.deletedMediasIds.forEach((deletedMediaId) => {
+      formData.append(`mediaArticle[${mediaArticleIndex}][id]`, deletedMediaId);
+      formData.append(`mediaArticle[${mediaArticleIndex}][inHistory]`, 1);
+      mediaArticleIndex++;
+    });
+  }
+
+  if (data.status) {
+    formData.append("status", data.status);
+  }
+  if (data.recurrentParent) {
+    formData.append("recurrentParent", data.recurrentParent);
+  }
+  if (data.authors && data.authors.length > 0) {
+    let userIds = [];
+    let users = data.authors.filter((user) => {
+      const result =
+        user.isAuthor === true &&
+        user.enableAvatar != "D" &&
+        userIds.indexOf(user.id) === -1;
+      if (result) {
+        userIds.push(user.id);
+      }
+      return result;
+    });
+
+    let chainIds = [];
+    let chains = data.authors.filter((user) => {
+      const result = !user.isAuthor && chainIds.indexOf(user.id) === -1;
+      if (result) {
+        chainIds.push(user.id);
+      }
+      return result;
+    });
+
+    if (users && users.length > 0) {
+      users.forEach((author, i) => {
+        formData.append(
+          `articleBlogRole[${i}][signature][title]`,
+          author.signature.title
+        );
+
+        if (
+          author.signature.head &&
+          author.signature.head !== undefined &&
+          author.signature.head.trim() !== "undefined"
+        ) {
+          formData.append(
+            `articleBlogRole[${i}][signature][head]`,
+            author.signature.head
+          );
+        } else {
+          formData.append(`articleBlogRole[${i}][signature][head]`, "");
+        }
+
+        formData.append(
+          `articleBlogRole[${i}][enableAvatar]`,
+          author.enableAvatar ? 1 : 0
+        );
+        formData.append(`articleBlogRole[${i}][priority]`, i);
+        formData.append(`articleBlogRole[${i}][action]`, "WRITE");
+        formData.append(`articleBlogRole[${i}][user]`, author.id);
+        if (author.status) {
+          formData.append(`articleBlogRole[${i}][status]`, author.status);
+        }
+      });
+    }
+
+    if (chains && chains.length > 0) {
+      chains.forEach((chain, i) => {
+        if (chain.status === "DELETED" && data.id) {
+          formData.append(`articleChain[${i}][chain]`, chain.id);
+          formData.append(`articleChain[${i}][status]`, chain.status);
+          formData.append(`articleChain[${i}][article]`, data.id);
+        } else if (chain.status !== "DELETED") {
+          formData.append(`articleChain[${i}][chain]`, chain.id);
+        }
+      });
+    }
+  }
+
+  if (data.id) {
+    formData.append("id", data.id);
+    formData.append("changeIntro", data.shouldChangeIntro == true ? 1 : 0);
+  }
+
+  if (data.relatedArticle) {
+    formData.append("relatedArticle", data.relatedArticle);
+  }
+
+  return axios.post(requestUrl, formData, getWarningHeader());
+};
+
+export const saveQuickArticle = ({
+  token,
+  id,
+  categoryId,
+  typeId,
+  publishedAt,
+  tags,
+  themeId,
+  pages,
+  authors,
+  communityId,
+  authorsRoles = null,
+}) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/${id}`;
+
+  let formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("category", categoryId);
+  formData.append("type", typeId);
+  formData.append("theme", themeId);
+
+  if (publishedAt) {
+    formData.append("publishedAt", publishedAt);
+  }
+
+  if (pages && pages.length > 0) {
+    for (let i = 0; i < pages.length; i++) {
+      formData.append(`pages[${i}]`, pages[i].id);
+    }
+  }
+
+  if (tags && tags.length > 0) {
+    tags.forEach((tag, i) => {
+      if (tag.id) {
+        formData.append(`tag[${i}][id]`, tag.id);
+      } else {
+        formData.append(`tag[${i}][nameFr]`, tag["nameFr"] || "");
+        formData.append(`tag[${i}][nameEn]`, tag["nameEn"] || "");
+        formData.append(`tag[${i}][nameNl]`, tag["nameNl"] || "");
+      }
+    });
+  }
+
+  if (authors && authors.length > 0) {
+    formData.append("organization", communityId);
+
+    let userIds = [];
+    let users = authors.filter((user) => {
+      const result =
+        user.isAuthor === true &&
+        user.enableAvatar != "D" &&
+        userIds.indexOf(user.id) === -1;
+      if (result) {
+        userIds.push(user.id);
+      }
+      return result;
+    });
+
+    let chainIds = [];
+    let chains = authors.filter((user) => {
+      const result = !user.isAuthor && chainIds.indexOf(user.id) === -1;
+      if (result) {
+        chainIds.push(user.id);
+      }
+      return result;
+    });
+
+    if (users && users.length > 0) {
+      users.forEach((author, i) => {
+        formData.append(
+          `articleBlogRole[${i}][signature][title]`,
+          author.signature.title
+        );
+
+        if (authorsRoles[author.id]) {
+          formData.append(
+            `articleBlogRole[${i}][signature][head]`,
+            authorsRoles[author.id]
+          );
+        } else {
+          if (
+            author.signature.head &&
+            author.signature.head !== undefined &&
+            author.signature.head.trim() !== "undefined"
+          ) {
+            formData.append(
+              `articleBlogRole[${i}][signature][head]`,
+              author.signature.head
+            );
+          } else {
+            formData.append(`articleBlogRole[${i}][signature][head]`, "");
+          }
+        }
+
+        formData.append(
+          `articleBlogRole[${i}][enableAvatar]`,
+          author.enableAvatar ? 1 : 0
+        );
+        formData.append(`articleBlogRole[${i}][priority]`, i);
+        formData.append(`articleBlogRole[${i}][action]`, "WRITE");
+        formData.append(`articleBlogRole[${i}][user]`, author.id);
+        if (author.status) {
+          formData.append(`articleBlogRole[${i}][status]`, author.status);
+        }
+      });
+    }
+
+    if (chains && chains.length > 0) {
+      chains.forEach((chain, i) => {
+        if (chain.status === "DELETED" && id) {
+          formData.append(`articleChain[${i}][chain]`, chain.id);
+          formData.append(`articleChain[${i}][status]`, chain.status);
+          formData.append(`articleChain[${i}][article]`, id);
+        } else if (chain.status !== "DELETED") {
+          formData.append(`articleChain[${i}][chain]`, chain.id);
+        }
+      });
+    }
+  }
+
+  return axios.post(requestUrl, formData);
+};
+
+export const saveTheme = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/theme`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("titleFr", trimStr(data.titleFr));
+  formData.append("titleNl", trimStr(data.titleNl));
+  formData.append("titleEn", trimStr(data.titleEn));
+  formData.append("organization", data.organization);
+  formData.append("isDefault", data.isDefault);
+
+  if (data.coverFile) {
+    formData.append(`mediaTheme[0][yPos]`, data.yPos);
+    if (data.coverFile instanceof File) {
+      formData.append(`mediaTheme[0][file]`, data.coverFile);
+      formData.append(`mediaTheme[0][name]`, data.coverFile.name);
+    }
+  }
+
+  if (data.id) {
+    formData.append("id", data.id);
+  }
+
+  return axios.post(requestUrl, formData, getWarningHeader());
+};
+
+export const savePage = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/page`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("titleFr", trimStr(data.titleFr));
+  formData.append("titleNl", trimStr(data.titleNl));
+  formData.append("titleEn", trimStr(data.titleEn));
+  formData.append("organization", data.organization);
+  formData.append("theme", data.theme);
+
+  if (data.coverFile) {
+    formData.append(`mediaPage[0][yPos]`, data.yPos);
+    if (data.coverFile instanceof File) {
+      formData.append(`mediaPage[0][file]`, data.coverFile);
+      formData.append(`mediaPage[0][name]`, data.coverFile.name);
+    }
+  }
+
+  if (data.id) {
+    formData.append("id", data.id);
+  }
+
+  return axios.post(requestUrl, formData, getWarningHeader());
+};
+
+export const getTagsFromArticle = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/article/widget-tags`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("language", data.language);
+  formData.append("title", data.title);
+  formData.append("content", data.content);
+
+  return axios.post(requestUrl, formData, getWarningHeader());
+};
+
+export const getGroups = ({ token, clientId = null, customFilter = null }) => {
+  const requestUrl = `${TTP_API_URL}/mailing/group`;
+  let filter = [
+    {
+      property: "client.id",
+      value: clientId,
+      operator: "eq",
+    },
+  ];
+
+  if (customFilter !== null && Array.isArray(customFilter)) {
+    filter.push(...customFilter);
+  }
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      nolimit: 1,
+      fields: "id, name",
+      filter: JSON.stringify(filter),
+    },
+  });
+};
+
+export const saveTag = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/tag`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("nameFr", data.nameFr);
+  formData.append("nameNl", data.nameNl);
+  formData.append("nameEn", data.nameEn);
+
+  if (data.id) {
+    formData.append("id", data.id);
+  }
+
+  return axios.post(requestUrl, formData);
+};
+
+export const saveSuperTag = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/tag`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("id", data.id);
+  if (data.superTag) {
+    formData.append("superTag", data.superTag);
+  }
+  if (data.theme) {
+    formData.append("theme", data.theme);
+  }
+  if (data.pages && data.pages.length > 0) {
+    for (let i = 0; i < data.pages.length; i++) {
+      formData.append(`pages[${i}]`, data.pages[i].id);
+    }
+  }
+
+  return axios.post(requestUrl, formData);
+};
+
+export const getClients = ({ token, search }) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getClientsCTS,
+    cancellationTokenSource
+  );
+  getClientsCTS = cancellationTokenSource;
+
+  let requestUrl = `${TTP_API_URL}/organization/folder`;
+
+  let params = {
+    access_token: token,
+    fields: "id,legalRepresentative",
+    start: 0,
+    limit: 20,
+  };
+
+  if (search) {
+    params.filter = JSON.stringify([
+      { property: "name", value: search, operator: "like" },
+    ]);
+  }
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getCollaborators = ({ token, search, organizationId }) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+  // getGroupsCTS
+  let requestCancellationToken = getRequestCancellationToken(
+    getCollaboratorsCTS,
+    cancellationTokenSource
+  );
+  getCollaboratorsCTS = cancellationTokenSource;
+
+  let requestUrl = `${TTP_API_URL}/organization/user`;
+
+  const filter = [
+    {
+      property: "organization.id",
+      value: organizationId,
+      operator: "eq",
+    },
+  ];
+
+  if (search) {
+    filter.push({ property: "name", value: search, operator: "like" });
+    filter.push({ property: "email.main", value: 1, operator: "eq" });
+  }
+
+  let params = {
+    access_token: token,
+    fields: "*",
+    start: 0,
+    filter: JSON.stringify(filter),
+    limit: 20,
+    workspace: "ua",
+  };
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getContacts = ({ token, search, organizationId }) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getContactsCTS,
+    cancellationTokenSource
+  );
+  getContactsCTS = cancellationTokenSource;
+
+  let requestUrl = `${TTP_API_URL}/mailing/contact`;
+  const filter = [
+    { property: "client.id", value: organizationId, operator: "eq" },
+    { property: "firstName", value: "", operator: "neq" },
+  ];
+  if (search) {
+    filter.push(
+      ...[
+        { property: "name", value: search, operator: "like" },
+        { property: "email.main", value: 1, operator: "eq" },
+      ]
+    );
+  }
+
+  let params = {
+    filter: JSON.stringify(filter),
+    access_token: token,
+    fields: "*",
+    start: 0,
+    limit: 20,
+  };
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getUsersByIds = ({ token, ids }) => {
+  const requestUrl = `${TTP_API_URL}/organization/user`;
+
+  const filter = [
+    {
+      property: "id",
+      operator: "in",
+      value: ids,
+    },
+  ];
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      fields: "*",
+      filter: JSON.stringify(filter),
+      workspace: "ua",
+    },
+  });
+};
+
+export const getUserHeadline = ({ token, userIds, organizationId }) => {
+  const requestUrl = `${TTP_API_URL}/organization/user`;
+
+  const filter = [
+    {
+      property: "id",
+      operator: "in",
+      value: userIds,
+    },
+  ];
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      fields: "*,blogRoleInOrganization",
+      filter: JSON.stringify(filter),
+      organization_id: organizationId,
+      workspace: "ua",
+    },
+  });
+};
+
+export const mergeTags = ({ token, data }) => {
+  const requestUrl = `${TTP_API_URL}/blog/tag/merge`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("source", data.source);
+  formData.append("destination", data.destination);
+  formData.append("full_merge", data.fullMerge);
+
+  return axios.post(requestUrl, formData);
+};
+
+export const saveResetRecurrentArticle = (token, data) => {
+  const requestUrl = `${TTP_API_URL}/blog/article`;
+
+  var formData = new FormData();
+  formData.append("access_token", token);
+  formData.append("isRecurrent", data.isRecurrent);
+  formData.append("id", data.id);
+
+  return axios.post(requestUrl, formData);
+};
+
+export const getBlogRole = ({ token, userIds, communityId }) => {
+  const filter = [
+    { property: "user", value: userIds, operator: "in" },
+    { property: "organization", value: communityId, operator: "eq" },
+  ];
+
+  const requestUrl = `${TTP_API_URL}/blog/blog-role`;
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      filter: JSON.stringify(filter),
+      fields: "*,userId",
+    },
+  });
+};
