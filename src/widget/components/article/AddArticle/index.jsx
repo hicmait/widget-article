@@ -6,8 +6,8 @@ import { Modal as AntModal } from "antd";
 import { toast } from "react-toastify";
 import moment from "moment";
 import Skeleton from "react-loading-skeleton";
-// import { NacnWidget } from "cockpit-ia";
-// import "cockpit-ia/main.css";
+import { NacnWidget } from "cockpit-ia";
+import "cockpit-ia/main.css";
 
 import Controls from "../Editor/Controls";
 import EditorTab from "./EditorTab";
@@ -1546,7 +1546,7 @@ export function AddArticle(props) {
           <IconClose size={17} />
         </div>
         <div id="ttp-widget-article" className={styles.body}>
-          {/* <div
+          <div
             style={{
               position: "absolute",
               bottom: "70px",
@@ -1569,7 +1569,7 @@ export function AddArticle(props) {
               apiUrl="http://local.api.tamtam.pro"
               aiUrl="https://service.ai.api.staging.tamtam.pro"
             />
-          </div> */}
+          </div>
           <div className={styles.title}>{_("article.write_article")}</div>
           <p className={styles.subtitle}>{_("article.write_subtitle")}</p>
 
