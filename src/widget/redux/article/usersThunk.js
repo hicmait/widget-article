@@ -8,8 +8,10 @@ export const fetchAvatarsAndAuthors = createAsyncThunk(
     { dispatch, getState }
   ) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
     const response = await api.getAvatarsAndAuthors({
       token,
+      ttpApiUrl,
       word,
       organizationId: communityId,
       usersOnly,
@@ -22,8 +24,10 @@ export const fetchAuthors = createAsyncThunk(
   "users/fetchAuthors",
   async ({ word = "", communityId = null }, { dispatch, getState }) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
     const response = await api.getAvatarsAndAuthors({
       token,
+      ttpApiUrl,
       word,
       organizationId: communityId,
       usersOnly: true,

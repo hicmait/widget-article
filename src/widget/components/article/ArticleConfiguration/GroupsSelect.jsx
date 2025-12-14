@@ -6,7 +6,7 @@ import _ from "../../../i18n";
 
 export default class GroupsSelect extends PureComponent {
   fetchGroups = (inputValue) => {
-    const { community, auth } = this.props;
+    const { community, auth, ttpApiUrl } = this.props;
     const { token } = auth;
     let customFilter = [];
 
@@ -21,6 +21,7 @@ export default class GroupsSelect extends PureComponent {
     }
 
     return getGroups({
+      ttpApiUrl,
       token,
       clientId: community ? community.value : null,
       customFilter,

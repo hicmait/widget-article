@@ -6,6 +6,8 @@ import { Modal as AntModal } from "antd";
 import { toast } from "react-toastify";
 import moment from "moment";
 import Skeleton from "react-loading-skeleton";
+import { NacnWidget } from "cockpit-ia";
+import "cockpit-ia/main.css";
 
 import Controls from "../Editor/Controls";
 import EditorTab from "./EditorTab";
@@ -136,6 +138,7 @@ export function AddArticle(props) {
   const [shareHistoryData, setShareHistoryData] = useState([]);
   const [fetchingShareUser, setFetchingShareUser] = useState(false);
   const tamtamItArticle = useSelector((state) => state.tamtamit.article);
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
 
   const editorRef = useRef();
   const ref = useRef({
@@ -315,6 +318,7 @@ export function AddArticle(props) {
     if (openedModal) {
       const fetchData = async () => {
         const userResponse = await checkUserTokenValidity({
+          ttpApiUrl,
           userId: auth.user.id,
           token: auth.token,
         });
@@ -343,6 +347,7 @@ export function AddArticle(props) {
 
       if (specCollaborators && specCollaborators.length > 0) {
         getUsersByIds({
+          ttpApiUrl,
           token: auth.token,
           ids: specCollaborators,
         }).then((result) => {
@@ -358,6 +363,7 @@ export function AddArticle(props) {
       }
       if (specClients && specClients.length > 0) {
         getUsersByIds({
+          ttpApiUrl,
           token: auth.token,
           ids: specClients,
         }).then((result) => {
@@ -374,6 +380,7 @@ export function AddArticle(props) {
       }
       if (specContacts && specContacts.length > 0) {
         getUsersByIds({
+          ttpApiUrl,
           token: auth.token,
           ids: specContacts,
         }).then((result) => {
@@ -433,6 +440,7 @@ export function AddArticle(props) {
           if (userIds.length > 0) {
             const authorsTab = [...authors];
             getUserHeadline({
+              ttpApiUrl,
               token: auth.token,
               userIds,
               organizationId: community.value,
@@ -477,7 +485,9 @@ export function AddArticle(props) {
 
   const handleAttachmentsChange = (newAttachment) => {
     setUploadingAttachment(true);
-    dispatch(uploadTmpMedia({ token: auth.token, data: newAttachment }))
+    dispatch(
+      uploadTmpMedia({ ttpApiUrl, token: auth.token, data: newAttachment })
+    )
       .then((resp) => {
         const url = resp.payload.data.data.url;
         let attachment = {
@@ -533,6 +543,7 @@ export function AddArticle(props) {
         preferences.specCollaborators?.length > 0
       ) {
         getUsersByIds({
+          ttpApiUrl,
           token: auth.token,
           ids: preferences.specCollaborators,
         }).then((result) => {
@@ -547,6 +558,7 @@ export function AddArticle(props) {
         });
       } else if (s === "SPEC_CLIENT" && preferences.specClients?.length > 0) {
         getUsersByIds({
+          ttpApiUrl,
           token: auth.token,
           ids: preferences.specClients,
         }).then((result) => {
@@ -562,6 +574,7 @@ export function AddArticle(props) {
         });
       } else if (s === "SPEC_CONTACT" && preferences.specContacts?.length > 0) {
         getUsersByIds({
+          ttpApiUrl,
           token: auth.token,
           ids: preferences.specContacts,
         }).then((result) => {
@@ -611,6 +624,7 @@ export function AddArticle(props) {
     let defaultChains = [];
     if (defaultCommunity) {
       const userResponse = await getTTPUser({
+        ttpApiUrl,
         userId: auth.user.id,
         token: auth.token,
       });
@@ -750,6 +764,7 @@ export function AddArticle(props) {
   const handleAllowTags = async () => {
     if (defaultCommunity) {
       const userResponse = await getTTPUser({
+        ttpApiUrl,
         userId: auth.user.id,
         token: auth.token,
       });
@@ -1048,6 +1063,7 @@ export function AddArticle(props) {
           let users = {};
           if (userIds.length > 0) {
             const resp = await getBlogRole({
+              ttpApiUrl,
               token: data.token,
               userIds,
               communityId: data.communityId,
@@ -1114,7 +1130,7 @@ export function AddArticle(props) {
       }
     });
 
-    let groups = selectedGroups.map((item) => {
+    let groups = selectedGroups?.map((item) => {
       return item.id;
     });
 
@@ -1123,6 +1139,10 @@ export function AddArticle(props) {
     });
 
     const isRecurrent = recurrence ? true : false;
+    let fffLib = fffLibrary ? fffLibrary : isfffLibrary ? "PROPOSED" : "";
+    if (!scope.includes("PUBLIC")) {
+      fffLib = "";
+    }
 
     let data = {
       title,
@@ -1161,7 +1181,7 @@ export function AddArticle(props) {
       mediaIsAlbum,
       mediaMedia,
       relevance: relevance ? relevance / 20 : 3,
-      fffLibrary: fffLibrary ? fffLibrary : isfffLibrary ? "PROPOSED" : "",
+      fffLibrary: fffLib,
       canBeShared: canBeShared,
       isRecurrent,
       recurrence,
@@ -1240,7 +1260,7 @@ export function AddArticle(props) {
 
       if (isCloning) {
         try {
-          await saveResetRecurrentArticle(auth.token, {
+          await saveResetRecurrentArticle(ttpApiUrl, auth.token, {
             isRecurrent: 0,
             id: articleId,
           });
@@ -1470,6 +1490,7 @@ export function AddArticle(props) {
 
   const handleShowSocialStep = () => {
     getTTPUser({
+      ttpApiUrl,
       userId: auth.user.id,
       token: auth.token,
     }).then((resp) => {
@@ -1525,6 +1546,30 @@ export function AddArticle(props) {
           <IconClose size={17} />
         </div>
         <div id="ttp-widget-article" className={styles.body}>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "70px",
+              right: "20px",
+              zIndex: "99999",
+            }}
+          >
+            <NacnWidget
+              appTarget="ARTICLE"
+              onPost={(e) => {
+                console.log(e);
+                if (e?.type === "ARTICLE_DATA") {
+                  // setNewPost(e.data.content);
+                  dispatch(
+                    setArticle({ index: "content", value: e.data.content })
+                  );
+                }
+              }}
+              token="b03f904a45843d832720e1ead56705c45ac9463a"
+              apiUrl="http://local.api.tamtam.pro"
+              aiUrl="https://service.ai.api.staging.tamtam.pro"
+            />
+          </div>
           <div className={styles.title}>{_("article.write_article")}</div>
           <p className={styles.subtitle}>{_("article.write_subtitle")}</p>
 

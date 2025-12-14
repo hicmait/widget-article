@@ -8,6 +8,7 @@ export const fetchTags = createAsyncThunk(
     { dispatch, getState }
   ) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
 
     let filter = [];
     const lngs = ["en", "fr", "nl"].filter((itm) => itm !== language);
@@ -34,6 +35,7 @@ export const fetchTags = createAsyncThunk(
     }
 
     const response = await api.getTags({
+      ttpApiUrl,
       token,
       language,
       filter,
@@ -46,8 +48,9 @@ export const fetchArticleTags = createAsyncThunk(
   "tags/fetchArticleTags",
   async (data, { dispatch, getState }) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
 
-    const response = await api.getTagsFromArticle(token, data);
+    const response = await api.getTagsFromArticle(ttpApiUrl, token, data);
     return response;
   }
 );

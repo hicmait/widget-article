@@ -37,3 +37,23 @@
   line-height: 14px;
   color: #2495e1;
 }
+
+.notif_txt_mar {
+  font-size: 12px;
+  line-height: 14px;
+  color: #2495e1;
+  margin: 10px 0;
+}
+
+.notifs_list_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+
+  a {
+    color: #6d7f92;
+  }
+}

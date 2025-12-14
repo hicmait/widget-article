@@ -10,6 +10,7 @@ import _ from "i18n";
 
 export default function ImageOption(props) {
   const dispatch = useDispatch();
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
   const auth = useSelector((state) => state.auth);
   const [uploading, setUploading] = useState(false);
 
@@ -19,7 +20,7 @@ export default function ImageOption(props) {
 
     setUploading(true);
     dispatch(
-      uploadTmpMedia({ token: auth.token, data: acceptedFiles[0] })
+      uploadTmpMedia({ ttpApiUrl, token: auth.token, data: acceptedFiles[0] })
     ).then((resp) => {
       const url = resp.payload.data.data.url;
       const startsWithHttp = url.lastIndexOf("http://", 0) === 0;

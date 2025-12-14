@@ -56,7 +56,7 @@ const initialState = {
     attachments: [],
     uploadingAttachment: false,
     tags: [],
-    relevance: 3 * 20,
+    relevance: 3,
     externalUrl: "",
     relatedArticles: null,
     fffLibrary: "",
@@ -154,7 +154,7 @@ export const articlesSlice = createSlice({
       state.article.mainMediaArticleId = article.main_media
         ? article.main_media.id
         : null;
-      state.article.relevance = article.relevance * 20;
+      state.article.relevance = article.relevance;
       state.article.externalUrl = article.externalUrl;
       state.article.relatedArticles = article.relatedArticles;
 
@@ -440,7 +440,7 @@ export const articlesSlice = createSlice({
         });
       }
 
-      state.article.relevance = article.relevance * 20;
+      state.article.relevance = article.relevance;
       state.article.selectedLanguage = state.translateLanguage;
       state.article.scope = article.csScope;
       if (article.groups) {
@@ -666,7 +666,7 @@ export const articlesSlice = createSlice({
           });
         }
 
-        state.article.relevance = article.relevance * 20;
+        state.article.relevance = article.relevance;
         state.article.selectedLanguage = state.translateLanguage;
         state.article.scope = article.csScope;
         if (article.groups) {

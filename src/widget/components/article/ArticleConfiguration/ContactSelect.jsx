@@ -12,9 +12,11 @@ export default function ContactSelect({
   selectStyles,
 }) {
   const token = useSelector((state) => state.auth.token);
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
 
   const fetchContacts = (inputValue) => {
     return getContacts({
+      ttpApiUrl,
       token,
       organizationId,
       search: inputValue,

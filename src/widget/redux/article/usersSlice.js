@@ -14,7 +14,7 @@ const initialState = {
 };
 
 export const usersSlice = createSlice({
-  name: "types",
+  name: "users",
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchAvatarsAndAuthors.pending, (state, action) => {

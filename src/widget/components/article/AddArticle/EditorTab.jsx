@@ -15,7 +15,7 @@ import Button from "../../common/Button";
 import TweetEmbed from "../Editor/plugins/TweetEmbed";
 import QuoteEmbed from "../Editor/plugins/QuoteEmbed";
 import ArticleEmbed from "../Editor/plugins/ArticleEmbed";
-// import PdfEmbed from "../Editor/plugins/PdfEmbed";
+import PdfEmbed from "../Editor/plugins/PdfEmbed";
 import ArticleSuggestionEmbed from "../Editor/plugins/ArticleSuggetionEmbed";
 import Loader from "../../common/Loader";
 
@@ -67,6 +67,7 @@ export default function EditorTab(props) {
     setYHeight,
     setHandleCropping,
   } = props;
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
   const title = useSelector((state) => state.articles.article.title);
   const community = useSelector((state) => state.articles.article.community);
   const [showAdjuster, setShowAdjuster] = useState(false);
@@ -658,24 +659,24 @@ cover.addEventListener("mousedown", (e) => {
   };
 
   const handleImageUploadBefore = (files, info, uploadHandler) => {
-    dispatch(uploadTmpMedia({ token: auth.token, data: files[0] })).then(
-      (resp) => {
-        const url = resp.payload.data.data.url;
-        const startsWithHttp = url.lastIndexOf("http://", 0) === 0;
-        const startsWithHttps = url.lastIndexOf("https://", 0) === 0;
-        const isAbsolute = startsWithHttp || startsWithHttps;
-        const imgUrl = isAbsolute ? url : `${TTP_API_URL}/${url}`;
-        uploadHandler({
-          result: [
-            {
-              url: imgUrl,
-              name: files[0].name,
-              size: files[0].size,
-            },
-          ],
-        });
-      }
-    );
+    dispatch(
+      uploadTmpMedia({ ttpApiUrl, token: auth.token, data: files[0] })
+    ).then((resp) => {
+      const url = resp.payload.data.data.url;
+      const startsWithHttp = url.lastIndexOf("http://", 0) === 0;
+      const startsWithHttps = url.lastIndexOf("https://", 0) === 0;
+      const isAbsolute = startsWithHttp || startsWithHttps;
+      const imgUrl = isAbsolute ? url : `${TTP_API_URL}/${url}`;
+      uploadHandler({
+        result: [
+          {
+            url: imgUrl,
+            name: files[0].name,
+            size: files[0].size,
+          },
+        ],
+      });
+    });
   };
 
   const initEditor = () => {
@@ -881,7 +882,7 @@ cover.addEventListener("mousedown", (e) => {
                   "table",
                   "link",
                   "image",
-                  // "pdf_embed",
+                  "pdf_embed",
                   "video",
                   "tweet_embed",
                   "quote_embed",
@@ -897,7 +898,7 @@ cover.addEventListener("mousedown", (e) => {
                 QuoteEmbed,
                 ArticleEmbed,
                 ArticleSuggestionEmbed: ArticleSuggestionEmbed(dispatch),
-                // PdfEmbed: PdfEmbed(dispatch, auth),
+                PdfEmbed: PdfEmbed(dispatch, auth, ttpApiUrl),
               },
             }}
             setContents={initialContent}

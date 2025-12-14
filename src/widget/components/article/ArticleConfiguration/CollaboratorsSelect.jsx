@@ -12,9 +12,11 @@ export default function CollaboratorsSelect({
   selectStyles,
 }) {
   const token = useSelector((state) => state.auth.token);
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
 
   const fetchCollaborators = (inputValue) => {
     return getCollaborators({
+      ttpApiUrl,
       token,
       organizationId,
       search: inputValue,

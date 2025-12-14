@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TTP_API_URL, CLIENT_CREDENTIAL } from "../services/config";
 
-export const getTTPUser = ({ userId, token }) => {
+export const getTTPUser = ({ ttpApiUrl, userId, token }) => {
   const filter = [
     {
       property: "id",
@@ -27,7 +27,7 @@ export const getTTPUser = ({ userId, token }) => {
     "chains",
   ];
 
-  const requestUrl = `${TTP_API_URL}/organization/user`;
+  const requestUrl = `${ttpApiUrl}/organization/user`;
 
   let params = {
     access_token: token,
@@ -41,7 +41,7 @@ export const getTTPUser = ({ userId, token }) => {
   });
 };
 
-export const checkUserTokenValidity = ({ userId, token }) => {
+export const checkUserTokenValidity = ({ ttpApiUrl, userId, token }) => {
   const filter = [
     {
       property: "id",
@@ -52,7 +52,7 @@ export const checkUserTokenValidity = ({ userId, token }) => {
 
   const fields = ["id"];
 
-  const requestUrl = `${TTP_API_URL}/organization/user`;
+  const requestUrl = `${ttpApiUrl}/organization/user`;
 
   let params = {
     access_token: token,

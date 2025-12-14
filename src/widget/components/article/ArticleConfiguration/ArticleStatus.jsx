@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import InputMask from "react-input-mask";
+import { IMaskInput } from "react-imask";
 
 import MultiSwitch from "../../common/Switch/MultiSwitch";
 import DisabledSwitch from "../../common/Switch/Switch/DisabledSwitch";
@@ -9,47 +9,18 @@ import styles from "./ArticleStatus.module.scss";
 
 import _ from "../../../i18n";
 
-export function RenderPublishedAt(props) {
-  const { selectedStatus, dispatch } = props;
-  const publishedAt = useSelector(
-    (state) => state.articles.article.publishedAt
-  );
-
-  let label =
-    selectedStatus === "PUBLISHED"
-      ? _("article.published_on")
-      : _("article.scheduled_for");
-
-  let inputMaskProps = {
-    mask: "99-99-9999 99:99",
-    onChange: (e) =>
-      dispatch(setArticle({ index: "publishedAt", value: e.target.value })),
-    className: "published-at-input",
-    autoComplete: "off",
-    placeholder: _("Publication date (eg. 24-07-2017 12:00)"),
-  };
-
-  if (publishedAt) {
-    inputMaskProps.defaultValue = publishedAt;
-  }
-
-  return (
-    <div className={styles.publishRow}>
-      <span className={styles.publishLabel}>{label} :</span>
-      <InputMask {...inputMaskProps} />
-    </div>
-  );
-}
-
 export default function ArticleStatus(props) {
   let { community } = props;
   const status = useSelector((state) => state.articles.article.status);
+  const publishedAt = useSelector(
+    (state) => state.articles.article.publishedAt
+  );
+  const scheduledRef = useRef(null);
+  const publishedRef = useRef(null);
 
   const dispatch = useDispatch();
 
   const handleStatusChange = (newStatus) => {
-    const { setPublishOnWorkflow, setPublishOnTalk } = props;
-
     if (newStatus === "SCHEDULED") {
       dispatch(setArticle({ index: "publishOnWorkflow", value: true }));
     } else if (newStatus !== "PUBLISHED") {
@@ -85,12 +56,24 @@ export default function ArticleStatus(props) {
       />
       {status === "PUBLISHED" && (
         <>
-          <RenderPublishedAt
-            selectedStatus={status}
-            publishedAt={props.publishedAt}
-            setPublishedAt={props.setPublishedAt}
-            dispatch={dispatch}
-          />
+          <div className={styles.publishRow}>
+            <span className={styles.publishLabel}>
+              {_("article.published_on")} :
+            </span>
+            <IMaskInput
+              mask="0`0`-0`0`-0`0`0`0` 0`0`:0`0`"
+              lazy={false}
+              placeholderChar="_"
+              value={publishedAt}
+              unmask={false}
+              inputRef={publishedRef}
+              onAccept={(value, mask) =>
+                dispatch(setArticle({ index: "publishedAt", value: value }))
+              }
+              // placeholder="24-07-2017 12:00"
+            />
+          </div>
+
           <div className={styles.publishRow}>
             <span className={styles.publishLabel}>
               {_("Publier aussi sur Workflow")} :
@@ -100,12 +83,23 @@ export default function ArticleStatus(props) {
         </>
       )}
       {status === "SCHEDULED" && (
-        <RenderPublishedAt
-          selectedStatus={status}
-          publishedAt={props.publishedAt}
-          setPublishedAt={props.setPublishedAt}
-          dispatch={dispatch}
-        />
+        <div className={styles.publishRow}>
+          <span className={styles.publishLabel}>
+            {_("article.scheduled_for")} :
+          </span>
+          <IMaskInput
+            mask="0`0`-0`0`-0`0`0`0` 0`0`:0`0`"
+            lazy={false}
+            placeholderChar="_"
+            value={publishedAt}
+            unmask={false}
+            inputRef={scheduledRef}
+            onAccept={(value, mask) =>
+              dispatch(setArticle({ index: "publishedAt", value: value }))
+            }
+            // placeholder="24-07-2017 12:00"
+          />
+        </div>
       )}
     </div>
   );

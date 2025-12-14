@@ -12,3 +12,4 @@ export * from "./IconLinkedin";
 export * from "./IconFacebook";
 export * from "./IconTime";
 export * from "./IconThreeDots";
+export * from "./IconDragHandler";

@@ -16,6 +16,7 @@ export default function MergeModal({
   afterMerge,
   language,
 }) {
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
   const auth = useSelector((state) => state.auth);
   const { token } = auth;
   const nameAttr = `name${
@@ -46,6 +47,7 @@ export default function MergeModal({
     try {
       setMerging(true);
       await mergeTags({
+        ttpApiUrl,
         token,
         data: {
           destination,

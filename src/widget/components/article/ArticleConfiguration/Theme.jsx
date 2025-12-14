@@ -15,6 +15,7 @@ export default function Theme(props) {
   const theme = useSelector((state) => state.articles.article.theme);
   const token = useSelector((state) => state.auth.token);
   const loggedAs = useSelector((state) => state.auth.loggedAs);
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
   const [showPopOver, setShowPopOver] = useState(false);
   const dispatch = useDispatch();
 
@@ -51,6 +52,7 @@ export default function Theme(props) {
       }
     }
     return getThemes({
+      ttpApiUrl,
       token,
       customFilter,
       sortField: titleAttr,

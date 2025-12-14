@@ -49,8 +49,8 @@ export const getCategories = ({
   });
 };
 
-export const getTypes = ({ TTP_API_URL, token, language = null }) => {
-  const requestUrl = `${TTP_API_URL}/blog/type`;
+export const getTypes = ({ ttpApiUrl, token, language = null }) => {
+  const requestUrl = `${ttpApiUrl}/blog/type`;
 
   /*let filters = [];
   if (language) {
@@ -78,7 +78,7 @@ export const getTypes = ({ TTP_API_URL, token, language = null }) => {
 };
 
 export const getThemes = ({
-  TTP_API_URL,
+  ttpApiUrl,
   token,
   communityId = null,
   customFilter = null,
@@ -92,7 +92,7 @@ export const getThemes = ({
   );
   getThemesCTS = cancellationTokenSource;
 
-  const requestUrl = `${TTP_API_URL}/blog/theme`;
+  const requestUrl = `${ttpApiUrl}/blog/theme`;
 
   let filters = [
     {
@@ -140,10 +140,10 @@ export const getThemes = ({
   });
 };
 
-export const getTheme = ({ TTP_API_URL, token, themeId }) => {
+export const getTheme = ({ ttpApiUrl, token, themeId }) => {
   const filter = [{ property: "id", value: themeId, operator: "eq" }];
 
-  const requestUrl = `${TTP_API_URL}/blog/theme`;
+  const requestUrl = `${ttpApiUrl}/blog/theme`;
 
   return axios.get(requestUrl, {
     params: {
@@ -155,7 +155,7 @@ export const getTheme = ({ TTP_API_URL, token, themeId }) => {
 };
 
 export const getTags = ({
-  TTP_API_URL,
+  ttpApiUrl,
   token,
   language = null,
   customFilter = null,
@@ -168,7 +168,7 @@ export const getTags = ({
   );
   getTagsCTS = cancellationTokenSource;
 
-  const requestUrl = `${TTP_API_URL}/blog/tag`;
+  const requestUrl = `${ttpApiUrl}/blog/tag`;
   let filter = [];
 
   if (customFilter !== null) {
@@ -200,7 +200,7 @@ export const getTags = ({
 };
 
 export const getSearchTags = ({
-  TTP_API_URL,
+  ttpApiUrl,
   token,
   textFilter,
   lng,
@@ -215,7 +215,7 @@ export const getSearchTags = ({
   );
   getTagsCTS = cancellationTokenSource;
 
-  const requestUrl = `${TTP_API_URL}/blog/tag/searchByName`;
+  const requestUrl = `${ttpApiUrl}/blog/tag/searchByName`;
 
   let params = {
     access_token: token,
@@ -235,8 +235,8 @@ export const getSearchTags = ({
   });
 };
 
-export const getTag = ({ TTP_API_URL, token, id }) => {
-  const requestUrl = `${TTP_API_URL}/blog/tag`;
+export const getTag = ({ ttpApiUrl, token, id }) => {
+  const requestUrl = `${ttpApiUrl}/blog/tag`;
   let filter = [
     {
       property: "id",
@@ -255,8 +255,8 @@ export const getTag = ({ TTP_API_URL, token, id }) => {
   });
 };
 
-export const uploadTmpMedia = ({ TTP_API_URL, token, data }) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/upload-tmp-media`;
+export const uploadTmpMedia = ({ ttpApiUrl, token, data }) => {
+  const requestUrl = `${ttpApiUrl}/blog/article/upload-tmp-media`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -267,8 +267,8 @@ export const uploadTmpMedia = ({ TTP_API_URL, token, data }) => {
   });
 };
 
-export const deleteTmpMedias = (TTP_API_URL, token) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/delete-tmp-medias`;
+export const deleteTmpMedias = (ttpApiUrl, token) => {
+  const requestUrl = `${ttpApiUrl}/blog/article/delete-tmp-medias`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -277,6 +277,7 @@ export const deleteTmpMedias = (TTP_API_URL, token) => {
 };
 
 export const getAvatarsAndAuthors = ({
+  ttpApiUrl,
   token,
   word,
   organizationId,
@@ -298,7 +299,7 @@ export const getAvatarsAndAuthors = ({
     "blogRoleInOrganization",
   ];
 
-  let requestUrl = `${TTP_API_URL}/blog/avatar/avatars-and-authors`;
+  let requestUrl = `${ttpApiUrl}/blog/avatar/avatars-and-authors`;
 
   let filter = [];
 
@@ -334,14 +335,22 @@ export const translateContent = async ({
   content,
   translateLanguage,
 }) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/translate-article`;
+  const requestUrl = `${ttpAiUrl}/article/translate-article`;
 
-  var formData = new FormData();
-  formData.append("access_token", token);
-  formData.append("content", content);
-  formData.append("targetLanguage", translateLanguage);
-
-  return axios.post(requestUrl, formData);
+  return axios.post(
+    requestUrl,
+    JSON.stringify({
+      content,
+      targetLanguage: translateLanguage,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 
 export const GenerateArticleWithAI = ({
@@ -800,8 +809,8 @@ export const saveQuickArticle = ({
   return axios.post(requestUrl, formData);
 };
 
-export const saveTheme = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/theme`;
+export const saveTheme = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/theme`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -826,8 +835,8 @@ export const saveTheme = (token, data) => {
   return axios.post(requestUrl, formData, getWarningHeader());
 };
 
-export const savePage = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/page`;
+export const savePage = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/page`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -852,8 +861,8 @@ export const savePage = (token, data) => {
   return axios.post(requestUrl, formData, getWarningHeader());
 };
 
-export const getTagsFromArticle = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/widget-tags`;
+export const getTagsFromArticle = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/article/widget-tags`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -864,8 +873,13 @@ export const getTagsFromArticle = (token, data) => {
   return axios.post(requestUrl, formData, getWarningHeader());
 };
 
-export const getGroups = ({ token, clientId = null, customFilter = null }) => {
-  const requestUrl = `${TTP_API_URL}/mailing/group`;
+export const getGroups = ({
+  ttpApiUrl,
+  token,
+  clientId = null,
+  customFilter = null,
+}) => {
+  const requestUrl = `${ttpApiUrl}/mailing/group`;
   let filter = [
     {
       property: "client.id",
@@ -888,8 +902,8 @@ export const getGroups = ({ token, clientId = null, customFilter = null }) => {
   });
 };
 
-export const saveTag = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/tag`;
+export const saveTag = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/tag`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -904,8 +918,8 @@ export const saveTag = (token, data) => {
   return axios.post(requestUrl, formData);
 };
 
-export const saveSuperTag = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/tag`;
+export const saveSuperTag = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/tag`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -925,7 +939,7 @@ export const saveSuperTag = (token, data) => {
   return axios.post(requestUrl, formData);
 };
 
-export const getClients = ({ token, search }) => {
+export const getClients = ({ ttpApiUrl, token, search }) => {
   let cancellationTokenSource = generateCancellationTokenSource();
 
   let requestCancellationToken = getRequestCancellationToken(
@@ -934,7 +948,7 @@ export const getClients = ({ token, search }) => {
   );
   getClientsCTS = cancellationTokenSource;
 
-  let requestUrl = `${TTP_API_URL}/organization/folder`;
+  let requestUrl = `${ttpApiUrl}/organization/folder`;
 
   let params = {
     access_token: token,
@@ -955,7 +969,12 @@ export const getClients = ({ token, search }) => {
   });
 };
 
-export const getCollaborators = ({ token, search, organizationId }) => {
+export const getCollaborators = ({
+  ttpApiUrl,
+  token,
+  search,
+  organizationId,
+}) => {
   let cancellationTokenSource = generateCancellationTokenSource();
   // getGroupsCTS
   let requestCancellationToken = getRequestCancellationToken(
@@ -964,7 +983,7 @@ export const getCollaborators = ({ token, search, organizationId }) => {
   );
   getCollaboratorsCTS = cancellationTokenSource;
 
-  let requestUrl = `${TTP_API_URL}/organization/user`;
+  let requestUrl = `${ttpApiUrl}/organization/user`;
 
   const filter = [
     {
@@ -994,7 +1013,7 @@ export const getCollaborators = ({ token, search, organizationId }) => {
   });
 };
 
-export const getContacts = ({ token, search, organizationId }) => {
+export const getContacts = ({ ttpApiUrl, token, search, organizationId }) => {
   let cancellationTokenSource = generateCancellationTokenSource();
 
   let requestCancellationToken = getRequestCancellationToken(
@@ -1003,7 +1022,7 @@ export const getContacts = ({ token, search, organizationId }) => {
   );
   getContactsCTS = cancellationTokenSource;
 
-  let requestUrl = `${TTP_API_URL}/mailing/contact`;
+  let requestUrl = `${ttpApiUrl}/mailing/contact`;
   const filter = [
     { property: "client.id", value: organizationId, operator: "eq" },
     { property: "firstName", value: "", operator: "neq" },
@@ -1031,8 +1050,8 @@ export const getContacts = ({ token, search, organizationId }) => {
   });
 };
 
-export const getUsersByIds = ({ token, ids }) => {
-  const requestUrl = `${TTP_API_URL}/organization/user`;
+export const getUsersByIds = ({ ttpApiUrl, token, ids }) => {
+  const requestUrl = `${ttpApiUrl}/organization/user`;
 
   const filter = [
     {
@@ -1052,8 +1071,13 @@ export const getUsersByIds = ({ token, ids }) => {
   });
 };
 
-export const getUserHeadline = ({ token, userIds, organizationId }) => {
-  const requestUrl = `${TTP_API_URL}/organization/user`;
+export const getUserHeadline = ({
+  ttpApiUrl,
+  token,
+  userIds,
+  organizationId,
+}) => {
+  const requestUrl = `${ttpApiUrl}/organization/user`;
 
   const filter = [
     {
@@ -1074,8 +1098,8 @@ export const getUserHeadline = ({ token, userIds, organizationId }) => {
   });
 };
 
-export const mergeTags = ({ token, data }) => {
-  const requestUrl = `${TTP_API_URL}/blog/tag/merge`;
+export const mergeTags = ({ ttpApiUrl, token, data }) => {
+  const requestUrl = `${ttpApiUrl}/blog/tag/merge`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -1086,8 +1110,8 @@ export const mergeTags = ({ token, data }) => {
   return axios.post(requestUrl, formData);
 };
 
-export const saveResetRecurrentArticle = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/article`;
+export const saveResetRecurrentArticle = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/article`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -1097,13 +1121,13 @@ export const saveResetRecurrentArticle = (token, data) => {
   return axios.post(requestUrl, formData);
 };
 
-export const getBlogRole = ({ token, userIds, communityId }) => {
+export const getBlogRole = ({ ttpApiUrl, token, userIds, communityId }) => {
   const filter = [
     { property: "user", value: userIds, operator: "in" },
     { property: "organization", value: communityId, operator: "eq" },
   ];
 
-  const requestUrl = `${TTP_API_URL}/blog/blog-role`;
+  const requestUrl = `${ttpApiUrl}/blog/blog-role`;
 
   return axios.get(requestUrl, {
     params: {
@@ -1111,5 +1135,29 @@ export const getBlogRole = ({ token, userIds, communityId }) => {
       filter: JSON.stringify(filter),
       fields: "*,userId",
     },
+  });
+};
+
+export const getAutoNotifications = (
+  ttpApiUrl,
+  token,
+  lng,
+  organizationId,
+  date,
+  articleId
+) => {
+  const requestUrl = `${ttpApiUrl}/blog/article/list-auto-mobile-notification`;
+  let params = {
+    access_token: token,
+    language: lng,
+    organization: organizationId,
+    date,
+  };
+  if (articleId) {
+    params.articleId = articleId;
+  }
+
+  return axios.get(requestUrl, {
+    params,
   });
 };

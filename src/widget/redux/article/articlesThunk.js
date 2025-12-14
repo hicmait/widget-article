@@ -2,8 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../../api";
 export const uploadTmpMedia = createAsyncThunk(
   "articles/uploadTmpMedia",
-  async ({ token, data }) => {
+  async ({ token, ttpApiUrl, data }) => {
     const response = await api.uploadTmpMedia({
+      ttpApiUrl,
       token,
       data,
     });
@@ -13,8 +14,10 @@ export const uploadTmpMedia = createAsyncThunk(
 
 export const deleteTmpMedias = createAsyncThunk(
   "articles/deleteTmpMedias",
-  async (token) => {
+  async (token, { getState }) => {
+    const { ttpApiUrl } = getState().params;
     const response = await api.deleteTmpMedias({
+      ttpApiUrl,
       token,
     });
     return response;
@@ -61,11 +64,14 @@ export const fetchTranslateArticle = createAsyncThunk(
   "articles/fetchTranslateArticle",
   async ({ articleId, translateLanguage }, { getState }) => {
     const { token } = getState().auth;
+    const { ttpAiUrl } = getState().params;
+
     const articleResponse = await api.getArticle({
       token,
       articleId,
     });
     const translationResponse = await api.translateContent({
+      ttpAiUrl,
       token,
       content:
         articleResponse.data.data[0].title +
@@ -73,8 +79,9 @@ export const fetchTranslateArticle = createAsyncThunk(
         articleResponse.data.data[0].content,
       translateLanguage,
     });
-    articleResponse.data.data[0].content =
-      translationResponse.data.data.translatedText;
+    if (translationResponse?.data?.content) {
+      articleResponse.data.data[0].content = translationResponse.data.content;
+    }
 
     return articleResponse;
   }
@@ -106,7 +113,9 @@ export const fetchSuperTagTheme = createAsyncThunk(
   "articles/fetchSuperTagTheme",
   async ({ tagId }, { getState }) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
     const response = await api.getTag({
+      ttpApiUrl,
       token,
       id: tagId,
     });

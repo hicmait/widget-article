@@ -25,7 +25,7 @@ import ArticleStatus from "./ArticleStatus";
 import Notification from "./Notification";
 import RecurrentDate from "./RecurrentDate";
 import AuthorSuggestion from "../Editor/AuthorSuggestion";
-// import SortableAuthorList from "../Editor/SortableAuthorList";
+import SortableAuthorList from "../Editor/SortableAuthorList";
 import Attachments from "../Editor/Attachments";
 import _ from "../../../i18n";
 import styles from "./ArticleConfiguration.module.scss";
@@ -99,6 +99,7 @@ const getAllowedLanguages = (community) => {
 };
 
 const ArticleConfiguration = (props) => {
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
   const categories = useSelector((state) => state.categories.items);
   const auth = useSelector((state) => state.auth);
   const community = useSelector((state) => state.articles.article.community);
@@ -210,17 +211,15 @@ const ArticleConfiguration = (props) => {
   return (
     <div className={styles.configContainer}>
       <div className={styles.authorsContainer}>
-        {/* <SortableAuthorList
+        <SortableAuthorList
           language={props.selectedLanguage}
           auth={auth}
           onChangeAuthor={(newAuthor) => props.onChangeAuthor(newAuthor)}
           onDeleteAuthor={(author) => props.onDeleteAuthor(author)}
           onSortEnd={onSortAuthorsEnd}
-          helperClass={styles.sortableHelper}
-          lockAxis="y"
-          pressDelay={200}
+          // helperClass={styles.sortableHelper}
           authors={authors}
-        /> */}
+        />
 
         <div className={styles.addAuthor}>
           <AuthorSuggestion
@@ -354,6 +353,7 @@ const ArticleConfiguration = (props) => {
                 auth={auth}
                 community={community}
                 selectStyles={selectStyles}
+                ttpApiUrl={ttpApiUrl}
               />
             </div>
           )}
@@ -450,7 +450,10 @@ const ArticleConfiguration = (props) => {
                 <label className={styles.configLabel}>
                   {_("article.notification")}
                 </label>
-                <Notification selectStyles={selectStyles} />
+                <Notification
+                  selectStyles={selectStyles}
+                  activeTab={props.activeTab}
+                />
               </div>
             )}
           </div>
@@ -464,7 +467,7 @@ const ArticleConfiguration = (props) => {
             <div>
               <Rating
                 onClick={handleRelevance}
-                ratingValue={relevance}
+                initialValue={relevance}
                 size={22}
                 fillColor="#18a0fb"
                 showTooltip

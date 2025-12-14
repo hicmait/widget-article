@@ -11,9 +11,11 @@ export default function ClientSelect({
   selectStyles,
 }) {
   const token = useSelector((state) => state.auth.token);
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
 
   const fetchClients = (inputValue) => {
     return getClients({
+      ttpApiUrl,
       token,
       search: inputValue,
     }).then((result) => {

@@ -1,16 +1,21 @@
-import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
-import pdfWorker from "pdfjs-dist/build/pdf.worker.entry";
+import * as pdfJs from "pdfjs-dist";
+
+// import * as pdfWorker from "pdfjs-dist/build/pdf.worker.mjs";
 
 import _ from "../../../../i18n";
 import { uploadTmpMedia } from "../../../../redux/actions";
-import { MAX_FILE_SIZE, TTP_API_URL } from "../../../../services/config";
+import { MAX_FILE_SIZE } from "../../../../services/config";
 
-GlobalWorkerOptions.workerSrc = pdfWorker;
+// pdfJs.GlobalWorkerOptions.workerSrc = pdfWorker;
+pdfJs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 
 let isUploadingPDF = false;
 const MAX_PAGES = 10;
 
-const handlePDFUpload = async (file, dispatch, auth) => {
+const handlePDFUpload = async (file, dispatch, auth, ttpApiUrl) => {
   if (isUploadingPDF) {
     return [];
   }
@@ -19,7 +24,7 @@ const handlePDFUpload = async (file, dispatch, auth) => {
 
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const pdf = await getDocument({ data: arrayBuffer }).promise;
+    const pdf = await pdfJs.getDocument({ data: arrayBuffer }).promise;
 
     const pageCount = pdf.numPages;
     const pageImages = [];
@@ -48,14 +53,22 @@ const handlePDFUpload = async (file, dispatch, auth) => {
       });
 
       // Upload the image and get the URL
-      const uploadResp = await dispatch(
-        uploadTmpMedia({ token: auth.token, data: fileToUpload })
-      );
-      const url = uploadResp.payload.data.data.url;
+      // const uploadResp = await dispatch(
+      //   uploadTmpMedia({ ttpApiUrl, token: auth.token, data: fileToUpload })
+      // );
+      // const url = uploadResp.payload.data.data.url;
+      let url =
+        "https://s3.tamtam.pro/local/storage/uploads/blog/tmp-media-article/8650/3523f1a7a87d7b3d9e279ea333c86f57a36ee250.png";
+      setTimeout(() => {
+        url =
+          "https://s3.tamtam.pro/local/storage/uploads/blog/tmp-media-article/8650/3523f1a7a87d7b3d9e279ea333c86f57a36ee250.png";
+      }, 2000);
+
       const startsWithHttp = url.lastIndexOf("http://", 0) === 0;
       const startsWithHttps = url.lastIndexOf("https://", 0) === 0;
       const isAbsolute = startsWithHttp || startsWithHttps;
-      const imgUrl = isAbsolute ? url : `${TTP_API_URL}/${url}`;
+      const imgUrl = isAbsolute ? url : `${ttpApiUrl}/${url}`;
+      console.log("aaaaaaa", imgUrl);
 
       pageImages.push(imgUrl);
     }
@@ -66,7 +79,7 @@ const handlePDFUpload = async (file, dispatch, auth) => {
   }
 };
 
-const PdfEmbed = (dispatch, auth) => ({
+const PdfEmbed = (dispatch, auth, ttpApiUrl) => ({
   // @Required
   // plugin name
   name: "pdf_embed",
@@ -94,6 +107,7 @@ const PdfEmbed = (dispatch, auth) => ({
       currentSpan: null,
       dispatch: dispatch,
       auth: auth,
+      ttpApiUrl: ttpApiUrl,
     };
 
     // Generate submenu HTML
@@ -218,7 +232,7 @@ const PdfEmbed = (dispatch, auth) => ({
 
   onClick: async function () {
     const context = this.context;
-    const { dispatch, auth } = context.articleSubmenu;
+    const { dispatch, auth, ttpApiUrl } = context.articleSubmenu;
 
     const fileInput = document.getElementById("pdfFileInput");
     const file = fileInput.files[0];
@@ -243,7 +257,8 @@ const PdfEmbed = (dispatch, auth) => ({
         .getElementById("uploadPDFBtn")
         .removeEventListener("click", this.onClick);
 
-      const pageImages = await handlePDFUpload(file, dispatch, auth);
+      const pageImages = await handlePDFUpload(file, dispatch, auth, ttpApiUrl);
+
       this.functions.core.closeLoading();
       const selection = document.getSelection();
       const range = selection.getRangeAt(0);
@@ -252,6 +267,8 @@ const PdfEmbed = (dispatch, auth) => ({
         const imgHtml = `<img src="${imageUrl}" style="max-width: 100%; height: auto;" />`;
         const imgElement = document.createElement("div");
         imgElement.innerHTML = imgHtml;
+        // this.functions.insertHTML(imgElement);
+
         range.insertNode(imgElement);
       }
 

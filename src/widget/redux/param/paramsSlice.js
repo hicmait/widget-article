@@ -4,6 +4,7 @@ const initialState = {
   language: "fr",
   community: null,
   ttpApiUrl: "",
+  ttpAiUrl: "",
 };
 export const paramsSlice = createSlice({
   name: "params",
@@ -18,7 +19,11 @@ export const paramsSlice = createSlice({
     setTtpApiUrl: (state, { payload }) => {
       state.ttpApiUrl = payload;
     },
+    setTtpAiUrl: (state, { payload }) => {
+      state.ttpAiUrl = payload;
+    },
   },
 });
-export const { setLanguage, setCommunity, setTtpApiUrl } = paramsSlice.actions;
+export const { setLanguage, setCommunity, setTtpApiUrl, setTtpAiUrl } =
+  paramsSlice.actions;
 export default paramsSlice.reducer;

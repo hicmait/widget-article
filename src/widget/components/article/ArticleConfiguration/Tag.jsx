@@ -53,6 +53,7 @@ const groupBadgeStyles = {
 export default function Tag(props) {
   const { language } = props;
   const dispatch = useDispatch();
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
   const token = useSelector((state) => state.auth.token);
   const tags = useSelector((state) => state.articles.article.tags);
   const allowCreateTags = useSelector(
@@ -82,10 +83,11 @@ export default function Tag(props) {
   const [searchTags, setSearchTags] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
 
-  useEffect(async () => {
-    if (openTagModal && editTag) {
+  useEffect(() => {
+    const fetchTagData = async () => {
       try {
         const response = await getTag({
+          ttpApiUrl,
           token,
           id: editTag.id,
         });
@@ -140,6 +142,10 @@ export default function Tag(props) {
           }
         }
       } catch (e) {}
+    };
+
+    if (openTagModal && editTag) {
+      fetchTagData();
     }
   }, [openTagModal]);
 
@@ -278,6 +284,7 @@ export default function Tag(props) {
     const superT = tags?.filter((t) => t?.tag?.isSuperTag);
 
     return getSearchTags({
+      ttpApiUrl,
       token,
       textFilter,
       lng,
@@ -573,9 +580,9 @@ export default function Tag(props) {
           data.theme = theme.id;
         }
 
-        savePromises.push(saveTag(token, editTag));
+        savePromises.push(saveTag(ttpApiUrl, token, editTag));
         if (superTag) {
-          savePromises.push(saveSuperTag(token, data));
+          savePromises.push(saveSuperTag(ttpApiUrl, token, data));
         }
       }
 

@@ -31,6 +31,7 @@ export default function RenderAuthorSuggestions(props) {
   const themes = useSelector((state) => state.themes.items);
   const types = useSelector((state) => state.types.items);
   const token = useSelector((state) => state.auth.token);
+  const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
 
   const dispatch = useDispatch();
 
@@ -116,6 +117,7 @@ export default function RenderAuthorSuggestions(props) {
         if (newAuthor.preferences.theme && !theme) {
           try {
             const resp = await getTheme({
+              ttpApiUrl,
               token,
               themeId: newAuthor.preferences.theme,
             });
