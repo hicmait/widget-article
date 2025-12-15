@@ -1,4 +1,5 @@
-import * as pdfJs from "pdfjs-dist";
+// import * as pdfJs from "pdfjs-dist";
+import { pdfjs } from "react-pdf";
 
 // import * as pdfWorker from "pdfjs-dist/build/pdf.worker.mjs";
 
@@ -7,10 +8,11 @@ import { uploadTmpMedia } from "../../../../redux/actions";
 import { MAX_FILE_SIZE } from "../../../../services/config";
 
 // pdfJs.GlobalWorkerOptions.workerSrc = pdfWorker;
-pdfJs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "pdfjs-dist/build/pdf.worker.min.mjs",
+//   import.meta.url
+// ).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 let isUploadingPDF = false;
 const MAX_PAGES = 10;
@@ -24,7 +26,7 @@ const handlePDFUpload = async (file, dispatch, auth, ttpApiUrl) => {
 
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfJs.getDocument({ data: arrayBuffer }).promise;
+    const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
 
     const pageCount = pdf.numPages;
     const pageImages = [];

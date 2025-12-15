@@ -6,7 +6,7 @@ import { Modal as AntModal } from "antd";
 import { toast } from "react-toastify";
 import moment from "moment";
 import Skeleton from "react-loading-skeleton";
-import { NacnWidget } from "cockpit-ia";
+// import { NacnWidget } from "cockpit-ia";
 import "cockpit-ia/main.css";
 
 import Controls from "../Editor/Controls";
@@ -124,6 +124,7 @@ const getDefaultLanguage = (community, language) => {
 
 export function AddArticle(props) {
   const [activeTab, setActiveTab] = useState("EDITOR");
+  const [newContent, setNewContent] = useState("");
   const [content, setContent] = useState("");
   const [initialContent, setInitialContent] = useState("");
   const [yHeight, setYHeight] = useState(0);
@@ -1546,7 +1547,7 @@ export function AddArticle(props) {
           <IconClose size={17} />
         </div>
         <div id="ttp-widget-article" className={styles.body}>
-          <div
+          {/* <div
             style={{
               position: "absolute",
               bottom: "70px",
@@ -1558,18 +1559,21 @@ export function AddArticle(props) {
               appTarget="ARTICLE"
               onPost={(e) => {
                 console.log(e);
+
                 if (e?.type === "ARTICLE_DATA") {
-                  // setNewPost(e.data.content);
-                  dispatch(
-                    setArticle({ index: "content", value: e.data.content })
-                  );
+                  console.log("=====", e.data.content);
+
+                  setNewContent(e.data.content);
+                  // dispatch(
+                  //   setArticle({ index: "content", value: e.data.content })
+                  // );
                 }
               }}
               token="b03f904a45843d832720e1ead56705c45ac9463a"
               apiUrl="http://local.api.tamtam.pro"
               aiUrl="https://service.ai.api.staging.tamtam.pro"
             />
-          </div>
+          </div> */}
           <div className={styles.title}>{_("article.write_article")}</div>
           <p className={styles.subtitle}>{_("article.write_subtitle")}</p>
 
@@ -1626,6 +1630,8 @@ export function AddArticle(props) {
                 setYHeight={setYHeight}
                 mainMedia={editMainMedia}
                 handleAttachmentsChange={handleAttachmentsChange}
+                newContent={newContent}
+                setNewContent={setNewContent}
               />
 
               <ArticleConfiguration
