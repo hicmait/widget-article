@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  saveArticle,
   fetchArticle,
   fetchTranslateArticle,
   fetchTranslateArticleNoContent,
@@ -126,19 +125,6 @@ export const articlesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(saveArticle.pending, (state, action) => {
-      state.isSaving = true;
-    });
-    builder.addCase(saveArticle.fulfilled, (state, action) => {
-      state.isSaving = false;
-      state.error = null;
-    });
-    builder.addCase(saveArticle.rejected, (state, action) => {
-      state.error = action.payload;
-      state.isSaving = false;
-      state.items = [];
-    });
-
     builder.addCase(fetchArticle.pending, (state, action) => {
       state.fetching = true;
       state.tagNames = {};

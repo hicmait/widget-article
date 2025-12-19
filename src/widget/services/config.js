@@ -1,11 +1,10 @@
 export const TTP_API_URL = "";
 export const APP_ENV = "local";
-export const TTP_BLOG_URL = "";
+export const TTP_BLOG_URL = "https://blog.tamtam.pro";
 export const TTP_HOME_URL = "";
-export const TTP_FFF_BLOG = "";
-export const TTP_DEG_BLOG = "";
-export const TTP_DAP_BLOG = "";
-export const TTP_BE_ACCOUNTANTS_BLOG = "";
+export const TTP_FFF_BLOG = "https://blog.forumforthefuture.be";
+export const TTP_DEG_BLOG = "https://blog.degandpartners.com";
+export const TTP_DAP_BLOG = "https://blog.degandpartners.com";
 
 export const MAX_FILE_SIZE = 3 * 1024 * 1024;
 

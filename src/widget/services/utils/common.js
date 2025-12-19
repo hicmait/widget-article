@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  TTP_BLOG_URL,
-  TTP_FFF_BLOG,
-  TTP_DEG_BLOG,
-  TTP_BE_ACCOUNTANTS_BLOG,
-} from "../config";
+import { TTP_BLOG_URL, TTP_FFF_BLOG, TTP_DEG_BLOG } from "../config";
 
 // TODO review this
 export function isServiceActivated(service, resources, activatedPrefix = true) {
@@ -143,34 +138,6 @@ export const unescapeHtml = (safe) => {
 export const purifyString = (string) => {
   return htmlDecode(unescapeHtml(string));
 };
-
-export function getTo(article, auth) {
-  const { url, id, organization, lng } = article;
-  let to = `article/${url}/${id}?lng=${lng}`;
-
-  if (
-    organization &&
-    [8, 9, 105].indexOf(parseInt(organization.id, 10)) !== -1
-  ) {
-    const { loggedAs, token, user, expiresIn, createdAt } = auth;
-
-    if (loggedAs !== "GUEST_FROM_NL" && loggedAs !== "GUEST") {
-      to += `&token=${token}&email=${user.mainEmail}&id=${user.id}&expiresIn=${expiresIn}&createdAt=${createdAt}`;
-    }
-    if (
-      parseInt(organization.id, 10) === 9 ||
-      parseInt(organization.id, 10) === 105
-    ) {
-      return `${TTP_FFF_BLOG}/${to}`;
-    } else if (parseInt(organization.id, 10) === 8) {
-      return `${TTP_BE_ACCOUNTANTS_BLOG}/${to}`;
-    } else if (parseInt(organization.id, 10) === 4) {
-      return `${TTP_DEG_BLOG}/${to}`;
-    }
-  }
-
-  return `${TTP_BLOG_URL}/${to}`;
-}
 
 export function addLandaSize(img, width = 0, height = 0) {
   let result = img;

@@ -55,16 +55,16 @@ const handlePDFUpload = async (file, dispatch, auth, ttpApiUrl) => {
       });
 
       // Upload the image and get the URL
-      // const uploadResp = await dispatch(
-      //   uploadTmpMedia({ ttpApiUrl, token: auth.token, data: fileToUpload })
-      // );
-      // const url = uploadResp.payload.data.data.url;
-      let url =
-        "https://s3.tamtam.pro/local/storage/uploads/blog/tmp-media-article/8650/3523f1a7a87d7b3d9e279ea333c86f57a36ee250.png";
-      setTimeout(() => {
-        url =
-          "https://s3.tamtam.pro/local/storage/uploads/blog/tmp-media-article/8650/3523f1a7a87d7b3d9e279ea333c86f57a36ee250.png";
-      }, 2000);
+      const uploadResp = await dispatch(
+        uploadTmpMedia({ ttpApiUrl, token: auth.token, data: fileToUpload })
+      );
+      const url = uploadResp.payload.data.data.url;
+      // let url =
+      //   "https://s3.tamtam.pro/local/storage/uploads/blog/tmp-media-article/8650/3523f1a7a87d7b3d9e279ea333c86f57a36ee250.png";
+      // setTimeout(() => {
+      //   url =
+      //     "https://s3.tamtam.pro/local/storage/uploads/blog/tmp-media-article/8650/3523f1a7a87d7b3d9e279ea333c86f57a36ee250.png";
+      // }, 2000);
 
       const startsWithHttp = url.lastIndexOf("http://", 0) === 0;
       const startsWithHttps = url.lastIndexOf("https://", 0) === 0;
@@ -262,20 +262,20 @@ const PdfEmbed = (dispatch, auth, ttpApiUrl) => ({
       const pageImages = await handlePDFUpload(file, dispatch, auth, ttpApiUrl);
 
       this.functions.core.closeLoading();
-      const selection = document.getSelection();
-      const range = selection.getRangeAt(0);
+      // const selection = document.getSelection();
+      // const range = selection.getRangeAt(0);
 
       for (let imageUrl of pageImages.reverse()) {
         const imgHtml = `<img src="${imageUrl}" style="max-width: 100%; height: auto;" />`;
         const imgElement = document.createElement("div");
         imgElement.innerHTML = imgHtml;
-        // this.functions.insertHTML(imgElement);
+        this.functions.insertHTML(imgElement, true);
 
-        range.insertNode(imgElement);
+        // range.insertNode(imgElement);
       }
 
-      selection.removeAllRanges();
-      selection.addRange(range);
+      // selection.removeAllRanges();
+      // selection.addRange(range);
 
       fileInput.value = "";
       errorDiv.style.display = "none";

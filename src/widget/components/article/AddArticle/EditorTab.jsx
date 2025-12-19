@@ -15,7 +15,7 @@ import Button from "../../common/Button";
 import TweetEmbed from "../Editor/plugins/TweetEmbed";
 import QuoteEmbed from "../Editor/plugins/QuoteEmbed";
 import ArticleEmbed from "../Editor/plugins/ArticleEmbed";
-import PdfEmbed from "../Editor/plugins/PdfEmbed";
+// import PdfEmbed from "../Editor/plugins/PdfEmbed";
 import ArticleSuggestionEmbed from "../Editor/plugins/ArticleSuggetionEmbed";
 import Loader from "../../common/Loader";
 
@@ -27,7 +27,7 @@ import {
   fetchAvatarsAndAuthors,
   fetchTitleIA,
 } from "../../../redux/actions";
-import { MAX_FILE_SIZE, TTP_API_URL } from "../../../services/config";
+import { MAX_FILE_SIZE } from "../../../services/config";
 import { IconCrop } from "../../common/Icons/Editor";
 import styles from "./AddArticle.module.scss";
 import styless from "./Modal/ModalConfirm.module.scss";
@@ -675,7 +675,7 @@ cover.addEventListener("mousedown", (e) => {
       const startsWithHttp = url.lastIndexOf("http://", 0) === 0;
       const startsWithHttps = url.lastIndexOf("https://", 0) === 0;
       const isAbsolute = startsWithHttp || startsWithHttps;
-      const imgUrl = isAbsolute ? url : `${TTP_API_URL}/${url}`;
+      const imgUrl = isAbsolute ? url : `${ttpApiUrl}/${url}`;
       uploadHandler({
         result: [
           {
@@ -891,7 +891,7 @@ cover.addEventListener("mousedown", (e) => {
                   "table",
                   "link",
                   "image",
-                  "pdf_embed",
+                  // "pdf_embed",
                   "video",
                   "tweet_embed",
                   "quote_embed",
@@ -907,7 +907,7 @@ cover.addEventListener("mousedown", (e) => {
                 QuoteEmbed,
                 ArticleEmbed,
                 ArticleSuggestionEmbed: ArticleSuggestionEmbed(dispatch),
-                PdfEmbed: PdfEmbed(dispatch, auth, ttpApiUrl),
+                // PdfEmbed: PdfEmbed(dispatch, auth, ttpApiUrl),
               },
             }}
             setContents={initialContent}

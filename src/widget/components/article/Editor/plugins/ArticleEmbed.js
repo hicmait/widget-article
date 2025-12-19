@@ -3,12 +3,13 @@ import _ from "../../../../i18n";
 import * as api from "../../../../api";
 import { getArticleFullUrl } from "../../../../services/utils";
 
-const addArticle = async (articleId, token) => {
+const addArticle = async (articleId, ttpApiUrl, token) => {
   if (!articleId) return;
 
   if (!token) return;
 
   return api.getArticle({
+    ttpApiUrl,
     token,
     articleId,
   });
@@ -156,14 +157,14 @@ const ArticleEmbed = {
     const state = store.getState();
     const token = state.auth?.token;
     const language = state.params?.language;
+    const ttpApiUrl = state.params?.ttpApiUrl;
 
     if (!token) return;
 
     this.functions.core.showLoading();
-    console.log({ test: this });
 
     try {
-      const response = await addArticle(articleId, token);
+      const response = await addArticle(articleId, ttpApiUrl, token);
       this.functions.core.closeLoading();
       const article = response.data.data[0];
       const articleTmpl = renderArticle(article, language);

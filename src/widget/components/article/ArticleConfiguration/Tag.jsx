@@ -196,6 +196,7 @@ export default function Tag(props) {
     try {
       setLoading(true);
       const res = await translateTag({
+        ttpApiUrl,
         token,
         text:
           editTag.nameFr.trim().length > 0

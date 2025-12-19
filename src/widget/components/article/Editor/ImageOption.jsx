@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Dropzone from "react-dropzone";
 
-import { uploadTmpMedia } from "Actions";
-import { TTP_API_URL } from "Config";
+import { uploadTmpMedia } from "../../../redux/actions";
 
 import styles from "./Toolbar.module.scss";
-import _ from "i18n";
+import _ from "../../../i18n";
 
 export default function ImageOption(props) {
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ export default function ImageOption(props) {
       const startsWithHttps = url.lastIndexOf("https://", 0) === 0;
       const isAbsolute = startsWithHttp || startsWithHttps;
       setUploading(false);
-      onUploadImage(isAbsolute ? url : `${TTP_API_URL}/${url}`);
+      onUploadImage(isAbsolute ? url : `${ttpApiUrl}/${url}`);
     });
   };
 

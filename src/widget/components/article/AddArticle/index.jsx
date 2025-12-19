@@ -6,7 +6,7 @@ import { Modal as AntModal } from "antd";
 import { toast } from "react-toastify";
 import moment from "moment";
 import Skeleton from "react-loading-skeleton";
-// import { NacnWidget } from "cockpit-ia";
+import { NacnWidget } from "cockpit-ia";
 import "cockpit-ia/main.css";
 
 import Controls from "../Editor/Controls";
@@ -20,7 +20,6 @@ import {
   fetchTranslateArticleNoContent,
   toggleArticleModal,
   uploadTmpMedia,
-  saveArticle,
   setArticle,
   resetArticle,
   setThemeCurrentLanguage,
@@ -53,11 +52,12 @@ import {
   getUserHeadline,
   saveResetRecurrentArticle,
   getBlogRole,
+  saveArticle,
 } from "../../../api";
 import { IconClose } from "../../common/Icons";
 import Button from "../../common/Button";
 import Loader from "../../common/Loader";
-import { TTP_API_URL, TTP_HOME_URL } from "../../../services/config";
+import { TTP_HOME_URL } from "../../../services/config";
 
 import styles from "./AddArticle.module.scss";
 import homeStyles from "../TamtamIt/TamtamIt.module.scss";
@@ -338,7 +338,7 @@ export function AddArticle(props) {
       setCoverFile(
         editMainMedia
           ? editMainMedia.fullMediaUrl ||
-              TTP_API_URL + "/" + editMainMedia.webPath
+              ttpApiUrl + "/" + editMainMedia.webPath
           : null
       );
 
@@ -495,7 +495,7 @@ export function AddArticle(props) {
           name: newAttachment.name,
           type: newAttachment.type,
           inHistory: 0,
-          url: `${TTP_API_URL}/${url}`,
+          url: `${ttpApiUrl}/${url}`,
           isTmp: true,
         };
         let newAttachments = attachments.concat(attachment);
@@ -1076,6 +1076,7 @@ export function AddArticle(props) {
           }
 
           const response = await saveQuickArticle({
+            ttpApiUrl,
             token: data.token,
             id: item.translateArticle.id,
             categoryId: data.categoryId,
@@ -1096,8 +1097,9 @@ export function AddArticle(props) {
     });
   };
 
-  const save = (hasShowSocialStep) => {
+  const save = async (hasShowSocialStep) => {
     let errors = validate();
+
     if (errors && errors.length > 0) {
       let ErrorsContainer = ({ errors }) => (
         <div>
@@ -1181,7 +1183,7 @@ export function AddArticle(props) {
       publishOnWorkflow,
       mediaIsAlbum,
       mediaMedia,
-      relevance: relevance ? relevance / 20 : 3,
+      relevance: relevance ? relevance : 3,
       fffLibrary: fffLib,
       canBeShared: canBeShared,
       isRecurrent,
@@ -1244,20 +1246,10 @@ export function AddArticle(props) {
       data.mediaMedia = { id: mainMediaArticleId };
       data.recurrentParent = articleId;
     }
-    if (hasShowSocialStep) {
-      dispatch(setIsSavingShare(true));
-    }
-    dispatch(saveArticle(data)).then(async ({ payload }) => {
-      if (payload.statusCode && payload.statusCode === 500) {
-        let ErrorsContainer = ({ error }) => (
-          <div>
-            <span>{_("article.errors") + " :"}</span>
-            <ul>{error.detail}</ul>
-          </div>
-        );
-        toast.error(<ErrorsContainer error={payload} />, { autoClose: true });
-        return null;
-      }
+
+    dispatch(setIsSaving(true));
+    try {
+      const response = await saveArticle(ttpApiUrl, auth.token, data);
 
       if (isCloning) {
         try {
@@ -1267,49 +1259,58 @@ export function AddArticle(props) {
           });
         } catch (e) {}
       }
-      if (hasShowSocialStep) {
-        dispatch(setIsSavingShare(false));
+      if (relatedArticles) {
+        try {
+          await handleSaveRelated({
+            ttpApiUrl,
+            token: auth.token,
+            categoryId: category.id,
+            typeId: type ? type.id : null,
+            tags: formatedTags,
+            publishedAt: data.publishedAt,
+            themeId: theme.id,
+            pages,
+            authors,
+            communityId: community.value,
+          });
+        } catch (e) {}
       }
-      if (payload.statusCode && payload.statusCode === 400) {
-        toast.error(payload.title, { autoClose: true });
-      } else if (
-        payload.status &&
-        (payload.status === 201 || payload.status === 200)
-      ) {
-        if (relatedArticles) {
-          dispatch(setIsSaving(true));
-          try {
-            await handleSaveRelated({
-              token: auth.token,
-              categoryId: category.id,
-              typeId: type ? type.id : null,
-              tags: formatedTags,
-              publishedAt: data.publishedAt,
-              themeId: theme.id,
-              pages,
-              authors,
-              communityId: community.value,
-            });
-            dispatch(setIsSaving(false));
-          } catch (e) {
-            dispatch(setIsSaving(false));
-          }
-        }
-        if (hasShowSocialStep) {
-          dispatch(setTamtamitArticle(payload.data.data));
-          if (
-            !auth.user?.socialNetwork ||
-            isSocialNetworkExpired(auth.user?.socialNetwork)
-          ) {
-            setShowUpdateSocialModal(true);
-          } else {
-            handleShowSocialStep();
-          }
+
+      resetAfterSave(response.data.data);
+
+      dispatch(setIsSaving(false));
+    } catch (e) {
+      console.log(e);
+
+      dispatch(setIsSaving(false));
+
+      if (e.response?.status === 400) {
+        // toast.error(_("invalid_credentials"));
+        toast.error(e?.response?.data?.detail, { autoClose: true });
+      } else {
+        if (e?.response?.status >= 500) {
+          toast.error(_("server_error"));
         } else {
-          resetAfterSave(payload.data.data);
+          toast.error("Erreur");
         }
       }
-    });
+
+      /*
+      if (payload.statusCode && payload.statusCode === 500) {
+        let ErrorsContainer = ({ error }) => (
+          <div>
+            <span>{_("article.errors") + " :"}</span>
+            <ul>{error.detail}</ul>
+          </div>
+        );
+        toast.error(<ErrorsContainer error={payload} />, { autoClose: true });
+        return null;
+      }*/
+
+      // if (payload.statusCode && payload.statusCode === 400) {
+      //   toast.error(payload.title, { autoClose: true });
+      // }
+    }
   };
 
   const handleConfigTab = () => {
@@ -1547,7 +1548,7 @@ export function AddArticle(props) {
           <IconClose size={17} />
         </div>
         <div id="ttp-widget-article" className={styles.body}>
-          {/* <div
+          <div
             style={{
               position: "absolute",
               bottom: "70px",
@@ -1559,21 +1560,19 @@ export function AddArticle(props) {
               appTarget="ARTICLE"
               onPost={(e) => {
                 console.log(e);
-
                 if (e?.type === "ARTICLE_DATA") {
                   console.log("=====", e.data.content);
-
                   setNewContent(e.data.content);
-                  // dispatch(
-                  //   setArticle({ index: "content", value: e.data.content })
-                  // );
                 }
               }}
-              token="b03f904a45843d832720e1ead56705c45ac9463a"
-              apiUrl="http://local.api.tamtam.pro"
+              token={auth.token}
+              apiUrl={ttpApiUrl}
               aiUrl="https://service.ai.api.staging.tamtam.pro"
+              blogSearchUrl="https://seo.tamtam.pro/blog/_msearch"
+              lng={props.language}
+              organizationId={community ? community.value : 9}
             />
-          </div> */}
+          </div>
           <div className={styles.title}>{_("article.write_article")}</div>
           <p className={styles.subtitle}>{_("article.write_subtitle")}</p>
 

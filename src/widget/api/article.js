@@ -354,11 +354,12 @@ export const translateContent = async ({
 };
 
 export const GenerateArticleWithAI = ({
+  ttpApiUrl,
   token,
   content,
   language = "en", // default to English
 }) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/generate-article`;
+  const requestUrl = `${ttpApiUrl}/blog/article/generate-article`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -367,8 +368,8 @@ export const GenerateArticleWithAI = ({
   return axios.post(requestUrl, formData);
 };
 
-export const getTitle = async ({ token, title }) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/generate-title`;
+export const getTitle = async ({ ttpApiUrl, token, title }) => {
+  const requestUrl = `${ttpApiUrl}/blog/article/generate-title`;
 
   var formData = new FormData();
   formData.append("access_token", token);
@@ -377,7 +378,7 @@ export const getTitle = async ({ token, title }) => {
   return axios.post(requestUrl, formData);
 };
 
-export const getArticle = ({ token, articleId }) => {
+export const getArticle = ({ ttpApiUrl, token, articleId }) => {
   const filter = [
     { property: "id", value: articleId, operator: "eq" },
     {
@@ -421,7 +422,7 @@ export const getArticle = ({ token, articleId }) => {
     "mobileNotification",
   ];
 
-  const requestUrl = `${TTP_API_URL}/blog/article`;
+  const requestUrl = `${ttpApiUrl}/blog/article`;
 
   return axios.get(requestUrl, {
     params: {
@@ -432,8 +433,8 @@ export const getArticle = ({ token, articleId }) => {
   });
 };
 
-export const saveArticle = (token, data) => {
-  const requestUrl = `${TTP_API_URL}/blog/article`;
+export const saveArticle = (ttpApiUrl, token, data) => {
+  const requestUrl = `${ttpApiUrl}/blog/article`;
 
   var formData = new FormData(); //TODO polyfill ?
   formData.append("access_token", token);
@@ -687,6 +688,7 @@ export const saveArticle = (token, data) => {
 };
 
 export const saveQuickArticle = ({
+  ttpApiUrl,
   token,
   id,
   categoryId,
@@ -699,7 +701,7 @@ export const saveQuickArticle = ({
   communityId,
   authorsRoles = null,
 }) => {
-  const requestUrl = `${TTP_API_URL}/blog/article/${id}`;
+  const requestUrl = `${ttpApiUrl}/blog/article/${id}`;
 
   let formData = new FormData();
   formData.append("access_token", token);

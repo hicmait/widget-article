@@ -1,8 +1,4 @@
-import {
-  TTP_API_URL,
-  COMMUNITY_NAME_MAX_LENGTH,
-  COMMUNITY_DEFAULT_LOGO_URL,
-} from "../config";
+import { COMMUNITY_NAME_MAX_LENGTH } from "../config";
 import { slugify, addLandaSize } from "../utils";
 
 export const getCommunityDisplayName = (community) => {
@@ -24,17 +20,6 @@ export const getCommunityRoute = (community) => {
   return `/community/${
     community.url ? community.url : slugify(community.name)
   }/${community.id}`;
-};
-
-export const getCommunityLogoUrl = (community) => {
-  if (!community) {
-    return "";
-  }
-  return community.avatarUrl
-    ? addLandaSize(community.avatarUrl, 600)
-    : community.avatarWebPath
-    ? `${TTP_API_URL}/${community.avatarWebPath}`
-    : COMMUNITY_DEFAULT_LOGO_URL;
 };
 
 export const getAllowedMediaTypes = (community) => {

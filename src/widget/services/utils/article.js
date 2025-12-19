@@ -2,12 +2,7 @@
 import moment from "moment-timezone";
 import "moment/locale/fr";
 import "moment/locale/nl";
-import {
-  TTP_BLOG_URL,
-  TTP_FFF_BLOG,
-  TTP_DAP_BLOG,
-  TTP_BE_ACCOUNTANTS_BLOG,
-} from "../config";
+import { TTP_BLOG_URL, TTP_FFF_BLOG, TTP_DAP_BLOG } from "../config";
 
 export function sortCategoriesAlphabetically(items, key) {
   return items.slice().sort((a, b) => {
@@ -169,11 +164,9 @@ export function getArticleFullUrl(article) {
 
   let fullUrl = `/${language}/article/${url}/${id}`;
 
-  if (organization && [8, 9, 4].includes(organization.id)) {
+  if (organization && [9, 4].includes(organization.id)) {
     if (organization.id == 9) {
       return `${TTP_FFF_BLOG}${fullUrl}`;
-    } else if (organization.id == 8) {
-      return `${TTP_BE_ACCOUNTANTS_BLOG}${fullUrl}`;
     } else if (organization.id == 4) {
       return `${TTP_DAP_BLOG}${fullUrl}`;
     }

@@ -1,8 +1,7 @@
 import axios from "axios";
-import { TTP_API_URL } from "../services/config";
 
-export const translateTag = ({ token, text, lng }) => {
-  const requestUrl = `${TTP_API_URL}/blog/tag/translate`;
+export const translateTag = ({ ttpApiUrl, token, text, lng }) => {
+  const requestUrl = `${ttpApiUrl}/blog/tag/translate`;
 
   var formData = new FormData();
   formData.append("access_token", token);

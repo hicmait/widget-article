@@ -24,24 +24,26 @@ export const deleteTmpMedias = createAsyncThunk(
   }
 );
 
-export const saveArticle = createAsyncThunk(
-  "articles/saveArticle",
-  async (data, { dispatch, getState, rejectWithValue }) => {
-    const { token } = getState().auth;
-    try {
-      const response = await api.saveArticle(token, data);
-      return response;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
+// export const saveArticle = createAsyncThunk(
+//   "articles/saveArticle",
+//   async (data, { dispatch, getState, rejectWithValue }) => {
+//     const { token } = getState().auth;
+//     try {
+//       const response = await api.saveArticle(token, data);
+//       return response;
+//     } catch (err) {
+//       return rejectWithValue(err.response.data);
+//     }
+//   }
+// );
 
 export const fetchArticle = createAsyncThunk(
   "articles/fetchArticle",
   async ({ articleId }, { getState }) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
     const response = await api.getArticle({
+      ttpApiUrl,
       token,
       articleId,
     });
@@ -53,7 +55,9 @@ export const fetchTranslateArticleNoContent = createAsyncThunk(
   "articles/fetchTranslateArticleNoContent ",
   async ({ articleId }, { getState }) => {
     const { token } = getState().auth;
+    const { ttpApiUrl } = getState().params;
     const response = await api.getArticle({
+      ttpApiUrl,
       token,
       articleId,
     });
@@ -64,9 +68,10 @@ export const fetchTranslateArticle = createAsyncThunk(
   "articles/fetchTranslateArticle",
   async ({ articleId, translateLanguage }, { getState }) => {
     const { token } = getState().auth;
-    const { ttpAiUrl } = getState().params;
+    const { ttpAiUrl, ttpApiUrl } = getState().params;
 
     const articleResponse = await api.getArticle({
+      ttpApiUrl,
       token,
       articleId,
     });
@@ -90,7 +95,9 @@ export const fetchGeneratedArticle = createAsyncThunk(
   "articles/fetchGeneratedArticle",
   async ({ content }, { getState }) => {
     const { token } = getState().auth;
+    const { ttpAiUrl, ttpApiUrl } = getState().params;
     const response = await api.GenerateArticleWithAI({
+      ttpApiUrl,
       token,
       content,
     });
@@ -102,7 +109,9 @@ export const fetchTitleIA = createAsyncThunk(
   "articles/fetchTitleIA",
   async ({ title }, { getState }) => {
     const { token } = getState().auth;
+    const { ttpAiUrl, ttpApiUrl } = getState().params;
     const response = await api.getTitle({
+      ttpApiUrl,
       token,
       title,
     });
