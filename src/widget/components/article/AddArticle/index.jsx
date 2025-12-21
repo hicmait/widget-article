@@ -34,6 +34,7 @@ import {
   setAllowCreateTags,
   setArticleTags,
   fetchSuperTagTheme,
+  setMediaMedia,
 } from "../../../redux/actions";
 import {
   getAuthorAllHeadlines,
@@ -1550,7 +1551,7 @@ export function AddArticle(props) {
         <div id="ttp-widget-article" className={styles.body}>
           <div
             style={{
-              position: "absolute",
+              position: "fixed",
               bottom: "70px",
               right: "20px",
               zIndex: "99999",
@@ -1563,6 +1564,8 @@ export function AddArticle(props) {
                 if (e?.type === "ARTICLE_DATA") {
                   console.log("=====", e.data.content);
                   setNewContent(e.data.content);
+                } else if (e?.type === "PICTURE_MEDIA") {
+                  dispatch(setMediaMedia(e.data.content));
                 }
               }}
               token={auth.token}

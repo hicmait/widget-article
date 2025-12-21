@@ -164,7 +164,8 @@ export default function EditorTab(props) {
 
   useEffect(() => {
     if (newContent.length > 0) {
-      editorRef.current.insertHTML(newContent);
+      // editorRef.current.insertHTML(newContent);
+      editorRef.current.setContents(newContent);
       setNewContent("");
     }
   }, [newContent]);
