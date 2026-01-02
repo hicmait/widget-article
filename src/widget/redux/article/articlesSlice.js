@@ -556,8 +556,8 @@ export const articlesSlice = createSlice({
     });
     builder.addCase(fetchTitleIA.fulfilled, (state, action) => {
       state.fetching = false;
-      state.article.originalTitle = action.payload.data.originalTitle;
-      state.article.attractiveTitle = action.payload.data.attractiveTitle;
+      // state.article.originalTitle = action.payload.data.originalTitle;
+      // state.article.attractiveTitle = action.payload.data.attractiveTitle;
     });
 
     builder.addCase(fetchGeneratedArticle.fulfilled, (state, action) => {

@@ -111,7 +111,7 @@ export const fetchTitleIA = createAsyncThunk(
     const { token } = getState().auth;
     const { ttpAiUrl, ttpApiUrl } = getState().params;
     const response = await api.getTitle({
-      ttpApiUrl,
+      ttpAiUrl,
       token,
       title,
     });

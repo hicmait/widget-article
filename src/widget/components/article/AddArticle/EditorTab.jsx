@@ -26,6 +26,7 @@ import {
   uploadTmpMedia,
   fetchAvatarsAndAuthors,
   fetchTitleIA,
+  setMediaMedia,
 } from "../../../redux/actions";
 import { MAX_FILE_SIZE } from "../../../services/config";
 import { IconCrop } from "../../common/Icons/Editor";
@@ -469,6 +470,7 @@ cover.addEventListener("mousedown", (e) => {
                   setCoverFile(null);
                   setCoverButtons("ICONS");
                   setShowAdjuster(false);
+                  dispatch(setMediaMedia(null));
                   const cover = coverContainer.current.node;
                   const coverImage = cover.querySelector("img");
                   coverImage.style.top = "0px";
@@ -645,7 +647,7 @@ cover.addEventListener("mousedown", (e) => {
             {coverImg}
             {mediaMedia && <div className={styles["cover-overlay"]}></div>}
             <DropzoneIcons />
-            <MediaButton />
+            {/* <MediaButton /> */}
           </ReactDropzone>
           <div id="adjuster" style={{ display: showAdjuster ? "" : "none" }}>
             <IconThreeDots />
@@ -727,7 +729,7 @@ cover.addEventListener("mousedown", (e) => {
         dispatch(fetchTitleIA({ title: title })).then((action) => {
           if (action.type === fetchTitleIA.fulfilled.type) {
             console.log(action.payload);
-            dispatchSetArticle("title", action.payload.data.attractiveTitle);
+            dispatchSetArticle("title", action.payload.data.content);
           } else if (action.type === fetchTitleIA.rejected.type) {
             console.error("Failed to generate title:", action.error);
           }
@@ -840,7 +842,7 @@ cover.addEventListener("mousedown", (e) => {
                         //   "title",
                         //   action.payload.data.attractiveTitle
                         // );
-                        setSuggestedTitle(action.payload.data.attractiveTitle);
+                        setSuggestedTitle(action.payload.content);
                         setSshowGenerateTitleModal(true);
                       } else if (action.type === fetchTitleIA.rejected.type) {
                         console.error(
@@ -966,7 +968,7 @@ cover.addEventListener("mousedown", (e) => {
                         //   "title",
                         //   action.payload.data.attractiveTitle
                         // );
-                        setSuggestedTitle(action.payload.data.attractiveTitle);
+                        setSuggestedTitle(action.payload.content);
                       } else if (action.type === fetchTitleIA.rejected.type) {
                         console.error(
                           "Failed to generate title:",

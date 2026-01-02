@@ -9,6 +9,7 @@ function App() {
         article
         auth={staticAuth}
         ttpApiUrl="http://local.api.tamtam.pro"
+        ttpAiUrl="https://ai.staging.tamtam.pro"
       />
     </>
   );

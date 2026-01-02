@@ -1565,6 +1565,11 @@ export function AddArticle(props) {
                   console.log("=====", e.data.content);
                   setNewContent(e.data.content);
                 } else if (e?.type === "PICTURE_MEDIA") {
+                  setYHeight(0);
+                  setHandleCropping(1);
+                  setCoverFile(null);
+                  setCoverButtons("ICONS");
+                  setImageHasChanged(false);
                   dispatch(setMediaMedia(e.data.content));
                 }
               }}

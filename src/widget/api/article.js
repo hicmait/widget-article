@@ -368,14 +368,30 @@ export const GenerateArticleWithAI = ({
   return axios.post(requestUrl, formData);
 };
 
-export const getTitle = async ({ ttpApiUrl, token, title }) => {
-  const requestUrl = `${ttpApiUrl}/blog/article/generate-title`;
+export const getTitle = async ({ ttpAiUrl, token, title }) => {
+  // const requestUrl = `${ttpApiUrl}/blog/article/generate-title`;
 
-  var formData = new FormData();
-  formData.append("access_token", token);
-  formData.append("title", title);
+  // var formData = new FormData();
+  // formData.append("access_token", token);
+  // formData.append("title", title);
 
-  return axios.post(requestUrl, formData);
+  // return axios.post(requestUrl, formData);
+
+  const requestUrl = `${ttpAiUrl}/article/generate-title`;
+
+  return axios.post(
+    requestUrl,
+    JSON.stringify({
+      title,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 
 export const getArticle = ({ ttpApiUrl, token, articleId }) => {
