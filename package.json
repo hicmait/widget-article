@@ -28,7 +28,7 @@
     "array-move": "^4.0.0",
     "axios": "^1.12.2",
     "classnames": "^2.5.1",
-    "cockpit-ia": "https://github.com/hicmait/cockpitia.git#v1.14",
+    "cockpit-ia": "https://github.com/hicmait/cockpitia.git#v1.15",
     "jquery": "^3.7.1",
     "moment": "^2.30.1",
     "moment-timezone": "^0.6.0",

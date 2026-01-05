@@ -40214,7 +40214,11 @@ const Gc0 = (t, n, o, r) => {
         className: `${D0.textContent} ${D0.textarea} `,
         rows: "10",
         value: r[a].content,
-        disabled: !0
+        onChange: (l) => {
+          const z = [...r];
+          z[a].content = l.target.value, i(z);
+        },
+        disabled: !r[a].content
       }
     )
   ] });
