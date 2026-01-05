@@ -141,6 +141,7 @@ export function AddArticle(props) {
   const [fetchingShareUser, setFetchingShareUser] = useState(false);
   const tamtamItArticle = useSelector((state) => state.tamtamit.article);
   const ttpApiUrl = useSelector((state) => state.params.ttpApiUrl);
+  const ttpAiUrl = useSelector((state) => state.params.ttpAiUrl);
 
   const editorRef = useRef();
   const ref = useRef({
@@ -1575,7 +1576,7 @@ export function AddArticle(props) {
               }}
               token={auth.token}
               apiUrl={ttpApiUrl}
-              aiUrl="https://service.ai.api.staging.tamtam.pro"
+              aiUrl={ttpAiUrl}
               blogSearchUrl="https://seo.tamtam.pro/blog/_msearch"
               lng={props.language}
               organizationId={community ? community.value : 9}
