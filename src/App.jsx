@@ -10,6 +10,7 @@ function App() {
         auth={staticAuth}
         ttpApiUrl="http://local.api.tamtam.pro"
         ttpAiUrl="https://ai.staging.tamtam.pro"
+        env="local"
       />
     </>
   );

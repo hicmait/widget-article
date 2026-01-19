@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 
 import _ from "../../i18n";
 
-import { setAuth, setTtpApiUrl, setTtpAiUrl } from "../../redux/actions";
+import {
+  setAuth,
+  setTtpApiUrl,
+  setTtpAiUrl,
+  setEnv,
+} from "../../redux/actions";
 import { BUBBLE_EVENTS } from "../../services/config";
 import { BubblesList } from "../BubblesList";
 import { AddArticle } from "../article/AddArticle";
@@ -21,6 +26,7 @@ export const ArticleApp = (props) => {
 
   dispatch(setTtpApiUrl(props.ttpApiUrl));
   dispatch(setTtpAiUrl(props.ttpAiUrl));
+  dispatch(setEnv(props.env));
 
   const renderFloatLayout = (bubbles) => {
     return (

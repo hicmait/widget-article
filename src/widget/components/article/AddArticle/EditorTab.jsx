@@ -15,6 +15,7 @@ import Button from "../../common/Button";
 import TweetEmbed from "../Editor/plugins/TweetEmbed";
 import QuoteEmbed from "../Editor/plugins/QuoteEmbed";
 import ArticleEmbed from "../Editor/plugins/ArticleEmbed";
+import EventEmbed from "../Editor/plugins/EventEmbed";
 // import PdfEmbed from "../Editor/plugins/PdfEmbed";
 import ArticleSuggestionEmbed from "../Editor/plugins/ArticleSuggetionEmbed";
 import Loader from "../../common/Loader";
@@ -899,6 +900,7 @@ cover.addEventListener("mousedown", (e) => {
                   "tweet_embed",
                   "quote_embed",
                   "article_embed",
+                  "event_embed",
                   "showBlocks",
                   "ArticleSuggestion",
                   "fullScreen",
@@ -909,6 +911,7 @@ cover.addEventListener("mousedown", (e) => {
                 TweetEmbed,
                 QuoteEmbed,
                 ArticleEmbed,
+                EventEmbed,
                 ArticleSuggestionEmbed: ArticleSuggestionEmbed(dispatch),
                 // PdfEmbed: PdfEmbed(dispatch, auth, ttpApiUrl),
               },
