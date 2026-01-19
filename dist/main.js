@@ -58486,12 +58486,12 @@ const Cl0 = (t, n) => {
   }
   let D = "";
   i && i.avatarUrl && (D = i.avatarUrl);
-  let P = `<div class="se-component se-event-embed" contenteditable="false" style="width:300px;font-size: 0.75rem;border-radius: 5px;padding: 0.688rem;background: #fff;color: #29394d;border: 1px solid #f1f2f4;outline: none;display: flex;flex-direction: column;">
+  let P = `<div style="width:300px;font-size: 0.75rem;border-radius: 5px;padding: 0.688rem;background: #fff;color: #29394d;border: 1px solid #f1f2f4;outline: none;display: flex;flex-direction: column;">
     <div style="width: 100%;height: 8.75rem;background-size: cover;background-repeat: no-repeat;border-radius: 5px;display: flex;position: relative;background-image: url('${`https://s3.tamtam.pro/${w}${y.replace(
     "eventsFolder",
     "events-folder"
   )}`}');">`;
-  return D && (P += `<div class="__se__tag" style="margin: 0.5rem;width: 3.5rem;height: 2.25rem;background-color: rgba(255, 255, 255, 0.85);border: 1px solid #f1f2f4;border-radius: 5px;padding: 0.2rem;"><span style="background-size: contain;background-repeat: no-repeat;background-position: center;width: 100%;height: 100%;display: flex;background-image: url('${D}');"></span></div>`), P += `</div><h3 style="font-size: 1rem;font-weight: 500;height: 2.75rem;line-height:21px;overflow: hidden;margin: 0.75rem 0 0.25rem !important;text-align: left;">${L}</h3>`, I && (P += `<h4 style="font-size: 0.75rem;color: #6d7f92;margin: 0 0 0.829rem !important;font-weight: 400;">${I}</h4>`), P += '<ul style="padding-inline-start:10px;font-size: 0.75rem;margin-block-start:0;margin-block-end:0;">', A ? P += `<li>${N0("article.event.in_progress")}</li>` : P += `<li><strong>${N0("article.event.live")}</strong> : ${z}</li>`, s && s === 1 && (P += "<li>Possible to review the training for max 15 days after the date of the live</li>"), P += `<li>Certificate included approved by <strong>${i.abbreviation}</strong></li>`, P += "</ul>", P += `<a style="height: 2rem;display: flex;align-items: center;justify-content: center;font-weight: 500;border-radius: 5px;color: #6d7f92 !important;background-color: #f1f2f4;text-decoration: none;margin: 20px 0;" href="${nD(n)}/event/${t.id}" target="_blank">Details</a>`, P += "</div>", P;
+  return D && (P += `<div class="__se__tag" style="margin: 0.5rem;width: 3.5rem;height: 2.25rem;background-color: rgba(255, 255, 255, 0.85);border: 1px solid #f1f2f4;border-radius: 5px;padding: 0.2rem;"><span style="background-size: contain;background-repeat: no-repeat;background-position: center;width: 100%;height: 100%;display: flex;background-image: url('${D}');"></span></div>`), P += `</div><h3 style="font-size: 1rem;font-weight: 500;height: 2.75rem;line-height:21px;overflow: hidden;margin: 0.75rem 0 0.25rem !important;text-align: left;">${L}</h3>`, I && (P += `<h4 style="font-size: 0.75rem;color: #6d7f92;margin: 0 0 0.829rem !important;font-weight: 400;">${I}</h4>`), P += '<ul style="padding-inline-start:10px;font-size: 0.75rem;margin-block-start:0;margin-block-end:0;">', A ? P += `<li>${N0("article.event.in_progress")}</li>` : P += `<li><strong>${N0("article.event.live")}</strong> : ${z}</li>`, s && s === 1 && (P += "<li>Possible to review the training for max 15 days after the date of the live</li>"), P += `<li>Certificate included approved by <strong>${i.abbreviation}</strong></li>`, P += "</ul>", P += `<a style="height: 2rem;display: flex;align-items: center;justify-content: center;font-weight: 500;border-radius: 5px;color: #6d7f92 !important;background-color: #f1f2f4;text-decoration: none;margin: 20px 0;" href="${nD(n)}/event/${t.id}" target="_blank">Details</a>`, P += "</div>", `<div class="se-component se-event-embed __se__uneditable" contenteditable="false" data-src=${encodeURIComponent(P)}>${P}</div>`;
 }, Tl0 = {
   // @Required
   // plugin name
@@ -58532,7 +58532,9 @@ const Cl0 = (t, n) => {
     return {
       className: "se-event-embed",
       method: function(t) {
-        t.setAttribute("contenteditable", !1);
+        if (!t.getAttribute("src")) return;
+        let n = t.getAttribute("src");
+        t.setAttribute("data-src", n), t.removeAttribute("src"), t.innerHTML = decodeURIComponent(n);
       }
     };
   },

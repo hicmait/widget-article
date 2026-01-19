@@ -153,7 +153,7 @@ const renderEvent = (event, env, language) => {
     "events-folder"
   )}`;
 
-  let str = `<div class="se-component se-event-embed" contenteditable="false" style="width:300px;font-size: 0.75rem;border-radius: 5px;padding: 0.688rem;background: #fff;color: #29394d;border: 1px solid #f1f2f4;outline: none;display: flex;flex-direction: column;">
+  let str = `<div style="width:300px;font-size: 0.75rem;border-radius: 5px;padding: 0.688rem;background: #fff;color: #29394d;border: 1px solid #f1f2f4;outline: none;display: flex;flex-direction: column;">
     <div style="width: 100%;height: 8.75rem;background-size: cover;background-repeat: no-repeat;border-radius: 5px;display: flex;position: relative;background-image: url('${imageSrc}');">`;
   if (clientLogo) {
     str += `<div class="__se__tag" style="margin: 0.5rem;width: 3.5rem;height: 2.25rem;background-color: rgba(255, 255, 255, 0.85);border: 1px solid #f1f2f4;border-radius: 5px;padding: 0.2rem;"><span style="background-size: contain;background-repeat: no-repeat;background-position: center;width: 100%;height: 100%;display: flex;background-image: url('${clientLogo}');"></span></div>`;
@@ -179,7 +179,9 @@ const renderEvent = (event, env, language) => {
   // prettier-ignore
   str += `<a style="height: 2rem;display: flex;align-items: center;justify-content: center;font-weight: 500;border-radius: 5px;color: #6d7f92 !important;background-color: #f1f2f4;text-decoration: none;margin: 20px 0;" href="${getEventUrl(env)}/event/${event.id}" target="_blank">${"Details"}</a>`;
   str += `</div>`;
-  return str;
+
+  // prettier-ignore
+  return `<div class="se-component se-event-embed __se__uneditable" contenteditable="false" data-src=${encodeURIComponent(str)}>${str}</div>`;
 };
 
 const EventEmbed = {
@@ -243,7 +245,11 @@ const EventEmbed = {
     return {
       className: "se-event-embed",
       method: function (element) {
-        element.setAttribute("contenteditable", false);
+        if (!element.getAttribute("src")) return;
+        let dataSrc = element.getAttribute("src");
+        element.setAttribute("data-src", dataSrc);
+        element.removeAttribute("src");
+        element.innerHTML = decodeURIComponent(dataSrc);
       },
     };
   },
