@@ -50,10 +50,11 @@ const renderArticle = (article, lng) => {
   }
 
   // prettier-ignore
-  let str = `<div class="article-embed-img" style="background-image: url('${imageSrc}')"></div><div class="article-embed-tmpl"><span class="article-embed-cat" style="background: ${category.colorCode}">${category[categoryName]}</span><span class="article-embed-com" style="border-left-color: ${category.colorCode}">${organization.abbreviation}</span>${isExternal ? `<a href="${currentArticleUrl}" target="_blank" rel="noreferrer" class="title">${title}</a>`: `<a href="${currentArticleUrl}" target="_blank" class="title">${title}</a>`}</div>`;
+  let str = `<div class="__se__tag article-embed-img" style="background-image: url('${imageSrc}')"></div><div class="__se__tag article-embed-tmpl"><span class="__se__tag article-embed-cat" style="background: ${category.colorCode}">${category[categoryName]}</span><span class="__se__tag article-embed-com" style="border-left-color: ${category.colorCode}">${organization.abbreviation}</span>${isExternal ? `<a href="${currentArticleUrl}" target="_blank" rel="noreferrer" class="title">${title}</a>`: `<a href="${currentArticleUrl}" target="_blank" class="title">${title}</a>`}</div>`;
 
   // prettier-ignore
-  return `<div class="se-component se-article-embed __se__uneditable" contenteditable="false" data-src=${encodeURIComponent(str)}>${str}</div>`;
+  return `<div class="se-component se-article-embed __se__uneditable" contenteditable="false" >${str}</div>`;
+  //data-src=${encodeURIComponent(str)}
 };
 
 const ArticleEmbed = {

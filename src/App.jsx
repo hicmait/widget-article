@@ -5,6 +5,9 @@ import { staticAuth } from "./auth.js";
 function App() {
   return (
     <>
+      <button onClick={() => window.showEditArticle(24959)}>
+        Edit Article 24959
+      </button>
       <TamtamArticleWidget
         article
         auth={staticAuth}

@@ -36,6 +36,7 @@ import styless from "./Modal/ModalConfirm.module.scss";
 
 import "../Editor/editor.scss";
 import "../Editor/plugins/article.scss";
+import "../Editor/plugins/event.scss";
 import _ from "../../../i18n";
 
 import AuthorMention from "../Editor/plugins/AuthorMention";
@@ -869,7 +870,7 @@ cover.addEventListener("mousedown", (e) => {
             placeholder={_("article.write_here")}
             setOptions={{
               attributesWhitelist: {
-                // all: "style",
+                all: "style",
                 input: "checked",
               },
               height: "auto",
