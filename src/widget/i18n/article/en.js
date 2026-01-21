@@ -133,5 +133,11 @@ const articleEn = {
     "The notification date must be after the publication date",
   hour: "hour",
   hours: "hours",
+  event_in_progress: "In progress",
+  event_live: "Live",
+  event_review_till_15_days:
+    "Possible to review the training for max 15 days after the date of the live",
+  event_approved_by: "Certificate included approved by",
+  event_details: "Details",
 };
 export default articleEn;

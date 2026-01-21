@@ -165,22 +165,22 @@ const renderEvent = (event, env, language) => {
   }
   strContent += `<ul style="padding-inline-start:10px;font-size: 0.75rem;margin-block-start:0;margin-block-end:0;">`;
   if (processing) {
-    strContent += `<li>${_("article.event.in_progress")}</li>`;
+    strContent += `<li>${_("article.event_in_progress")}</li>`;
   } else {
     strContent += `<li><strong>${_(
-      "article.event.live"
+      "article.event_live"
     )}</strong> : ${helpDate}</li>`;
   }
   if (isReplayable && isReplayable === 1) {
-    strContent += `<li>${"Possible to review the training for max 15 days after the date of the live"}</li>`;
+    strContent += `<li>${_("article.event_review_till_15_days")}</li>`;
   }
-  strContent += `<li>${"Certificate included approved by"} <strong>${
+  strContent += `<li>${_("article.event_approved_by")} <strong>${
     clientData.abbreviation
   }</strong></li>`;
   strContent += `</ul>`;
 
   // prettier-ignore
-  strContent += `<a style="height: 2rem;display: flex;align-items: center;justify-content: center;font-weight: 500;border-radius: 5px;color: #6d7f92 !important;background-color: #f1f2f4;text-decoration: none;margin: 20px 0;" href="${getEventUrl(env)}/event/${event.id}" target="_blank">${"Details"}</a>`;
+  strContent += `<a style="font-weight: 500;color: #6d7f92 !important;text-decoration: none;margin: 20px 0;" href="${getEventUrl(env)}/event/${event.id}" target="_blank">${_("article.event_details")}</a>`;
   // str += `</div>`;
 
   // prettier-ignore

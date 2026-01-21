@@ -153,6 +153,12 @@ const articleFr = {
     "La date de la notification doit être supérieure à celle de la publication",
   hour: "heure",
   hours: "heures",
+  event_in_progress: "En cours",
+  event_live: "En Live",
+  event_review_till_15_days:
+    "Possible de revoir la formation pendant max 15 jours après la date du live",
+  event_approved_by: "Attestation incluse agréé par",
+  event_details: "Détails",
 };
 
 export default articleFr;

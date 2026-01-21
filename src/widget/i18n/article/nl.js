@@ -149,6 +149,12 @@ const articleNl = {
     "De datum van de kennisgeving moet later zijn dan de datum van publicatie",
   hour: "uur",
   hours: "uren",
+  event_in_progress: "Bezig",
+  event_live: "Live",
+  event_review_till_15_days:
+    "Mogelijkheid om de training te bekijken tot 15 dagen vanaf de datum van de live",
+  event_approved_by: "Certificaat meegeleverd goedgekeurd door",
+  event_details: "Details",
 };
 
 export default articleNl;

@@ -9164,22 +9164,22 @@ Arguments: ` + Array.prototype.slice.call(B).join("") + `
       function mf() {
         return this._isUTC ? "Coordinated Universal Time" : "";
       }
-      var C0 = h.prototype;
-      C0.add = Jn, C0.calendar = hO, C0.clone = gO, C0.diff = LO, C0.endOf = IO, C0.format = BO, C0.from = TO, C0.fromNow = SO, C0.to = xO, C0.toNow = EO, C0.get = n2, C0.invalidAt = GO, C0.isAfter = mO, C0.isBefore = qO, C0.isBetween = WO, C0.isSame = vO, C0.isSameOrAfter = yO, C0.isSameOrBefore = RO, C0.isValid = VO, C0.lang = el, C0.locale = $p, C0.localeData = tl, C0.max = fo, C0.min = r2, C0.parsingFlags = jO, C0.set = ci, C0.startOf = _O, C0.subtract = No, C0.toArray = PO, C0.toObject = FO, C0.toDate = DO, C0.toISOString = NO, C0.inspect = wO, typeof Symbol < "u" && Symbol.for != null && (C0[Symbol.for("nodejs.util.inspect.custom")] = function() {
+      var N0 = h.prototype;
+      N0.add = Jn, N0.calendar = hO, N0.clone = gO, N0.diff = LO, N0.endOf = IO, N0.format = BO, N0.from = TO, N0.fromNow = SO, N0.to = xO, N0.toNow = EO, N0.get = n2, N0.invalidAt = GO, N0.isAfter = mO, N0.isBefore = qO, N0.isBetween = WO, N0.isSame = vO, N0.isSameOrAfter = yO, N0.isSameOrBefore = RO, N0.isValid = VO, N0.lang = el, N0.locale = $p, N0.localeData = tl, N0.max = fo, N0.min = r2, N0.parsingFlags = jO, N0.set = ci, N0.startOf = _O, N0.subtract = No, N0.toArray = PO, N0.toObject = FO, N0.toDate = DO, N0.toISOString = NO, N0.inspect = wO, typeof Symbol < "u" && Symbol.for != null && (N0[Symbol.for("nodejs.util.inspect.custom")] = function() {
         return "Moment<" + this.format() + ">";
-      }), C0.toJSON = HO, C0.toString = CO, C0.unix = XO, C0.valueOf = kO, C0.creationData = YO, C0.eraName = QO, C0.eraNarrow = KO, C0.eraAbbr = $O, C0.eraYear = ef, C0.year = jn, C0.isLeapYear = Bn, C0.weekYear = sf, C0.isoWeekYear = pf, C0.quarter = C0.quarters = df, C0.month = r1, C0.daysInMonth = _e, C0.week = C0.weeks = X2, C0.isoWeek = C0.isoWeeks = Ip, C0.weeksInYear = Mf, C0.weeksInWeekYear = uf, C0.isoWeeksInYear = lf, C0.isoWeeksInISOWeekYear = bf, C0.date = al, C0.day = C0.days = jp, C0.weekday = Gp, C0.isoWeekday = Yp, C0.dayOfYear = Of, C0.hour = C0.hours = na, C0.minute = C0.minutes = ff, C0.second = C0.seconds = Af, C0.millisecond = C0.milliseconds = cl, C0.utcOffset = J2, C0.utc = O0, C0.local = y0, C0.parseZone = E0, C0.hasAlignedHourOffset = k0, C0.isDST = U0, C0.isLocal = W1, C0.isUtcOffset = k1, C0.isUtc = m1, C0.isUTC = m1, C0.zoneAbbr = gf, C0.zoneName = mf, C0.dates = I(
+      }), N0.toJSON = HO, N0.toString = CO, N0.unix = XO, N0.valueOf = kO, N0.creationData = YO, N0.eraName = QO, N0.eraNarrow = KO, N0.eraAbbr = $O, N0.eraYear = ef, N0.year = jn, N0.isLeapYear = Bn, N0.weekYear = sf, N0.isoWeekYear = pf, N0.quarter = N0.quarters = df, N0.month = r1, N0.daysInMonth = _e, N0.week = N0.weeks = X2, N0.isoWeek = N0.isoWeeks = Ip, N0.weeksInYear = Mf, N0.weeksInWeekYear = uf, N0.isoWeeksInYear = lf, N0.isoWeeksInISOWeekYear = bf, N0.date = al, N0.day = N0.days = jp, N0.weekday = Gp, N0.isoWeekday = Yp, N0.dayOfYear = Of, N0.hour = N0.hours = na, N0.minute = N0.minutes = ff, N0.second = N0.seconds = Af, N0.millisecond = N0.milliseconds = cl, N0.utcOffset = J2, N0.utc = O0, N0.local = y0, N0.parseZone = E0, N0.hasAlignedHourOffset = k0, N0.isDST = U0, N0.isLocal = W1, N0.isUtcOffset = k1, N0.isUtc = m1, N0.isUTC = m1, N0.zoneAbbr = gf, N0.zoneName = mf, N0.dates = I(
         "dates accessor is deprecated. Use date instead.",
         al
-      ), C0.months = I(
+      ), N0.months = I(
         "months accessor is deprecated. Use month instead",
         r1
-      ), C0.years = I(
+      ), N0.years = I(
         "years accessor is deprecated. Use year instead",
         jn
-      ), C0.zone = I(
+      ), N0.zone = I(
         "moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/",
         is
-      ), C0.isDSTShifted = I(
+      ), N0.isDSTShifted = I(
         "isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information",
         z1
       );
@@ -9397,7 +9397,7 @@ Arguments: ` + Array.prototype.slice.call(B).join("") + `
         C._d = new Date(J0(u));
       });
       //! moment.js
-      return r.version = "2.30.1", i(O1), r.fn = C0, r.min = Qp, r.max = Kp, r.now = os, r.utc = m, r.unix = qf, r.months = vf, r.isDate = z, r.locale = o0, r.invalid = v, r.duration = S1, r.isMoment = x, r.weekdays = Rf, r.parseZone = Wf, r.localeData = A0, r.isDuration = Co, r.monthsShort = yf, r.weekdaysMin = Cf, r.defineLocale = s0, r.updateLocale = q0, r.locales = R0, r.weekdaysShort = Lf, r.normalizeUnits = B0, r.relativeTimeRounding = tA, r.relativeTimeThreshold = nA, r.calendarFormat = AO, r.prototype = C0, r.HTML5_FMT = {
+      return r.version = "2.30.1", i(O1), r.fn = N0, r.min = Qp, r.max = Kp, r.now = os, r.utc = m, r.unix = qf, r.months = vf, r.isDate = z, r.locale = o0, r.invalid = v, r.duration = S1, r.isMoment = x, r.weekdays = Rf, r.parseZone = Wf, r.localeData = A0, r.isDuration = Co, r.monthsShort = yf, r.weekdaysMin = Cf, r.defineLocale = s0, r.updateLocale = q0, r.locales = R0, r.weekdaysShort = Lf, r.normalizeUnits = B0, r.relativeTimeRounding = tA, r.relativeTimeThreshold = nA, r.calendarFormat = AO, r.prototype = N0, r.HTML5_FMT = {
         DATETIME_LOCAL: "YYYY-MM-DDTHH:mm",
         // <input type="datetime-local" />
         DATETIME_LOCAL_SECONDS: "YYYY-MM-DDTHH:mm:ss",
@@ -11747,7 +11747,12 @@ const Rj = {
   validate_notification_date: "The notification date format is invalid",
   validate_notification_after_date: "The notification date must be after the publication date",
   hour: "hour",
-  hours: "hours"
+  hours: "hours",
+  event_in_progress: "In progress",
+  event_live: "Live",
+  event_review_till_15_days: "Possible to review the training for max 15 days after the date of the live",
+  event_approved_by: "Certificate included approved by",
+  event_details: "Details"
 }, Sj = {
   add_new_article: "Rédiger",
   write_article: "Rédiger un article",
@@ -11896,7 +11901,12 @@ const Rj = {
   validate_notification_date: "Le format de la date de notification est invalide",
   validate_notification_after_date: "La date de la notification doit être supérieure à celle de la publication",
   hour: "heure",
-  hours: "heures"
+  hours: "heures",
+  event_in_progress: "En cours",
+  event_live: "En Live",
+  event_review_till_15_days: "Possible de revoir la formation pendant max 15 jours après la date du live",
+  event_approved_by: "Attestation incluse agréé par",
+  event_details: "Détails"
 }, xj = {
   add_new_article: "Schrijven",
   write_article: "Schrijf een artikel",
@@ -12041,7 +12051,12 @@ const Rj = {
   validate_notification_date: "Het datumformaat van de melding is ongeldig",
   validate_notification_after_date: "De datum van de kennisgeving moet later zijn dan de datum van publicatie",
   hour: "uur",
-  hours: "uren"
+  hours: "uren",
+  event_in_progress: "Bezig",
+  event_live: "Live",
+  event_review_till_15_days: "Mogelijkheid om de training te bekijken tot 15 dagen vanaf de datum van de live",
+  event_approved_by: "Certificaat meegeleverd goedgekeurd door",
+  event_details: "Details"
 }, NM = {
   en: {
     media: Nj,
@@ -12056,7 +12071,7 @@ const Rj = {
     article: xj
   }
 };
-function N0(t) {
+function C0(t) {
   let o = Ub.getState().params.language, r = t.split("."), i = r.shift(), a = r.length ? r[0] : t;
   return o || (o = "en"), NM[o][i] && NM[o][i][a] && NM[o][i][a].length !== 0 ? NM[o][i][a] : a;
 }
@@ -39211,22 +39226,22 @@ Arguments: ` + Array.prototype.slice.call(B).join("") + `
       function mf() {
         return this._isUTC ? "Coordinated Universal Time" : "";
       }
-      var C0 = h.prototype;
-      C0.add = Jn, C0.calendar = hO, C0.clone = gO, C0.diff = LO, C0.endOf = IO, C0.format = BO, C0.from = TO, C0.fromNow = SO, C0.to = xO, C0.toNow = EO, C0.get = n2, C0.invalidAt = GO, C0.isAfter = mO, C0.isBefore = qO, C0.isBetween = WO, C0.isSame = vO, C0.isSameOrAfter = yO, C0.isSameOrBefore = RO, C0.isValid = VO, C0.lang = el, C0.locale = $p, C0.localeData = tl, C0.max = fo, C0.min = r2, C0.parsingFlags = jO, C0.set = ci, C0.startOf = _O, C0.subtract = No, C0.toArray = PO, C0.toObject = FO, C0.toDate = DO, C0.toISOString = NO, C0.inspect = wO, typeof Symbol < "u" && Symbol.for != null && (C0[Symbol.for("nodejs.util.inspect.custom")] = function() {
+      var N0 = h.prototype;
+      N0.add = Jn, N0.calendar = hO, N0.clone = gO, N0.diff = LO, N0.endOf = IO, N0.format = BO, N0.from = TO, N0.fromNow = SO, N0.to = xO, N0.toNow = EO, N0.get = n2, N0.invalidAt = GO, N0.isAfter = mO, N0.isBefore = qO, N0.isBetween = WO, N0.isSame = vO, N0.isSameOrAfter = yO, N0.isSameOrBefore = RO, N0.isValid = VO, N0.lang = el, N0.locale = $p, N0.localeData = tl, N0.max = fo, N0.min = r2, N0.parsingFlags = jO, N0.set = ci, N0.startOf = _O, N0.subtract = No, N0.toArray = PO, N0.toObject = FO, N0.toDate = DO, N0.toISOString = NO, N0.inspect = wO, typeof Symbol < "u" && Symbol.for != null && (N0[Symbol.for("nodejs.util.inspect.custom")] = function() {
         return "Moment<" + this.format() + ">";
-      }), C0.toJSON = HO, C0.toString = CO, C0.unix = XO, C0.valueOf = kO, C0.creationData = YO, C0.eraName = QO, C0.eraNarrow = KO, C0.eraAbbr = $O, C0.eraYear = ef, C0.year = jn, C0.isLeapYear = Bn, C0.weekYear = sf, C0.isoWeekYear = pf, C0.quarter = C0.quarters = df, C0.month = r1, C0.daysInMonth = _e, C0.week = C0.weeks = X2, C0.isoWeek = C0.isoWeeks = Ip, C0.weeksInYear = Mf, C0.weeksInWeekYear = uf, C0.isoWeeksInYear = lf, C0.isoWeeksInISOWeekYear = bf, C0.date = al, C0.day = C0.days = jp, C0.weekday = Gp, C0.isoWeekday = Yp, C0.dayOfYear = Of, C0.hour = C0.hours = na, C0.minute = C0.minutes = ff, C0.second = C0.seconds = Af, C0.millisecond = C0.milliseconds = cl, C0.utcOffset = J2, C0.utc = O0, C0.local = y0, C0.parseZone = E0, C0.hasAlignedHourOffset = k0, C0.isDST = U0, C0.isLocal = W1, C0.isUtcOffset = k1, C0.isUtc = m1, C0.isUTC = m1, C0.zoneAbbr = gf, C0.zoneName = mf, C0.dates = I(
+      }), N0.toJSON = HO, N0.toString = CO, N0.unix = XO, N0.valueOf = kO, N0.creationData = YO, N0.eraName = QO, N0.eraNarrow = KO, N0.eraAbbr = $O, N0.eraYear = ef, N0.year = jn, N0.isLeapYear = Bn, N0.weekYear = sf, N0.isoWeekYear = pf, N0.quarter = N0.quarters = df, N0.month = r1, N0.daysInMonth = _e, N0.week = N0.weeks = X2, N0.isoWeek = N0.isoWeeks = Ip, N0.weeksInYear = Mf, N0.weeksInWeekYear = uf, N0.isoWeeksInYear = lf, N0.isoWeeksInISOWeekYear = bf, N0.date = al, N0.day = N0.days = jp, N0.weekday = Gp, N0.isoWeekday = Yp, N0.dayOfYear = Of, N0.hour = N0.hours = na, N0.minute = N0.minutes = ff, N0.second = N0.seconds = Af, N0.millisecond = N0.milliseconds = cl, N0.utcOffset = J2, N0.utc = O0, N0.local = y0, N0.parseZone = E0, N0.hasAlignedHourOffset = k0, N0.isDST = U0, N0.isLocal = W1, N0.isUtcOffset = k1, N0.isUtc = m1, N0.isUTC = m1, N0.zoneAbbr = gf, N0.zoneName = mf, N0.dates = I(
         "dates accessor is deprecated. Use date instead.",
         al
-      ), C0.months = I(
+      ), N0.months = I(
         "months accessor is deprecated. Use month instead",
         r1
-      ), C0.years = I(
+      ), N0.years = I(
         "years accessor is deprecated. Use year instead",
         jn
-      ), C0.zone = I(
+      ), N0.zone = I(
         "moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/",
         is
-      ), C0.isDSTShifted = I(
+      ), N0.isDSTShifted = I(
         "isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information",
         z1
       );
@@ -39444,7 +39459,7 @@ Arguments: ` + Array.prototype.slice.call(B).join("") + `
         C._d = new Date(J0(u));
       });
       //! moment.js
-      return r.version = "2.30.1", i(O1), r.fn = C0, r.min = Qp, r.max = Kp, r.now = os, r.utc = m, r.unix = qf, r.months = vf, r.isDate = z, r.locale = o0, r.invalid = v, r.duration = S1, r.isMoment = x, r.weekdays = Rf, r.parseZone = Wf, r.localeData = A0, r.isDuration = Co, r.monthsShort = yf, r.weekdaysMin = Cf, r.defineLocale = s0, r.updateLocale = q0, r.locales = R0, r.weekdaysShort = Lf, r.normalizeUnits = B0, r.relativeTimeRounding = tA, r.relativeTimeThreshold = nA, r.calendarFormat = AO, r.prototype = C0, r.HTML5_FMT = {
+      return r.version = "2.30.1", i(O1), r.fn = N0, r.min = Qp, r.max = Kp, r.now = os, r.utc = m, r.unix = qf, r.months = vf, r.isDate = z, r.locale = o0, r.invalid = v, r.duration = S1, r.isMoment = x, r.weekdays = Rf, r.parseZone = Wf, r.localeData = A0, r.isDuration = Co, r.monthsShort = yf, r.weekdaysMin = Cf, r.defineLocale = s0, r.updateLocale = q0, r.locales = R0, r.weekdaysShort = Lf, r.normalizeUnits = B0, r.relativeTimeRounding = tA, r.relativeTimeThreshold = nA, r.calendarFormat = AO, r.prototype = N0, r.HTML5_FMT = {
         DATETIME_LOCAL: "YYYY-MM-DDTHH:mm",
         // <input type="datetime-local" />
         DATETIME_LOCAL_SECONDS: "YYYY-MM-DDTHH:mm:ss",
@@ -41676,18 +41691,18 @@ function Ys0(t) {
       onClick: () => c(!1),
       variant: "primary",
       disabled: o,
-      children: N0("article.save")
+      children: C0("article.save")
     }
   );
   return /* @__PURE__ */ M0("div", { className: i7.controls, children: [
-    /* @__PURE__ */ F(jt, { onClick: a, variant: "default", children: N0("article.cancel") }),
+    /* @__PURE__ */ F(jt, { onClick: a, variant: "default", children: C0("article.cancel") }),
     /* @__PURE__ */ M0("div", { className: i7.saveContainer, children: [
       r === "PROGRAMMED" && i.length > 0 && /* @__PURE__ */ F(
         jt,
         {
           onClick: () => window.open(i, "_blank"),
           variant: "secondary",
-          children: N0("article.got_to_source")
+          children: C0("article.got_to_source")
         }
       ),
       p()
@@ -58250,7 +58265,7 @@ const Gp0 = ({ width: t = 26, height: n = 26, ...o }) => /* @__PURE__ */ M0("svg
       <div class="se-list-inner" style="width: 230px;">
       <div class="se-form-group"><input class="se-input-form" type="text" placeholder="Insert tweet embed text" style="border: 1px solid #CCC;" /></div>
       <div class="se-form-group">
-        <button type="button" class="se-plugin-btn se-tooltip">${N0(
+        <button type="button" class="se-plugin-btn se-tooltip">${C0(
       "article.quote_add"
     )}</button>
       </div>
@@ -58299,17 +58314,17 @@ const Gp0 = ({ width: t = 26, height: n = 26, ...o }) => /* @__PURE__ */ M0("svg
     return n.className = "se-submenu se-list-layer se-custom-quote", n.innerHTML = `
       <div class="se-list-inner" style="width: 100%;">
       <div class="se-form-group">
-      <textarea class="se-input-form" type="text" style="padding: 5px;border: 1px solid #CCC; width: 100%" placeholder="${N0(
+      <textarea class="se-input-form" type="text" style="padding: 5px;border: 1px solid #CCC; width: 100%" placeholder="${C0(
       "article.quote_text"
     )}" ></textarea>
       </div>
       <div class="se-form-group">
-      <input class="se-input-form" name="author" type="text" placeholder="${N0(
+      <input class="se-input-form" name="author" type="text" placeholder="${C0(
       "article.quote_author"
     )}" />
       </div>
       <div class="se-form-group">
-        <button type="button" class="se-plugin-btn se-tooltip">${N0(
+        <button type="button" class="se-plugin-btn se-tooltip">${C0(
       "article.quote_add"
     )}</button>
       </div>
@@ -58386,7 +58401,7 @@ const Cl0 = (t, n) => {
       <ul class="se-list-basic" style="width: 230px;">
       <li>
       <div class="se-form-group"><input class="se-input-form" type="text" placeholder="Article URL" style="border: 1px solid #CCC;" /></div>
-      <div class="se-form-group"><button type="button" class="se-plugin-btn se-tooltip">${N0(
+      <div class="se-form-group"><button type="button" class="se-plugin-btn se-tooltip">${C0(
       "article.quote_add"
     )}</button></div>
       </li>
@@ -58489,9 +58504,9 @@ const Cl0 = (t, n) => {
     "events-folder"
   )}`;
   let P = "";
-  return D && (P += `<div class="__se__tag" style="margin: 0.5rem;width: 3.5rem;height: 2.25rem;background-color: rgba(255, 255, 255, 0.85);border: 1px solid #f1f2f4;border-radius: 5px;padding: 0.2rem;"><span style="background-size: contain;background-repeat: no-repeat;background-position: center;width: 100%;height: 100%;display: flex;background-image: url('${D}');"></span></div>`), P += `<h3 style="font-size: 1rem;font-weight: 500;height: 2.75rem;line-height:21px;overflow: hidden;margin: 0.75rem 0 0.25rem !important;text-align: left;">${L}</h3>`, I && (P += `<h4 style="font-size: 0.75rem;color: #6d7f92;margin: 0 0 0.829rem !important;font-weight: 400;">${I}</h4>`), P += '<ul style="padding-inline-start:10px;font-size: 0.75rem;margin-block-start:0;margin-block-end:0;">', A ? P += `<li>${N0("article.event.in_progress")}</li>` : P += `<li><strong>${N0(
-    "article.event.live"
-  )}</strong> : ${z}</li>`, s && s === 1 && (P += "<li>Possible to review the training for max 15 days after the date of the live</li>"), P += `<li>Certificate included approved by <strong>${i.abbreviation}</strong></li>`, P += "</ul>", P += `<a style="height: 2rem;display: flex;align-items: center;justify-content: center;font-weight: 500;border-radius: 5px;color: #6d7f92 !important;background-color: #f1f2f4;text-decoration: none;margin: 20px 0;" href="${nD(n)}/event/${t.id}" target="_blank">Details</a>`, `<div class="se-component se-event-embed __se__uneditable" contenteditable="false">${`<div class="__se__tag event-embed-img" style="background-image: url('${X}')"></div><div class="__se__tag event-embed-tmpl">${P}</div>`}</div>`;
+  return D && (P += `<div class="__se__tag" style="margin: 0.5rem;width: 3.5rem;height: 2.25rem;background-color: rgba(255, 255, 255, 0.85);border: 1px solid #f1f2f4;border-radius: 5px;padding: 0.2rem;"><span style="background-size: contain;background-repeat: no-repeat;background-position: center;width: 100%;height: 100%;display: flex;background-image: url('${D}');"></span></div>`), P += `<h3 style="font-size: 1rem;font-weight: 500;height: 2.75rem;line-height:21px;overflow: hidden;margin: 0.75rem 0 0.25rem !important;text-align: left;">${L}</h3>`, I && (P += `<h4 style="font-size: 0.75rem;color: #6d7f92;margin: 0 0 0.829rem !important;font-weight: 400;">${I}</h4>`), P += '<ul style="padding-inline-start:10px;font-size: 0.75rem;margin-block-start:0;margin-block-end:0;">', A ? P += `<li>${C0("article.event_in_progress")}</li>` : P += `<li><strong>${C0(
+    "article.event_live"
+  )}</strong> : ${z}</li>`, s && s === 1 && (P += `<li>${C0("article.event_review_till_15_days")}</li>`), P += `<li>${C0("article.event_approved_by")} <strong>${i.abbreviation}</strong></li>`, P += "</ul>", P += `<a style="font-weight: 500;color: #6d7f92 !important;text-decoration: none;margin: 20px 0;" href="${nD(n)}/event/${t.id}" target="_blank">${C0("article.event_details")}</a>`, `<div class="se-component se-event-embed __se__uneditable" contenteditable="false">${`<div class="__se__tag event-embed-img" style="background-image: url('${X}')"></div><div class="__se__tag event-embed-tmpl">${P}</div>`}</div>`;
 }, Tl0 = {
   // @Required
   // plugin name
@@ -58545,7 +58560,7 @@ const Cl0 = (t, n) => {
       <ul class="se-list-basic" style="width: 230px;">
       <li>
       <div class="se-form-group"><input class="se-input-form" type="text" placeholder="Event ID" style="border: 1px solid #CCC;" /></div>
-      <div class="se-form-group"><button type="button" class="se-plugin-btn se-tooltip">${N0(
+      <div class="se-form-group"><button type="button" class="se-plugin-btn se-tooltip">${C0(
       "article.quote_add"
     )}</button></div>
       </li>
@@ -58625,7 +58640,7 @@ const Cl0 = (t, n) => {
         <div class="custom-content">
             <textarea class="custom-textarea" placeholder="Collez votre communiqué de presse ici"></textarea>
             <div class="button-container">
-                <button type="button" class=" custom-button ">${N0(
+                <button type="button" class=" custom-button ">${C0(
       "article.quote_create"
     )}</button>
             </div>
@@ -58986,22 +59001,22 @@ function Lb0({
       children: [
         /* @__PURE__ */ F("span", { className: ui.closeCoauthor, onClick: o, children: /* @__PURE__ */ F(Ec, {}) }),
         a ? /* @__PURE__ */ M0("div", { className: ui.loader_container, children: [
-          /* @__PURE__ */ F("p", { children: N0("article.loading_suggestions") }),
+          /* @__PURE__ */ F("p", { children: C0("article.loading_suggestions") }),
           /* @__PURE__ */ F(Rb0, { width: 44, height: 44 })
         ] }) : /* @__PURE__ */ M0("div", { children: [
           l.authors.length > 0 && /* @__PURE__ */ M0("div", { children: [
-            /* @__PURE__ */ F("div", { className: ui.cont, children: /* @__PURE__ */ F("label", { children: N0("article.authors") }) }),
+            /* @__PURE__ */ F("div", { className: ui.cont, children: /* @__PURE__ */ F("label", { children: C0("article.authors") }) }),
             /* @__PURE__ */ F("ul", { children: l.authors.map(
               (d) => z(d)
             ) })
           ] }),
           l.chains.length > 0 && /* @__PURE__ */ M0("div", { children: [
-            /* @__PURE__ */ F("label", { children: N0("article.chains") }),
+            /* @__PURE__ */ F("label", { children: C0("article.chains") }),
             /* @__PURE__ */ F("ul", { children: l.chains.map(
               (d) => z(d)
             ) })
           ] }),
-          l.authors.length === 0 && l.chains.length === 0 && /* @__PURE__ */ F("div", { className: ui.loader_container, children: /* @__PURE__ */ F("p", { children: N0("article.No_suggestions_available") }) })
+          l.authors.length === 0 && l.chains.length === 0 && /* @__PURE__ */ F("div", { className: ui.loader_container, children: /* @__PURE__ */ F("p", { children: C0("article.No_suggestions_available") }) })
         ] })
       ]
     }
@@ -59123,7 +59138,7 @@ function Cb0(t) {
     if (X0.length !== 0) {
       if (X0[0].size >= eD) {
         me.error(
-          /* @__PURE__ */ F("div", { children: /* @__PURE__ */ F("span", { children: N0("The image file you have selected is too large") }) }),
+          /* @__PURE__ */ F("div", { children: /* @__PURE__ */ F("span", { children: C0("The image file you have selected is too large") }) }),
           { autoClose: !0 }
         );
         return;
@@ -59176,7 +59191,7 @@ function Cb0(t) {
             className: "button-upload",
             children: [
               /* @__PURE__ */ F(NC, { size: 17 }),
-              /* @__PURE__ */ F("span", { children: N0("Change") })
+              /* @__PURE__ */ F("span", { children: C0("Change") })
             ]
           }
         ),
@@ -59190,7 +59205,7 @@ function Cb0(t) {
             },
             className: "button-cancel",
             variant: "default",
-            children: N0("article.cancel")
+            children: C0("article.cancel")
           }
         )
       ] })
@@ -59258,7 +59273,7 @@ function Cb0(t) {
             ]
           }
         ) }),
-        N0("article.media_text")
+        C0("article.media_text")
       ]
     }
   ) : null, v0 = () => {
@@ -59404,7 +59419,7 @@ function Cb0(t) {
           value: q,
           rows: 1,
           className: Ce.titleInput,
-          placeholder: N0("article.title"),
+          placeholder: C0("article.title"),
           onChange: (X0) => {
             p0("title", X0.target.value);
           },
@@ -59421,10 +59436,10 @@ function Cb0(t) {
       /* @__PURE__ */ F("div", { className: Ce.titleActions, children: /* @__PURE__ */ M0("div", { className: Ce.titleDropDown, children: [
         /* @__PURE__ */ F("span", { children: /* @__PURE__ */ F(Am, {}) }),
         /* @__PURE__ */ M0("div", { className: Ce.titleDropDown_content, children: [
-          /* @__PURE__ */ F("div", { onClick: () => A1("lower"), children: N0("article.lowercase") }),
-          /* @__PURE__ */ F("div", { onClick: () => A1("upper"), children: N0("article.uppercase") }),
-          /* @__PURE__ */ F("div", { onClick: () => A1("capitalize"), children: N0("article.capitalize") }),
-          /* @__PURE__ */ F("div", { onClick: () => A1("upperFirst"), children: N0("article.ufirst") }),
+          /* @__PURE__ */ F("div", { onClick: () => A1("lower"), children: C0("article.lowercase") }),
+          /* @__PURE__ */ F("div", { onClick: () => A1("upper"), children: C0("article.uppercase") }),
+          /* @__PURE__ */ F("div", { onClick: () => A1("capitalize"), children: C0("article.capitalize") }),
+          /* @__PURE__ */ F("div", { onClick: () => A1("upperFirst"), children: C0("article.ufirst") }),
           /* @__PURE__ */ F(
             "div",
             {
@@ -59436,7 +59451,7 @@ function Cb0(t) {
                   );
                 });
               },
-              children: N0("article.generateTitle")
+              children: C0("article.generateTitle")
             }
           )
         ] })
@@ -59448,7 +59463,7 @@ function Cb0(t) {
         {
           ref: o,
           getSunEditorInstance: V0,
-          placeholder: N0("article.write_here"),
+          placeholder: C0("article.write_here"),
           setOptions: {
             attributesWhitelist: {
               all: "style",
@@ -64331,7 +64346,7 @@ function F30(t) {
       styles: t.selectStyles,
       options: c,
       isSearchable: !1,
-      placeholder: N0("article.select_community"),
+      placeholder: C0("article.select_community"),
       value: o,
       onChange: p
     }
@@ -64364,7 +64379,7 @@ function H30(t) {
       isLoading: n,
       options: p,
       filterOption: a,
-      placeholder: N0("article.select_category"),
+      placeholder: C0("article.select_category"),
       value: r,
       getOptionLabel: (b) => b.name,
       getOptionValue: (b) => b.id,
@@ -64399,7 +64414,7 @@ function V30(t) {
       isLoading: n,
       options: p,
       filterOption: a,
-      placeholder: N0("article.select_type"),
+      placeholder: C0("article.select_type"),
       value: r,
       getOptionLabel: (b) => b.name,
       getOptionValue: (b) => b.id,
@@ -64493,9 +64508,9 @@ const Y30 = "_configContainer_ug1ol_1", U30 = "_authorsContainer_ug1ol_5", Z30 =
   recurrentBar: yd0,
   dateInput: Rd0
 }, Ld0 = [
-  { value: "en", label: N0("article.english") },
-  { value: "fr", label: N0("article.french") },
-  { value: "nl", label: N0("article.dutch") }
+  { value: "en", label: C0("article.english") },
+  { value: "fr", label: C0("article.french") },
+  { value: "nl", label: C0("article.dutch") }
 ], Cd0 = {
   control: (t, n) => ({
     ...t,
@@ -64631,19 +64646,19 @@ function Nd0(t) {
             ]
           }
         ) }),
-        N0("article.dropzone_text")
+        C0("article.dropzone_text")
       ]
     }
   ), D = () => {
     t.closePopOver(), c(""), s(""), l(""), g(null), W(!1);
   }, X = () => {
     let H = [];
-    return (a.trim().length === 0 || p.trim().length === 0 || b.trim().length === 0) && H.push(N0("article.validate_theme_title")), d || H.push(N0("article.validate_community")), H;
+    return (a.trim().length === 0 || p.trim().length === 0 || b.trim().length === 0) && H.push(C0("article.validate_theme_title")), d || H.push(C0("article.validate_community")), H;
   }, P = () => {
     let H = X();
     if (H && H.length > 0) {
       let Y = ({ errors: K }) => /* @__PURE__ */ M0("div", { children: [
-        /* @__PURE__ */ F("span", { children: N0("article.errors") + " :" }),
+        /* @__PURE__ */ F("span", { children: C0("article.errors") + " :" }),
         /* @__PURE__ */ F("ul", { children: K.map((_, N) => /* @__PURE__ */ F("li", { children: _ }, N)) })
       ] });
       me.error(/* @__PURE__ */ F(Y, { errors: H }), { autoClose: !0 });
@@ -64698,7 +64713,7 @@ function Nd0(t) {
             height: "18"
           }
         ),
-        N0("article.title"),
+        C0("article.title"),
         " FR"
       ] }),
       /* @__PURE__ */ F(
@@ -64721,7 +64736,7 @@ function Nd0(t) {
             height: "18"
           }
         ),
-        N0("article.title"),
+        C0("article.title"),
         " NL"
       ] }),
       /* @__PURE__ */ F(
@@ -64744,7 +64759,7 @@ function Nd0(t) {
             height: "18"
           }
         ),
-        N0("article.title"),
+        C0("article.title"),
         " EN"
       ] }),
       /* @__PURE__ */ F(
@@ -64759,21 +64774,21 @@ function Nd0(t) {
       )
     ] }),
     /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
-      /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.community") }),
+      /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.community") }),
       /* @__PURE__ */ F(
         Pi,
         {
           styles: Cd0,
           options: y,
           isSearchable: !1,
-          placeholder: N0("article.select_community"),
+          placeholder: C0("article.select_community"),
           value: d,
           onChange: (H) => A(H)
         }
       )
     ] }),
     /* @__PURE__ */ M0("div", { className: `${G0.formRow} ${G0.formSwitch} `, children: [
-      /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.theme_isdefault") }),
+      /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.theme_isdefault") }),
       /* @__PURE__ */ F(Lc, { isChecked: m, onChange: (H) => W(H) })
     ] }),
     /* @__PURE__ */ F(jt, { block: !0, onClick: () => P(), children: M ? /* @__PURE__ */ F(
@@ -64784,8 +64799,8 @@ function Nd0(t) {
         },
         color: "#fff"
       }
-    ) : N0("article.add_theme") }),
-    O && /* @__PURE__ */ F(jt, { block: !0, onClick: () => D(), variant: "default", children: N0("article.cancel") })
+    ) : C0("article.add_theme") }),
+    O && /* @__PURE__ */ F(jt, { block: !0, onClick: () => D(), variant: "default", children: C0("article.cancel") })
   ] });
 }
 const Zx = ({ size: t = 14 }) => /* @__PURE__ */ F(
@@ -64855,7 +64870,7 @@ function wd0(t) {
             defaultOptions: !0,
             getOptionLabel: (m) => m.title,
             getOptionValue: (m) => m.id,
-            placeholder: N0("article.select_theme"),
+            placeholder: C0("article.select_theme"),
             className: G0.input
           }
         ),
@@ -64874,9 +64889,9 @@ function wd0(t) {
   );
 }
 const Bd0 = [
-  { value: "en", label: N0("article.english") },
-  { value: "fr", label: N0("article.french") },
-  { value: "nl", label: N0("article.dutch") }
+  { value: "en", label: C0("article.english") },
+  { value: "fr", label: C0("article.french") },
+  { value: "nl", label: C0("article.dutch") }
 ], iR = {
   control: (t, n) => ({
     ...t,
@@ -65024,19 +65039,19 @@ function Td0(t) {
             ]
           }
         ) }),
-        N0("article.dropzone_text")
+        C0("article.dropzone_text")
       ]
     }
   ), Y = () => {
     t.closePopOver(), c(""), l(""), s(""), y(null), i(0);
   }, K = () => {
     let N = [];
-    return (a.trim().length === 0 || b.trim().length === 0 || p.trim().length === 0) && N.push(N0("article.validate_page_title")), d || N.push(N0("article.validate_community")), N;
+    return (a.trim().length === 0 || b.trim().length === 0 || p.trim().length === 0) && N.push(C0("article.validate_page_title")), d || N.push(C0("article.validate_community")), N;
   }, _ = () => {
     let N = K();
     if (N && N.length > 0) {
       let S = ({ errors: G }) => /* @__PURE__ */ M0("div", { children: [
-        /* @__PURE__ */ F("span", { children: N0("article.errors") + " :" }),
+        /* @__PURE__ */ F("span", { children: C0("article.errors") + " :" }),
         /* @__PURE__ */ F("ul", { children: G.map((Z, n0) => /* @__PURE__ */ F("li", { children: Z }, n0)) })
       ] });
       me.error(/* @__PURE__ */ F(S, { errors: N }), { autoClose: !0 });
@@ -65092,7 +65107,7 @@ function Td0(t) {
             height: "18"
           }
         ),
-        N0("article.title"),
+        C0("article.title"),
         " FR"
       ] }),
       /* @__PURE__ */ F(
@@ -65115,7 +65130,7 @@ function Td0(t) {
             height: "18"
           }
         ),
-        N0("article.title"),
+        C0("article.title"),
         " NL"
       ] }),
       /* @__PURE__ */ F(
@@ -65138,7 +65153,7 @@ function Td0(t) {
             height: "18"
           }
         ),
-        N0("article.title"),
+        C0("article.title"),
         " EN"
       ] }),
       /* @__PURE__ */ F(
@@ -65153,21 +65168,21 @@ function Td0(t) {
       )
     ] }),
     /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
-      /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.community") }),
+      /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.community") }),
       /* @__PURE__ */ F(
         Pi,
         {
           styles: iR,
           options: D,
           isSearchable: !1,
-          placeholder: N0("article.select_community"),
+          placeholder: C0("article.select_community"),
           value: d,
           onChange: (N) => A(N)
         }
       )
     ] }),
     /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
-      /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.theme") }),
+      /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.theme") }),
       /* @__PURE__ */ F(
         Pi,
         {
@@ -65190,8 +65205,8 @@ function Td0(t) {
         },
         color: "#fff"
       }
-    ) : N0("article.add_page") }),
-    q && /* @__PURE__ */ F(jt, { block: !0, onClick: () => Y(), variant: "default", children: N0("article.cancel") })
+    ) : C0("article.add_page") }),
+    q && /* @__PURE__ */ F(jt, { block: !0, onClick: () => Y(), variant: "default", children: C0("article.cancel") })
   ] });
 }
 function Sd0(t) {
@@ -65225,7 +65240,7 @@ function Sd0(t) {
             isLoading: n,
             options: b,
             className: G0.input,
-            placeholder: N0("article.select_page"),
+            placeholder: C0("article.select_page"),
             value: o,
             getOptionLabel: (m) => m.title,
             getOptionValue: (m) => m.id,
@@ -65340,9 +65355,9 @@ function Hd0({
           fullMerge: z,
           source: O.join()
         }
-      }), m(!1), r && r(), W(), me.success(N0("article.saved_successfully"));
+      }), m(!1), r && r(), W(), me.success(C0("article.saved_successfully"));
     } catch {
-      m(!1), me.error(N0("article.error_occurred"));
+      m(!1), me.error(C0("article.error_occurred"));
     }
   };
   return o.length < 2 ? null : /* @__PURE__ */ F(
@@ -65356,7 +65371,7 @@ function Hd0({
       zIndex: "99999",
       children: /* @__PURE__ */ M0("div", { className: fs.modal_content, children: [
         /* @__PURE__ */ M0("p", { className: fs.question, children: [
-          N0("article.merge_question"),
+          C0("article.merge_question"),
           " ",
           o.length === 2 && /* @__PURE__ */ M0(Gt, { children: [
             /* @__PURE__ */ F("strong", { children: /* @__PURE__ */ M0("em", { children: [
@@ -65366,7 +65381,7 @@ function Hd0({
               ")"
             ] }) }),
             " ",
-            N0("article.and"),
+            C0("article.and"),
             " ",
             /* @__PURE__ */ F("strong", { children: /* @__PURE__ */ M0("em", { children: [
               o[1].tag[s],
@@ -65382,14 +65397,14 @@ function Hd0({
             value: b,
             onChange: (O) => l(parseInt(O.target.value)),
             children: o.map((O) => /* @__PURE__ */ M0("option", { value: O.tag.id, children: [
-              N0("article.keep"),
+              C0("article.keep"),
               " ",
               O.tag[s],
               "(#",
               O.tag.id,
               ")",
               " ",
-              N0("article.as_principle")
+              C0("article.as_principle")
             ] }))
           }
         ),
@@ -65406,12 +65421,12 @@ function Hd0({
           ),
           /* @__PURE__ */ M0("label", { htmlFor: "check", children: [
             " ",
-            N0("article.merge_and_delete"),
+            C0("article.merge_and_delete"),
             " "
           ] })
         ] }),
         /* @__PURE__ */ M0("div", { className: fs.actions, children: [
-          /* @__PURE__ */ F(jt, { onClick: () => W(), variant: "default", children: N0("article.cancel") }),
+          /* @__PURE__ */ F(jt, { onClick: () => W(), variant: "default", children: C0("article.cancel") }),
           A ? /* @__PURE__ */ F(
             jt,
             {
@@ -65428,7 +65443,7 @@ function Hd0({
                 }
               )
             }
-          ) : /* @__PURE__ */ F(jt, { onClick: M, variant: "primary", children: N0("article.merge") })
+          ) : /* @__PURE__ */ F(jt, { onClick: M, variant: "primary", children: C0("article.merge") })
         ] })
       ] })
     }
@@ -65478,7 +65493,7 @@ function Kd0({
         zIndex: "9999",
         bodyStyle: { padding: "0" },
         children: [
-          /* @__PURE__ */ F("div", { className: Ri.modal_header, children: N0("article.merge") }),
+          /* @__PURE__ */ F("div", { className: Ri.modal_header, children: C0("article.merge") }),
           /* @__PURE__ */ F(
             "div",
             {
@@ -65494,15 +65509,15 @@ function Kd0({
                 disabled: p.length < 2,
                 className: `${zi.btn} ${p.length < 2 ? zi.disabled : ""}`,
                 onClick: () => l(!0),
-                children: N0("article.merge")
+                children: C0("article.merge")
               }
             ) }),
             /* @__PURE__ */ F("div", { className: zi.table_data, children: /* @__PURE__ */ M0("table", { className: zi.tags_table, children: [
               /* @__PURE__ */ F("thead", { children: /* @__PURE__ */ M0("tr", { children: [
                 /* @__PURE__ */ F("th", {}),
                 /* @__PURE__ */ F("th", {}),
-                /* @__PURE__ */ F("th", { children: N0("article.name") }),
-                /* @__PURE__ */ F("th", { children: N0("article.usage_counter") })
+                /* @__PURE__ */ F("th", { children: C0("article.name") }),
+                /* @__PURE__ */ F("th", { children: C0("article.usage_counter") })
               ] }) }),
               /* @__PURE__ */ F("tbody", { children: r.length > 0 && r.map((m) => /* @__PURE__ */ M0("tr", { children: [
                 /* @__PURE__ */ F("td", { className: zi.cell, children: /* @__PURE__ */ F(
@@ -65704,13 +65719,13 @@ function tO0(t) {
         };
         !T1.isSuperTag && !T1.superTag && (w1.color = "#acd4f9");
         let l1 = !1;
-        (T1.nameFr?.length === 0 || T1.nameNl?.length === 0 || T1.nameEn?.length === 0) && (l1 = !0), l1 && (w1.color = "#fed493"), T1.isSynonym && T1.parent !== void 0 && !A1.includes(T1.parent.id) && (w1.label = `${w1.label} ( ${N0("article.tag_principal")}: ${T1.parent[Y]})`, w1.parent = {
+        (T1.nameFr?.length === 0 || T1.nameNl?.length === 0 || T1.nameEn?.length === 0) && (l1 = !0), l1 && (w1.color = "#fed493"), T1.isSynonym && T1.parent !== void 0 && !A1.includes(T1.parent.id) && (w1.label = `${w1.label} ( ${C0("article.tag_principal")}: ${T1.parent[Y]})`, w1.parent = {
           label: T1.parent[Y],
           value: T1.parent.id,
           tag: T1.parent
         }), (!T1.isSynonym || T1.isSynonym && w1.parent) && (T1.isSuperTag ? V0.push(w1) : Q0.push(w1));
       }), c && Q0.length > 3 && (N([...Q0]), Q0.push({
-        label: "=== " + N0("article.merge_selection") + " ===",
+        label: "=== " + C0("article.merge_selection") + " ===",
         value: "FUSION_SELECTION_ACTION"
       })), V0.length > 0 && Q0.length > 0 ? [
         {
@@ -65810,12 +65825,12 @@ function tO0(t) {
     if (I ? a?.forEach((v0) => {
       !v0.__isNew__ && !v0.tag.isSuperTag && !v0.tag.superTag && f0.push(v0.tag.id);
     }) : f0.push(d.id), f0.length === 0)
-      return me.error(N0("article.validate_tags"), { autoClose: !0 }), null;
+      return me.error(C0("article.validate_tags"), { autoClose: !0 }), null;
     let T0 = !1;
     if ((d.nameFr.length === 0 || d.nameNl.length === 0 || d.nameEn.length === 0) && (T0 = !0), T0) {
       let v0 = () => /* @__PURE__ */ M0("div", { children: [
-        /* @__PURE__ */ F("span", { children: N0("article.errors") + " :" }),
-        /* @__PURE__ */ F("ul", { children: /* @__PURE__ */ F("li", { children: N0("article.validate_tag_name") }) })
+        /* @__PURE__ */ F("span", { children: C0("article.errors") + " :" }),
+        /* @__PURE__ */ F("ul", { children: /* @__PURE__ */ F("li", { children: C0("article.validate_tag_name") }) })
       ] });
       me.error(/* @__PURE__ */ F(v0, {}), { autoClose: !0 });
       return;
@@ -65872,7 +65887,7 @@ function tO0(t) {
         formatGroupLabel: J
       }
     ),
-    b.length > 0 && /* @__PURE__ */ F("div", { onClick: () => l0(), className: G0.tagMore, children: /* @__PURE__ */ F("span", { children: N0("article.add_more") }) }),
+    b.length > 0 && /* @__PURE__ */ F("div", { onClick: () => l0(), className: G0.tagMore, children: /* @__PURE__ */ F("span", { children: C0("article.add_more") }) }),
     /* @__PURE__ */ M0(
       yo,
       {
@@ -65887,7 +65902,7 @@ function tO0(t) {
         zIndex: "9999",
         bodyStyle: { padding: "0" },
         children: [
-          /* @__PURE__ */ F("div", { className: Ri.modal_header, children: N0("article.tag_modal_title") }),
+          /* @__PURE__ */ F("div", { className: Ri.modal_header, children: C0("article.tag_modal_title") }),
           /* @__PURE__ */ F(
             "div",
             {
@@ -65899,7 +65914,7 @@ function tO0(t) {
           d && /* @__PURE__ */ M0(Gt, { children: [
             /* @__PURE__ */ M0("div", { className: G0.modalTag, children: [
               /* @__PURE__ */ M0("div", { className: G0.modalTag_left, children: [
-                /* @__PURE__ */ F("h3", { children: N0("article.tag_translate") }),
+                /* @__PURE__ */ F("h3", { children: C0("article.tag_translate") }),
                 /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
                   /* @__PURE__ */ M0(
                     "label",
@@ -65913,7 +65928,7 @@ function tO0(t) {
                           }
                         ),
                         /* @__PURE__ */ M0("span", { children: [
-                          N0("article.tag_name"),
+                          C0("article.tag_name"),
                           " FR"
                         ] })
                       ]
@@ -65943,7 +65958,7 @@ function tO0(t) {
                           }
                         ),
                         /* @__PURE__ */ M0("span", { children: [
-                          N0("article.tag_name"),
+                          C0("article.tag_name"),
                           " NL"
                         ] })
                       ]
@@ -65973,7 +65988,7 @@ function tO0(t) {
                           }
                         ),
                         /* @__PURE__ */ M0("span", { children: [
-                          N0("article.tag_name"),
+                          C0("article.tag_name"),
                           " EN"
                         ] })
                       ]
@@ -66016,7 +66031,7 @@ function tO0(t) {
                     variant: "primary",
                     style: { marginLeft: "30px" },
                     onClick: () => n0(),
-                    children: N0("article.translate")
+                    children: C0("article.translate")
                   }
                 ) })
               ] }),
@@ -66024,7 +66039,7 @@ function tO0(t) {
                 /* @__PURE__ */ F("h3", { children: "SuperTag" }),
                 !d?.isSuperTag && /* @__PURE__ */ M0(Gt, { children: [
                   /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
-                    /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.select_supertag") }),
+                    /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.select_supertag") }),
                     /* @__PURE__ */ F(
                       Xc,
                       {
@@ -66040,7 +66055,7 @@ function tO0(t) {
                   ] }),
                   /* @__PURE__ */ F("div", { className: G0.superTag_box, children: !d.superTag && /* @__PURE__ */ M0(Gt, { children: [
                     /* @__PURE__ */ M0("p", { className: G0.superTag_title, children: [
-                      /* @__PURE__ */ F("span", { children: N0("article.apply_all_tags") }),
+                      /* @__PURE__ */ F("span", { children: C0("article.apply_all_tags") }),
                       /* @__PURE__ */ F(
                         Lc,
                         {
@@ -66055,7 +66070,7 @@ function tO0(t) {
                   ] }) })
                 ] }),
                 /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
-                  /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.theme") }),
+                  /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.theme") }),
                   /* @__PURE__ */ F(
                     Xc,
                     {
@@ -66068,13 +66083,13 @@ function tO0(t) {
                       defaultOptions: !0,
                       getOptionLabel: (f0) => f0.title,
                       getOptionValue: (f0) => f0.id,
-                      placeholder: N0("article.select_theme"),
+                      placeholder: C0("article.select_theme"),
                       className: G0.input
                     }
                   )
                 ] }),
                 /* @__PURE__ */ M0("div", { className: G0.formRow, children: [
-                  /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.page") }),
+                  /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.page") }),
                   /* @__PURE__ */ F(
                     Pi,
                     {
@@ -66082,7 +66097,7 @@ function tO0(t) {
                       isLoading: X,
                       options: g,
                       className: G0.input,
-                      placeholder: N0("article.select_page"),
+                      placeholder: C0("article.select_page"),
                       value: M,
                       getOptionLabel: (f0) => f0.title,
                       getOptionValue: (f0) => f0.id,
@@ -66116,10 +66131,10 @@ function tO0(t) {
                   onClick: c0,
                   variant: "primary",
                   style: { marginRight: "15px" },
-                  children: N0("article.save")
+                  children: C0("article.save")
                 }
               ),
-              /* @__PURE__ */ F(jt, { onClick: () => b0(), variant: "default", children: N0("article.cancel") })
+              /* @__PURE__ */ F(jt, { onClick: () => b0(), variant: "default", children: C0("article.cancel") })
             ] })
           ] })
         ]
@@ -66138,9 +66153,9 @@ function tO0(t) {
   ] });
 }
 const cR = {
-  en: N0("article.english"),
-  fr: N0("article.french"),
-  nl: N0("article.dutch")
+  en: C0("article.english"),
+  fr: C0("article.french"),
+  nl: C0("article.dutch")
 };
 function nO0(t) {
   let { allowedLanguages: n } = t;
@@ -66183,7 +66198,7 @@ function nO0(t) {
     {
       styles: t.selectStyles,
       options: s,
-      placeholder: N0("article.select_language"),
+      placeholder: C0("article.select_language"),
       value: o,
       onChange: b
     }
@@ -66394,7 +66409,7 @@ function cO0({ auth: t, community: n, selectStyles: o }) {
   };
   return /* @__PURE__ */ F("div", { className: sR.container, onClick: (g) => g.stopPropagation(), children: /* @__PURE__ */ M0("ul", { className: sR.switches, children: [
     /* @__PURE__ */ F("li", { children: /* @__PURE__ */ M0("div", { children: [
-      /* @__PURE__ */ F("span", { children: N0("article.PUBLIC") }),
+      /* @__PURE__ */ F("span", { children: C0("article.PUBLIC") }),
       /* @__PURE__ */ F(
         Lc,
         {
@@ -66405,7 +66420,7 @@ function cO0({ auth: t, community: n, selectStyles: o }) {
     ] }) }),
     d.map((g) => /* @__PURE__ */ M0("li", { children: [
       /* @__PURE__ */ M0("div", { children: [
-        /* @__PURE__ */ F("span", { children: N0(`article.${g}`) }),
+        /* @__PURE__ */ F("span", { children: C0(`article.${g}`) }),
         n ? /* @__PURE__ */ F(
           Lc,
           {
@@ -69009,8 +69024,8 @@ function SO0(t) {
   ), i = b1(null), a = b1(null), c = dn(), p = (l) => {
     l === "SCHEDULED" ? c(c1({ index: "publishOnWorkflow", value: !0 })) : l !== "PUBLISHED" && c(c1({ index: "publishOnWorkflow", value: !0 })), c(c1({ index: "status", value: l }));
   };
-  let s = [N0("article.draft"), N0("article.ready")], b = ["DRAFT", "READY"];
-  return n && n.blogs && n.blogs.length > 0 && (n.blogs[0].role === "CHIEF_EDITOR" || n.blogs[0].mandated == 1) && (s.push(N0("article.scheduled"), N0("article.published")), b.push("SCHEDULED", "PUBLISHED")), /* @__PURE__ */ M0("div", { children: [
+  let s = [C0("article.draft"), C0("article.ready")], b = ["DRAFT", "READY"];
+  return n && n.blogs && n.blogs.length > 0 && (n.blogs[0].role === "CHIEF_EDITOR" || n.blogs[0].mandated == 1) && (s.push(C0("article.scheduled"), C0("article.published")), b.push("SCHEDULED", "PUBLISHED")), /* @__PURE__ */ M0("div", { children: [
     /* @__PURE__ */ F(
       LO0,
       {
@@ -69024,7 +69039,7 @@ function SO0(t) {
     o === "PUBLISHED" && /* @__PURE__ */ M0(Gt, { children: [
       /* @__PURE__ */ M0("div", { className: qr.publishRow, children: [
         /* @__PURE__ */ M0("span", { className: qr.publishLabel, children: [
-          N0("article.published_on"),
+          C0("article.published_on"),
           " :"
         ] }),
         /* @__PURE__ */ F(
@@ -69042,7 +69057,7 @@ function SO0(t) {
       ] }),
       /* @__PURE__ */ M0("div", { className: qr.publishRow, children: [
         /* @__PURE__ */ M0("span", { className: qr.publishLabel, children: [
-          N0("Publier aussi sur Workflow"),
+          C0("Publier aussi sur Workflow"),
           " :"
         ] }),
         /* @__PURE__ */ F(i3, { isChecked: !0 })
@@ -69050,7 +69065,7 @@ function SO0(t) {
     ] }),
     o === "SCHEDULED" && /* @__PURE__ */ M0("div", { className: qr.publishRow, children: [
       /* @__PURE__ */ M0("span", { className: qr.publishLabel, children: [
-        N0("article.scheduled_for"),
+        C0("article.scheduled_for"),
         " :"
       ] }),
       /* @__PURE__ */ F(
@@ -69968,25 +69983,25 @@ class HO0 extends cn {
   }
 }
 const OR = "DD-MM-YYYY HH:mm", fR = "YYYY-MM-DD HH:mm:ss", AR = [
-  { value: 1, label: "1 " + N0("article.hour") },
-  { value: 2, label: "2 " + N0("article.hours") },
-  { value: 3, label: "3 " + N0("article.hours") },
-  { value: 4, label: "4 " + N0("article.hours") },
-  { value: 5, label: "5 " + N0("article.hours") },
-  { value: 6, label: "6 " + N0("article.hours") }
+  { value: 1, label: "1 " + C0("article.hour") },
+  { value: 2, label: "2 " + C0("article.hours") },
+  { value: 3, label: "3 " + C0("article.hours") },
+  { value: 4, label: "4 " + C0("article.hours") },
+  { value: 5, label: "5 " + C0("article.hours") },
+  { value: 6, label: "6 " + C0("article.hours") }
 ];
 function VO0(t) {
   const { dispatch: n } = t, o = I0(
     (a) => a.articles.article.notificationToSentAt
   );
-  let r = N0("article.scheduled_for"), i = {
+  let r = C0("article.scheduled_for"), i = {
     mask: "99-99-9999 99:99",
     onChange: (a) => n(
       c1({ index: "notificationToSentAt", value: a.target.value })
     ),
     className: "published-at-input",
     autoComplete: "off",
-    placeholder: N0("Publication date (eg. 24-07-2017 12:00)")
+    placeholder: C0("Publication date (eg. 24-07-2017 12:00)")
   };
   return o && (i.defaultValue = o), /* @__PURE__ */ M0("div", { className: qr.publishRow, children: [
     /* @__PURE__ */ M0("span", { className: qr.publishLabel, children: [
@@ -70029,10 +70044,10 @@ function jO0(t) {
     })
   ), null);
   let g = [
-    N0("article.not_notify"),
-    N0("article.instant"),
-    N0("article.automatic"),
-    N0("article.scheduled")
+    C0("article.not_notify"),
+    C0("article.instant"),
+    C0("article.automatic"),
+    C0("article.scheduled")
   ], v = ["NOT_NOTIFY", "INSTANT", "AUTO", "SCHEDULED"];
   return /* @__PURE__ */ M0("div", { children: [
     a && /* @__PURE__ */ M0("label", { className: qr.notif_txt, children: [
@@ -76312,11 +76327,11 @@ var sh = "Date input not valid.", Ih0 = (
   })(cn)
 ), kh0 = "input", ph = "navigate";
 const Xh0 = "YYYY-MM-DD", lh = [
-  { value: null, label: N0("article.never") },
-  { value: "MONTH", label: N0("article.every_month") },
-  { value: "3_MONTH", label: N0("article.every_3_month") },
-  { value: "6_MONTH", label: N0("article.every_6_month") },
-  { value: "YEAR", label: N0("article.every_year") }
+  { value: null, label: C0("article.never") },
+  { value: "MONTH", label: C0("article.every_month") },
+  { value: "3_MONTH", label: C0("article.every_3_month") },
+  { value: "6_MONTH", label: C0("article.every_6_month") },
+  { value: "YEAR", label: C0("article.every_year") }
 ];
 function Dh0(t) {
   const n = I0(
@@ -76363,7 +76378,7 @@ function Dh0(t) {
       }
     ),
     c && /* @__PURE__ */ M0("div", { className: G0.recurrentBar, children: [
-      /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.end_recurrence") }),
+      /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.end_recurrence") }),
       /* @__PURE__ */ F(
         Ih0,
         {
@@ -76373,7 +76388,7 @@ function Dh0(t) {
           className: G0.dateInput,
           minDate: /* @__PURE__ */ new Date(),
           isClearable: !0,
-          placeholderText: N0("article.never")
+          placeholderText: C0("article.never")
         }
       )
     ] })
@@ -78358,7 +78373,7 @@ function s50(t) {
       }
     ) }) : null;
   const h = {
-    placeholder: N0("article.type_author"),
+    placeholder: C0("article.type_author"),
     value: r,
     onChange: (D, { newValue: X }) => i(X),
     autoFocus: !0,
@@ -78367,8 +78382,8 @@ function s50(t) {
     className: di.autoSuggestInput
   };
   let x = a.avatars ? a.avatars : [], w = a.users ? a.users : [], I = a ? [
-    { title: N0("article.chains"), suggestions: x },
-    { title: N0("article.authors"), suggestions: w }
+    { title: C0("article.chains"), suggestions: x },
+    { title: C0("article.authors"), suggestions: w }
   ] : [];
   return /* @__PURE__ */ M0("div", { children: [
     /* @__PURE__ */ F("span", { className: di.closeCoauthor, onClick: q, children: /* @__PURE__ */ F(Ec, {}) }),
@@ -78417,7 +78432,7 @@ function s50(t) {
           ] });
         },
         inputProps: h,
-        renderSuggestionsContainer: ({ containerProps: D, children: X, query: P }) => /* @__PURE__ */ F("div", { ...D, children: c ? /* @__PURE__ */ F("span", { className: di.sidebarPlaceholder, children: N0("article.loading_suggestions") }) : X })
+        renderSuggestionsContainer: ({ containerProps: D, children: X, query: P }) => /* @__PURE__ */ F("div", { ...D, children: c ? /* @__PURE__ */ F("span", { className: di.sidebarPlaceholder, children: C0("article.loading_suggestions") }) : X })
       }
     )
   ] });
@@ -81571,7 +81586,7 @@ const Jg0 = "_dragHandler_1mhrm_1", Qg0 = "_sidebarAuthor_1mhrm_9", Kg0 = "_auth
         readOnly: !0,
         value: v,
         onChange: s,
-        placeholder: N0("article.author_title")
+        placeholder: C0("article.author_title")
       }
     ) }),
     (M || O && q) && /* @__PURE__ */ F("div", { className: `${Kt.sidebarPost} ${Kt.editableInput}`, children: /* @__PURE__ */ F(
@@ -81582,7 +81597,7 @@ const Jg0 = "_dragHandler_1mhrm_1", Qg0 = "_sidebarAuthor_1mhrm_9", Kg0 = "_auth
         readOnly: !W || !M,
         value: q,
         onChange: b,
-        placeholder: N0("article.author_headline")
+        placeholder: C0("article.author_headline")
       }
     ) })
   ] });
@@ -81652,7 +81667,7 @@ function Om0({
   }, z = (A, m) => {
     if (m.length < 3)
       return me.error(
-        me.error(N0("article.validate_title"), { autoClose: !0 })
+        me.error(C0("article.validate_title"), { autoClose: !0 })
       ), null;
     i(A, m), c(null);
   }, d = () => t.map((A, m) => A.inHistory ? null : /* @__PURE__ */ M0("li", { className: Oi.attachmentItem, children: [
@@ -81666,7 +81681,7 @@ function Om0({
           className: Oi.formInput
         }
       ),
-      /* @__PURE__ */ F(jt, { size: "sm", onClick: () => z(m, p), children: N0("article.save") }),
+      /* @__PURE__ */ F(jt, { size: "sm", onClick: () => z(m, p), children: C0("article.save") }),
       /* @__PURE__ */ F(
         jt,
         {
@@ -81675,7 +81690,7 @@ function Om0({
           onClick: () => {
             s(""), c(null);
           },
-          children: N0("article.cancel")
+          children: C0("article.cancel")
         }
       )
     ] }) : /* @__PURE__ */ M0(Gt, { children: [
@@ -81720,10 +81735,10 @@ function Om0({
               )
             }
           ),
-          /* @__PURE__ */ F("p", { className: Oi.dropzoneText, children: N0("article.loading") })
+          /* @__PURE__ */ F("p", { className: Oi.dropzoneText, children: C0("article.loading") })
         ] }) : /* @__PURE__ */ M0("div", { children: [
           /* @__PURE__ */ F(NC, { size: 40 }),
-          /* @__PURE__ */ F("p", { className: Oi.dropzoneText, children: N0("article.dropzone_text") })
+          /* @__PURE__ */ F("p", { className: Oi.dropzoneText, children: C0("article.dropzone_text") })
         ] })
       }
     )
@@ -81849,7 +81864,7 @@ const Fr = {
     /* @__PURE__ */ M0("div", { className: G0.rightContainer, children: [
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.community") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.community") }),
           /* @__PURE__ */ F(
             F30,
             {
@@ -81859,7 +81874,7 @@ const Fr = {
           )
         ] }),
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.category") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.category") }),
           /* @__PURE__ */ F(
             H30,
             {
@@ -81873,11 +81888,11 @@ const Fr = {
       ] }),
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.tag") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.tag") }),
           /* @__PURE__ */ F(tO0, { selectStyles: Fr, language: t.language })
         ] }),
         /* @__PURE__ */ M0("div", { className: `${G0.configColumn} ${G0.switchContainer}`, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.language") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.language") }),
           /* @__PURE__ */ F(
             nO0,
             {
@@ -81891,7 +81906,7 @@ const Fr = {
       ] }),
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.theme") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.theme") }),
           /* @__PURE__ */ F(
             wd0,
             {
@@ -81901,7 +81916,7 @@ const Fr = {
           )
         ] }),
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.page") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.page") }),
           /* @__PURE__ */ F(
             Sd0,
             {
@@ -81915,7 +81930,7 @@ const Fr = {
       ] }),
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.type") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.type") }),
           /* @__PURE__ */ F(
             V30,
             {
@@ -81927,7 +81942,7 @@ const Fr = {
           )
         ] }),
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.comment") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.comment") }),
           /* @__PURE__ */ F("div", { children: /* @__PURE__ */ F(
             "textarea",
             {
@@ -81937,14 +81952,14 @@ const Fr = {
               onChange: (w) => g(
                 c1({ index: "comment", value: w.target.value })
               ),
-              placeholder: N0("article.add_comment")
+              placeholder: C0("article.add_comment")
             }
           ) })
         ] })
       ] }),
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ F("div", { className: G0.configColumn, children: /* @__PURE__ */ M0("div", { className: G0.switchRow, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.is_private") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.is_private") }),
           /* @__PURE__ */ F(
             Lc,
             {
@@ -81954,7 +81969,7 @@ const Fr = {
           )
         ] }) }),
         c && /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.subscribers_groups") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.subscribers_groups") }),
           /* @__PURE__ */ F(
             Jx,
             {
@@ -81974,7 +81989,7 @@ const Fr = {
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ M0("div", { className: `${G0.configColumn}`, children: [
           /* @__PURE__ */ M0("div", { className: `${G0.switchContainerr}`, children: [
-            /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.scope") }),
+            /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.scope") }),
             /* @__PURE__ */ F(
               cO0,
               {
@@ -81990,7 +82005,7 @@ const Fr = {
           ] }),
           t.articleSharingOptions.includes("FFF_LIBRARY") && /* @__PURE__ */ M0(Gt, { children: [
             /* @__PURE__ */ M0("div", { className: G0.switchRow, style: { marginTop: "40px" }, children: [
-              /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.fff_library") }),
+              /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.fff_library") }),
               y === "ACCEPTED" || y === "REJECTED" || !v.includes("PUBLIC") ? /* @__PURE__ */ F(i3, { isChecked: p }) : /* @__PURE__ */ F(
                 Lc,
                 {
@@ -82016,7 +82031,7 @@ const Fr = {
         ] }),
         /* @__PURE__ */ M0("div", { className: `${G0.configColumn}`, children: [
           /* @__PURE__ */ M0("div", { className: ` ${G0.switchContainer}`, children: [
-            /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.status") }),
+            /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.status") }),
             /* @__PURE__ */ F(
               SO0,
               {
@@ -82032,7 +82047,7 @@ const Fr = {
               className: G0.switchContainer,
               style: { margin: "40px 0 50px" },
               children: [
-                /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.notification") }),
+                /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.notification") }),
                 /* @__PURE__ */ F(
                   jO0,
                   {
@@ -82047,7 +82062,7 @@ const Fr = {
       ] }),
       /* @__PURE__ */ M0("div", { className: G0.configRow, children: [
         /* @__PURE__ */ M0("div", { className: `${G0.configColumn} ${G0.switchContainerr}`, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.relevance") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.relevance") }),
           /* @__PURE__ */ F("div", { children: /* @__PURE__ */ F(
             Tb0.Rating,
             {
@@ -82067,12 +82082,12 @@ const Fr = {
           ) })
         ] }),
         /* @__PURE__ */ M0("div", { className: G0.configColumn, children: [
-          /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.recurrence") }),
+          /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.recurrence") }),
           /* @__PURE__ */ F(Dh0, { selectStyles: Fr })
         ] })
       ] }),
       /* @__PURE__ */ M0("div", { className: G0.attachmentsRow, children: [
-        /* @__PURE__ */ F("label", { className: G0.configLabel, children: N0("article.attachments") }),
+        /* @__PURE__ */ F("label", { className: G0.configLabel, children: C0("article.attachments") }),
         /* @__PURE__ */ F(
           Om0,
           {
@@ -82542,18 +82557,18 @@ function gm0(t) {
     return g0;
   }, Bn = () => {
     let g0 = [];
-    if (p0.trim().length < 3 && g0.push(N0("article.validate_title")), u0 || g0.push(N0("article.validate_category")), l0 || g0.push(N0("article.validate_theme")), d0 || g0.push(N0("article.validate_type")), n0 || g0.push(N0("article.validate_community")), a.trim().length === 0 && g0.push(N0("article.validate_content")), (!J || J.length < 2) && g0.push(N0("article.validate_tags")), J.length >= 2) {
+    if (p0.trim().length < 3 && g0.push(C0("article.validate_title")), u0 || g0.push(C0("article.validate_category")), l0 || g0.push(C0("article.validate_theme")), d0 || g0.push(C0("article.validate_type")), n0 || g0.push(C0("article.validate_community")), a.trim().length === 0 && g0.push(C0("article.validate_content")), (!J || J.length < 2) && g0.push(C0("article.validate_tags")), J.length >= 2) {
       let u1 = !1;
       J.forEach((ee) => {
         ee.name?.length === 0 && (u1 = !0);
-      }), u1 && g0.push(N0("article.validate_tag_name"));
+      }), u1 && g0.push(C0("article.validate_tag_name"));
     }
-    if ((!m0 || m0.length < 1) && g0.push(N0("article.validate_page")), t1.trim() !== "" && (t1.indexOf("_") !== -1 || !g1(t1, [Oa]).isValid()) && g0.push(N0("article.validate_publish_date")), V0 && A1.length === 0 && g0.push(N0("article.validate_private_groups")), w0.trim() !== "") {
+    if ((!m0 || m0.length < 1) && g0.push(C0("article.validate_page")), t1.trim() !== "" && (t1.indexOf("_") !== -1 || !g1(t1, [Oa]).isValid()) && g0.push(C0("article.validate_publish_date")), V0 && A1.length === 0 && g0.push(C0("article.validate_private_groups")), w0.trim() !== "") {
       if (w0.indexOf("_") !== -1 || !g1(w0, [Oa]).isValid())
-        g0.push(N0("article.validate_notification_date"));
+        g0.push(C0("article.validate_notification_date"));
       else if (["SCHEDULED", "PUBLISHED"].includes(v0) && Z1 === "SCHEDULED") {
         var o1 = g1.utc(w0, Oa), y1 = g1.utc(t1, Oa);
-        o1.isAfter(y1) || g0.push(N0("article.validate_notification_after_date"));
+        o1.isAfter(y1) || g0.push(C0("article.validate_notification_after_date"));
       }
     }
     return g0;
@@ -82601,7 +82616,7 @@ function gm0(t) {
     let o1 = Bn();
     if (o1 && o1.length > 0) {
       let Re = ({ errors: Gn }) => /* @__PURE__ */ M0("div", { children: [
-        /* @__PURE__ */ F("span", { children: N0("article.errors") + " :" }),
+        /* @__PURE__ */ F("span", { children: C0("article.errors") + " :" }),
         /* @__PURE__ */ F("ul", { children: Gn.map((Oo, Ho) => /* @__PURE__ */ F("li", { children: Oo }, Ho)) })
       ] });
       me.error(/* @__PURE__ */ F(Re, { errors: o1 }), { autoClose: !0 });
@@ -82691,7 +82706,7 @@ function gm0(t) {
         }
       nt(Re.data.data), _(mA(!1));
     } catch (Re) {
-      console.log(Re), _(mA(!1)), Re.response?.status === 400 ? me.error(Re?.response?.data?.detail, { autoClose: !0 }) : Re?.response?.status >= 500 ? me.error(N0("server_error")) : me.error("Erreur");
+      console.log(Re), _(mA(!1)), Re.response?.status === 400 ? me.error(Re?.response?.data?.detail, { autoClose: !0 }) : Re?.response?.status >= 500 ? me.error(C0("server_error")) : me.error("Erreur");
     }
   }, n2 = () => {
     if (o("CONFIGURATION"), !i1 && Be && (e1 || a)) {
@@ -82815,7 +82830,7 @@ function gm0(t) {
         beforeClose: Ce.modalOverlayBeforeClose
       },
       closeTimeoutMS: 300,
-      contentLabel: N0("article.add_article"),
+      contentLabel: C0("article.add_article"),
       children: [
         /* @__PURE__ */ M0("div", { className: Ce.modal, children: [
           /* @__PURE__ */ F("div", { className: Ce.close, onClick: ci, children: /* @__PURE__ */ F(Ec, { size: 17 }) }),
@@ -82846,15 +82861,15 @@ function gm0(t) {
                 )
               }
             ),
-            /* @__PURE__ */ F("div", { className: Ce.title, children: N0("article.write_article") }),
-            /* @__PURE__ */ F("p", { className: Ce.subtitle, children: N0("article.write_subtitle") }),
+            /* @__PURE__ */ F("div", { className: Ce.title, children: C0("article.write_article") }),
+            /* @__PURE__ */ F("p", { className: Ce.subtitle, children: C0("article.write_subtitle") }),
             /* @__PURE__ */ M0("ul", { className: Ce.tabs, children: [
               /* @__PURE__ */ F(
                 "li",
                 {
                   className: n === "EDITOR" ? Ce.activated : "",
                   onClick: () => o("EDITOR"),
-                  children: N0("article.tab_EDITOR")
+                  children: C0("article.tab_EDITOR")
                 }
               ),
               /* @__PURE__ */ F(
@@ -82862,7 +82877,7 @@ function gm0(t) {
                 {
                   className: n === "CONFIGURATION" ? Ce.activated : "",
                   onClick: () => n2(),
-                  children: N0("article.tab_CONFIGURATION")
+                  children: C0("article.tab_CONFIGURATION")
                 }
               )
             ] }),
@@ -82929,8 +82944,8 @@ function gm0(t) {
               /* @__PURE__ */ F(
                 Ys0,
                 {
-                  progressMessage: N0("Creating in progress..."),
-                  successMessage: N0("Created successfully!"),
+                  progressMessage: C0("Creating in progress..."),
+                  successMessage: C0("Created successfully!"),
                   onCancel: () => ci(),
                   action: (g0) => Fo()
                 }
@@ -82952,9 +82967,9 @@ function gm0(t) {
             zIndex: "9999",
             styles: { body: { padding: "0" } },
             children: [
-              /* @__PURE__ */ F("div", { className: Ri.modal_header, children: N0("article.social_network") }),
+              /* @__PURE__ */ F("div", { className: Ri.modal_header, children: C0("article.social_network") }),
               /* @__PURE__ */ F("div", { className: Ri.modal_close, onClick: le, children: /* @__PURE__ */ F(Ec, {}) }),
-              /* @__PURE__ */ F("div", { className: Ri.modal_body, children: N0("article.share_expired") }),
+              /* @__PURE__ */ F("div", { className: Ri.modal_body, children: C0("article.share_expired") }),
               /* @__PURE__ */ M0("div", { className: Ri.controls, children: [
                 h ? /* @__PURE__ */ F("span", {}) : /* @__PURE__ */ F(
                   jt,
@@ -82962,7 +82977,7 @@ function gm0(t) {
                     onClick: Br,
                     variant: "primary",
                     className: Ri.controls__cancel,
-                    children: N0("article.update")
+                    children: C0("article.update")
                   }
                 ),
                 P ? /* @__PURE__ */ F(
@@ -82981,7 +82996,7 @@ function gm0(t) {
                       }
                     )
                   }
-                ) : /* @__PURE__ */ F(jt, { onClick: le, variant: "primary", children: N0("article.continue") })
+                ) : /* @__PURE__ */ F(jt, { onClick: le, variant: "primary", children: C0("article.continue") })
               ] })
             ]
           }
@@ -83010,15 +83025,15 @@ const mm0 = "_floatWidget_17vye_6", qm0 = {
   )), a = [];
   t.media && a.push({
     icon: "media",
-    label: N0("media.medias"),
+    label: C0("media.medias"),
     event: Bs.ADD_NEW_MEDIA
   }), t.article && a.push({
     icon: "article",
-    label: N0("article.add_new_article"),
+    label: C0("article.add_new_article"),
     event: Bs.ADD_NEW_ARTICLE
   }), t.tamtamit && a.push({
     icon: "tamtamit",
-    label: N0("article.import"),
+    label: C0("article.import"),
     event: Bs.IMPORT_ARTICLE
   });
   const c = t.layout ? t.layout : "float";
