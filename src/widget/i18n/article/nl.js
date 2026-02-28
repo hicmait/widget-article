@@ -155,6 +155,7 @@ const articleNl = {
     "Mogelijkheid om de training te bekijken tot 15 dagen vanaf de datum van de live",
   event_approved_by: "Certificaat meegeleverd goedgekeurd door",
   event_details: "Details",
+  is_from_ai: "Vertaling door AI",
 };
 
 export default articleNl;

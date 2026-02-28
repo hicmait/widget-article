@@ -159,6 +159,7 @@ const articleFr = {
     "Possible de revoir la formation pendant max 15 jours après la date du live",
   event_approved_by: "Attestation incluse agréé par",
   event_details: "Détails",
+  is_from_ai: "Traduction depuis AI",
 };
 
 export default articleFr;

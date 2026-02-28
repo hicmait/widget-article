@@ -68,6 +68,7 @@ const initialState = {
     notificationHour: 1,
     notificationToSentAt: moment().format(DATE_FORMAT),
     notificationStored: "",
+    isFromAi: false,
   },
 };
 
@@ -236,7 +237,7 @@ export const articlesSlice = createSlice({
             if (chain.mediaChain) {
               let media = chain.mediaChain.filter(
                 (item) =>
-                  item.language === article.language && item?.type === "AVATAR"
+                  item.language === article.language && item?.type === "AVATAR",
               );
               if (media && media.length === 1) {
                 avatar = media[0].avatar;
@@ -267,7 +268,7 @@ export const articlesSlice = createSlice({
           state.article.notificationStored.toSentAt = convertDateFromUTC(
             article.mobileNotification.toSentAt,
             API_DATE_FORMAT,
-            DATE_FORMAT
+            DATE_FORMAT,
           );
         }
       }
@@ -334,9 +335,10 @@ export const articlesSlice = createSlice({
 
       let mediaArticles = article.media_articles || [];
       let attachments = mediaArticles.filter(
-        (m) => m.isAttachment && !m.inHistory
+        (m) => m.isAttachment && !m.inHistory,
       );
       state.article.attachments = attachments;
+      state.article.isFromAi = article.isFromAi;
       state.error = null;
     });
     builder.addCase(fetchArticle.rejected, (state, action) => {
@@ -467,7 +469,7 @@ export const articlesSlice = createSlice({
               let media = chain.mediaChain.filter(
                 (item) =>
                   item.language === state.translateLanguage &&
-                  item?.type === "AVATAR"
+                  item?.type === "AVATAR",
               );
               if (media && media.length === 1) {
                 avatar = media[0].avatar;
@@ -540,7 +542,7 @@ export const articlesSlice = createSlice({
 
       let mediaArticles = article.media_articles || [];
       let attachments = mediaArticles.filter(
-        (m) => m.isAttachment && !m.inHistory
+        (m) => m.isAttachment && !m.inHistory,
       );
       state.article.attachments = attachments;
       state.error = null;
@@ -693,7 +695,7 @@ export const articlesSlice = createSlice({
                 let media = chain.mediaChain.filter(
                   (item) =>
                     item.language === state.translateLanguage &&
-                    item?.type === "AVATAR"
+                    item?.type === "AVATAR",
                 );
                 if (media && media.length === 1) {
                   avatar = media[0].avatar;
@@ -719,7 +721,7 @@ export const articlesSlice = createSlice({
           ? convertDateFromUTC(
               article.publishedAt,
               API_DATE_FORMAT,
-              DATE_FORMAT
+              DATE_FORMAT,
             )
           : "";
         state.article.isPrivate = article.isPrivate;
@@ -770,18 +772,18 @@ export const articlesSlice = createSlice({
 
         let mediaArticles = article.media_articles || [];
         let attachments = mediaArticles.filter(
-          (m) => m.isAttachment && !m.inHistory
+          (m) => m.isAttachment && !m.inHistory,
         );
         state.article.attachments = attachments;
         state.error = null;
-      }
+      },
     );
     builder.addCase(
       fetchTranslateArticleNoContent.rejected,
       (state, action) => {
         state.fetching = false;
         state.error = action.payload;
-      }
+      },
     );
 
     builder.addCase(fetchSuperTagTheme.fulfilled, (state, action) => {

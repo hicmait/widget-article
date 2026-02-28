@@ -168,41 +168,42 @@ export function AddArticle(props) {
   const scope = useSelector((state) => state.articles.article.scope);
   const selectedGroups = useSelector((state) => state.articles.article.groups);
   const specCollaborators = useSelector(
-    (state) => state.articles.article.specCollaborators
+    (state) => state.articles.article.specCollaborators,
   );
   const specClients = useSelector(
-    (state) => state.articles.article.specClients
+    (state) => state.articles.article.specClients,
   );
   const specContacts = useSelector(
-    (state) => state.articles.article.specContacts
+    (state) => state.articles.article.specContacts,
   );
   const status = useSelector((state) => state.articles.article.status);
   const selectedLanguage = useSelector(
-    (state) => state.articles.article.selectedLanguage
+    (state) => state.articles.article.selectedLanguage,
   );
   const mainMediaArticleId = useSelector(
-    (state) => state.articles.article.mainMediaArticleId
+    (state) => state.articles.article.mainMediaArticleId,
   );
   const publishedAt = useSelector(
-    (state) => state.articles.article.publishedAt
+    (state) => state.articles.article.publishedAt,
   );
   const comment = useSelector((state) => state.articles.article.comment);
+  const isFromAi = useSelector((state) => state.articles.article.isFromAi);
   const isPrivate = useSelector((state) => state.articles.article.isPrivate);
   const privateGroups = useSelector(
-    (state) => state.articles.article.privateGroups
+    (state) => state.articles.article.privateGroups,
   );
   const publishOnWorkflow = useSelector(
-    (state) => state.articles.article.publishOnWorkflow
+    (state) => state.articles.article.publishOnWorkflow,
   );
   const attachments = useSelector(
-    (state) => state.articles.article.attachments
+    (state) => state.articles.article.attachments,
   );
   const translateLanguage = useSelector(
-    (state) => state.articles.translateLanguage
+    (state) => state.articles.translateLanguage,
   );
   const isCloning = useSelector((state) => state.articles.isCloning);
   const relatedArticles = useSelector(
-    (state) => state.articles.article.relatedArticles
+    (state) => state.articles.article.relatedArticles,
   );
   const editLoading = useSelector((state) => state.articles.fetching);
   const editArticleId = useSelector((state) => state.articles.article.id);
@@ -210,23 +211,23 @@ export function AddArticle(props) {
   const editContent = useSelector((state) => state.articles.article.content);
 
   const editMainMedia = useSelector(
-    (state) => state.articles.article.main_media
+    (state) => state.articles.article.main_media,
   );
   const [articleId, setArticleId] = useState(null);
   const allowFetchTags = useSelector((state) => state.tags.allowFetchTags);
   const fffLibrary = useSelector((state) => state.articles.article.fffLibrary);
   const isfffLibrary = useSelector(
-    (state) => state.articles.article.isfffLibrary
+    (state) => state.articles.article.isfffLibrary,
   );
   const canBeShared = useSelector(
-    (state) => state.articles.article.canBeShared
+    (state) => state.articles.article.canBeShared,
   );
   const recurrence = useSelector((state) => state.articles.article.recurrence);
   const notification = useSelector(
-    (state) => state.articles.article.notification
+    (state) => state.articles.article.notification,
   );
   const notificationToSentAt = useSelector(
-    (state) => state.articles.article.notificationToSentAt
+    (state) => state.articles.article.notificationToSentAt,
   );
   // const notificationHour = useSelector(
   //   (state) => state.articles.article.notificationHour
@@ -250,7 +251,7 @@ export function AddArticle(props) {
       auth.user.communities.length > 0
     ) {
       tabCurrentCommunity = auth.user.communities.filter(
-        (com) => com.id == auth.navCommunity.id
+        (com) => com.id == auth.navCommunity.id,
       )[0];
       if (tabCurrentCommunity) {
         currentCommunity = {
@@ -269,12 +270,12 @@ export function AddArticle(props) {
         setArticle({
           index: "selectedLanguage",
           value: getDefaultLanguage(tabCurrentCommunity, props.language),
-        })
+        }),
       );
       dispatch(setThemeCurrentLanguage(props.selectedLanguage));
     } else if (auth.user && !auth.navCommunity) {
       dispatch(
-        setArticle({ index: "selectedLanguage", value: props.language })
+        setArticle({ index: "selectedLanguage", value: props.language }),
       );
     }
   }
@@ -304,7 +305,7 @@ export function AddArticle(props) {
           fetchTranslateArticle({
             articleId: id,
             translateLanguage: translateLanguage,
-          })
+          }),
         );
       }
     };
@@ -341,7 +342,7 @@ export function AddArticle(props) {
         editMainMedia
           ? editMainMedia.fullMediaUrl ||
               ttpApiUrl + "/" + editMainMedia.webPath
-          : null
+          : null,
       );
 
       handleSetYPos(editMainMedia ? editMainMedia.yPos : 0);
@@ -359,7 +360,7 @@ export function AddArticle(props) {
               setArticle({
                 index: "specCollaborators",
                 value: result.data.data,
-              })
+              }),
             );
           }
         });
@@ -389,7 +390,7 @@ export function AddArticle(props) {
         }).then((result) => {
           if (result.data.data) {
             dispatch(
-              setArticle({ index: "specContacts", value: result.data.data })
+              setArticle({ index: "specContacts", value: result.data.data }),
             );
           }
         });
@@ -424,7 +425,7 @@ export function AddArticle(props) {
           customFilter,
         }).then((result) => {
           dispatch(
-            setArticle({ index: "privateGroups", value: result.data.data })
+            setArticle({ index: "privateGroups", value: result.data.data }),
           );
         });
       }
@@ -489,7 +490,7 @@ export function AddArticle(props) {
   const handleAttachmentsChange = (newAttachment) => {
     setUploadingAttachment(true);
     dispatch(
-      uploadTmpMedia({ ttpApiUrl, token: auth.token, data: newAttachment })
+      uploadTmpMedia({ ttpApiUrl, token: auth.token, data: newAttachment }),
     )
       .then((resp) => {
         const url = resp.payload.data.data.url;
@@ -555,7 +556,7 @@ export function AddArticle(props) {
               setArticle({
                 index: "specCollaborators",
                 value: result.data.data,
-              })
+              }),
             );
           }
         });
@@ -586,7 +587,7 @@ export function AddArticle(props) {
               setArticle({
                 index: "specContacts",
                 value: result.data.data,
-              })
+              }),
             );
           }
         });
@@ -613,7 +614,7 @@ export function AddArticle(props) {
       setArticle({
         index: "scope",
         value: tabScope,
-      })
+      }),
     );
   };
 
@@ -637,7 +638,7 @@ export function AddArticle(props) {
       }`;
       const blogRole = user.blogRole
         ? user.blogRole.filter(
-            (item) => item.organizationId === defaultCommunity
+            (item) => item.organizationId === defaultCommunity,
           )[0]
         : null;
       if (blogRole && blogRole[headlineAttr]) {
@@ -645,7 +646,7 @@ export function AddArticle(props) {
       }
       if (user && user.communities) {
         let selectedCommunity = user.communities.filter(
-          (com) => com.id === defaultCommunity
+          (com) => com.id === defaultCommunity,
         );
         if (selectedCommunity.length > 0) {
           if (
@@ -676,7 +677,7 @@ export function AddArticle(props) {
             if (chain.mediaChain) {
               let media = chain.mediaChain.filter(
                 (item) =>
-                  item.language === selectedLanguage && item?.type === "AVATAR"
+                  item.language === selectedLanguage && item?.type === "AVATAR",
               );
               if (media && media.length === 1) {
                 avatar = media[0].avatar;
@@ -756,7 +757,7 @@ export function AddArticle(props) {
     };
     if (defaultChains.length > 0) {
       dispatch(
-        setArticle({ index: "authors", value: [author, ...defaultChains] })
+        setArticle({ index: "authors", value: [author, ...defaultChains] }),
       );
     } else {
       dispatch(setArticle({ index: "authors", value: [author] }));
@@ -774,7 +775,7 @@ export function AddArticle(props) {
       const user = userResponse.data.data ? userResponse.data.data[0] : null;
       if (user && user.communities) {
         let selectedCommunity = user.communities.filter(
-          (com) => com.id === defaultCommunity
+          (com) => com.id === defaultCommunity,
         );
         if (selectedCommunity.length > 0) {
           if (
@@ -808,7 +809,7 @@ export function AddArticle(props) {
           setArticle({
             index: "category",
             value: { id: cat[0].id, name: categoryName },
-          })
+          }),
         );
       }
     }
@@ -830,7 +831,7 @@ export function AddArticle(props) {
           setArticle({
             index: "type",
             value: { id: typ[0].id, name: typeName },
-          })
+          }),
         );
       }
     }
@@ -852,7 +853,7 @@ export function AddArticle(props) {
           setArticle({
             index: "theme",
             value: { id: t[0].id, title: themeTitle },
-          })
+          }),
         );
         dispatch(setArticle({ index: "pages", value: [] }));
       }
@@ -1181,6 +1182,7 @@ export function AddArticle(props) {
       handleCropping,
       comment,
       isPrivate,
+      isFromAi,
       privateGroups: tabPrivateGroups,
       publishOnWorkflow,
       mediaIsAlbum,
@@ -1202,13 +1204,13 @@ export function AddArticle(props) {
         data.notificationToSentAt = convertDateToUTC(
           publishedAt,
           DATE_FORMAT,
-          API_DATE_FORMAT
+          API_DATE_FORMAT,
         );
       } else if (notification === "AUTO") {
         data.notificationToSentAt = convertDateToUTC(
           publishedAt,
           DATE_FORMAT,
-          API_DATE_FORMAT
+          API_DATE_FORMAT,
         );
       } else if (notification === "SCHEDULED") {
         data.notificationToSentAt = notificationToSentAt
@@ -1222,7 +1224,7 @@ export function AddArticle(props) {
         recurrence,
         publishedAt
           ? convertDateToUTC(publishedAt, DATE_FORMAT, API_DATE_FORMAT)
-          : ""
+          : "",
       );
     }
 
@@ -1325,7 +1327,7 @@ export function AddArticle(props) {
           language,
           title: articleTitle,
           content: content.replace(/<[^>]+>/g, ""),
-        })
+        }),
       ).then((resp) => {
         if (resp.payload) {
           const nameAttr = `name${
@@ -1345,9 +1347,7 @@ export function AddArticle(props) {
                   supertagId = tag.id;
                 }
                 let tmp = {
-                  label: tag.isSuperTag
-                    ? "⚡︎ " + tag[nameAttr]
-                    : tag[nameAttr],
+                  label: tag.isSuperTag ? "⚡︎ " + tag[nameAttr] : tag[nameAttr],
                   name: tag[nameAttr],
                   value: tag.id,
                   tag: {
@@ -1451,7 +1451,7 @@ export function AddArticle(props) {
               setArticle({
                 index: "tags",
                 value: tags,
-              })
+              }),
             );
             dispatch(setArticleTags(moreTags));
             if (supertagCount === 1) {

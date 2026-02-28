@@ -88,7 +88,7 @@ export const getThemes = ({
 
   let requestCancellationToken = getRequestCancellationToken(
     getThemesCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getThemesCTS = cancellationTokenSource;
 
@@ -164,7 +164,7 @@ export const getTags = ({
 
   let requestCancellationToken = getRequestCancellationToken(
     getTagsCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getTagsCTS = cancellationTokenSource;
 
@@ -211,7 +211,7 @@ export const getSearchTags = ({
 
   let requestCancellationToken = getRequestCancellationToken(
     getTagsCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getTagsCTS = cancellationTokenSource;
 
@@ -287,7 +287,7 @@ export const getAvatarsAndAuthors = ({
 
   let requestCancellationToken = getRequestCancellationToken(
     getAvatarsUsersCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getAvatarsUsersCTS = cancellationTokenSource;
 
@@ -349,7 +349,7 @@ export const translateContent = async ({
         Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 };
 
@@ -390,7 +390,7 @@ export const getTitle = async ({ ttpAiUrl, token, title }) => {
         Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 };
 
@@ -436,6 +436,7 @@ export const getArticle = ({ ttpApiUrl, token, articleId }) => {
     "recurrence",
     "recurrentNextDate",
     "mobileNotification",
+    "isFromAi",
   ];
 
   const requestUrl = `${ttpApiUrl}/blog/article`;
@@ -480,6 +481,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
   formData.append("publishedAt", data.publishedAt);
   formData.append("comment", data.comment);
   formData.append("isPrivate", data.isPrivate ? 1 : 0);
+  formData.append("isFromAi", data.isFromAi ? 1 : 0);
   formData.append("fffLibrary", data.fffLibrary);
   formData.append("canBeShared", data.canBeShared ? 1 : 0);
 
@@ -487,7 +489,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
   formData.append("recurrence", JSON.stringify(data.recurrence));
   formData.append(
     "recurrentNextDate",
-    data.recurrentNextDate ? data.recurrentNextDate : ""
+    data.recurrentNextDate ? data.recurrentNextDate : "",
   );
 
   if (data.privateGroups) {
@@ -522,7 +524,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
           if (urlParts.length > 0) {
             formData.append(
               `tmpMedia[${i}][file]`,
-              urlParts[urlParts.length - 1]
+              urlParts[urlParts.length - 1],
             );
           }
 
@@ -559,7 +561,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
     formData.append(`mediaArticle[${mediaArticleIndex}][yPos]`, data.yPos);
     formData.append(
       `mediaArticle[${mediaArticleIndex}][yHeight]`,
-      data.yHeight
+      data.yHeight,
     );
     formData.append(`handleCropping`, data.handleCropping);
 
@@ -567,11 +569,11 @@ export const saveArticle = (ttpApiUrl, token, data) => {
       formData.append(`mediaArticle[${mediaArticleIndex}][isMain]`, 1);
       formData.append(
         `mediaArticle[${mediaArticleIndex}][file]`,
-        data.coverFile
+        data.coverFile,
       );
       formData.append(
         `mediaArticle[${mediaArticleIndex}][name]`,
-        data.coverFile.name
+        data.coverFile.name,
       );
     } else {
       if (
@@ -580,7 +582,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
       ) {
         formData.append(
           `mediaArticle[${mediaArticleIndex}][id]`,
-          data.mainMediaArticleId
+          data.mainMediaArticleId,
         );
       }
     }
@@ -594,15 +596,15 @@ export const saveArticle = (ttpApiUrl, token, data) => {
       if (!attachment.isTmp) {
         formData.append(
           `mediaArticle[${mediaArticleIndex}][id]`,
-          attachment.id
+          attachment.id,
         );
         formData.append(
           `mediaArticle[${mediaArticleIndex}][inHistory]`,
-          attachment.inHistory ? 1 : 0
+          attachment.inHistory ? 1 : 0,
         );
         formData.append(
           `mediaArticle[${mediaArticleIndex}][name]`,
-          attachment.name
+          attachment.name,
         );
         mediaArticleIndex++;
       }
@@ -649,7 +651,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
       users.forEach((author, i) => {
         formData.append(
           `articleBlogRole[${i}][signature][title]`,
-          author.signature.title
+          author.signature.title,
         );
 
         if (
@@ -659,7 +661,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
         ) {
           formData.append(
             `articleBlogRole[${i}][signature][head]`,
-            author.signature.head
+            author.signature.head,
           );
         } else {
           formData.append(`articleBlogRole[${i}][signature][head]`, "");
@@ -667,7 +669,7 @@ export const saveArticle = (ttpApiUrl, token, data) => {
 
         formData.append(
           `articleBlogRole[${i}][enableAvatar]`,
-          author.enableAvatar ? 1 : 0
+          author.enableAvatar ? 1 : 0,
         );
         formData.append(`articleBlogRole[${i}][priority]`, i);
         formData.append(`articleBlogRole[${i}][action]`, "WRITE");
@@ -775,13 +777,13 @@ export const saveQuickArticle = ({
       users.forEach((author, i) => {
         formData.append(
           `articleBlogRole[${i}][signature][title]`,
-          author.signature.title
+          author.signature.title,
         );
 
         if (authorsRoles[author.id]) {
           formData.append(
             `articleBlogRole[${i}][signature][head]`,
-            authorsRoles[author.id]
+            authorsRoles[author.id],
           );
         } else {
           if (
@@ -791,7 +793,7 @@ export const saveQuickArticle = ({
           ) {
             formData.append(
               `articleBlogRole[${i}][signature][head]`,
-              author.signature.head
+              author.signature.head,
             );
           } else {
             formData.append(`articleBlogRole[${i}][signature][head]`, "");
@@ -800,7 +802,7 @@ export const saveQuickArticle = ({
 
         formData.append(
           `articleBlogRole[${i}][enableAvatar]`,
-          author.enableAvatar ? 1 : 0
+          author.enableAvatar ? 1 : 0,
         );
         formData.append(`articleBlogRole[${i}][priority]`, i);
         formData.append(`articleBlogRole[${i}][action]`, "WRITE");
@@ -962,7 +964,7 @@ export const getClients = ({ ttpApiUrl, token, search }) => {
 
   let requestCancellationToken = getRequestCancellationToken(
     getClientsCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getClientsCTS = cancellationTokenSource;
 
@@ -997,7 +999,7 @@ export const getCollaborators = ({
   // getGroupsCTS
   let requestCancellationToken = getRequestCancellationToken(
     getCollaboratorsCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getCollaboratorsCTS = cancellationTokenSource;
 
@@ -1036,7 +1038,7 @@ export const getContacts = ({ ttpApiUrl, token, search, organizationId }) => {
 
   let requestCancellationToken = getRequestCancellationToken(
     getContactsCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getContactsCTS = cancellationTokenSource;
 
@@ -1050,7 +1052,7 @@ export const getContacts = ({ ttpApiUrl, token, search, organizationId }) => {
       ...[
         { property: "name", value: search, operator: "like" },
         { property: "email.main", value: 1, operator: "eq" },
-      ]
+      ],
     );
   }
 
@@ -1162,7 +1164,7 @@ export const getAutoNotifications = (
   lng,
   organizationId,
   date,
-  articleId
+  articleId,
 ) => {
   const requestUrl = `${ttpApiUrl}/blog/article/list-auto-mobile-notification`;
   let params = {

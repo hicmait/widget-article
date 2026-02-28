@@ -105,15 +105,16 @@ const ArticleConfiguration = (props) => {
   const community = useSelector((state) => state.articles.article.community);
   const authors = useSelector((state) => state.articles.article.authors);
   const isPrivate = useSelector((state) => state.articles.article.isPrivate);
+  const isFromAi = useSelector((state) => state.articles.article.isFromAi);
   const isfffLibrary = useSelector(
-    (state) => state.articles.article.isfffLibrary
+    (state) => state.articles.article.isfffLibrary,
   );
   const canBeShared = useSelector(
-    (state) => state.articles.article.canBeShared
+    (state) => state.articles.article.canBeShared,
   );
   const comment = useSelector((state) => state.articles.article.comment);
   const privateGroups = useSelector(
-    (state) => state.articles.article.privateGroups
+    (state) => state.articles.article.privateGroups,
   );
   const editArticleId = useSelector((state) => state.articles.article.id);
   const [allowedLanguages, setAllowedLanguages] = useState([]);
@@ -153,7 +154,7 @@ const ArticleConfiguration = (props) => {
       auth.user.communities.length > 0
     ) {
       const currentCommunity = auth.user.communities.filter(
-        (com) => com.id == community.value
+        (com) => com.id == community.value,
       )[0];
       if (currentCommunity) {
         dispatch(setCommunity(currentCommunity.id));
@@ -314,7 +315,7 @@ const ArticleConfiguration = (props) => {
                 value={comment}
                 onChange={(e) =>
                   dispatch(
-                    setArticle({ index: "comment", value: e.target.value })
+                    setArticle({ index: "comment", value: e.target.value }),
                   )
                 }
                 placeholder={_("article.add_comment")}
@@ -347,7 +348,7 @@ const ArticleConfiguration = (props) => {
                 selectedGroups={privateGroups}
                 onChange={(groups) =>
                   dispatch(
-                    setArticle({ index: "privateGroups", value: groups })
+                    setArticle({ index: "privateGroups", value: groups }),
                   )
                 }
                 auth={auth}
@@ -391,7 +392,7 @@ const ArticleConfiguration = (props) => {
                       isChecked={isfffLibrary}
                       onChange={(e) =>
                         dispatch(
-                          setArticle({ index: "isfffLibrary", value: e })
+                          setArticle({ index: "isfffLibrary", value: e }),
                         )
                       }
                     />
@@ -456,6 +457,18 @@ const ArticleConfiguration = (props) => {
                 />
               </div>
             )}
+
+            <div className={styles.switchRow}>
+              <label className={styles.configLabel}>
+                {_("article.is_from_ai")}
+              </label>
+              <Switch
+                isChecked={isFromAi}
+                onChange={(e) =>
+                  dispatch(setArticle({ index: "isFromAi", value: e }))
+                }
+              />
+            </div>
           </div>
         </div>
 

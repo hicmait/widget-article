@@ -139,5 +139,6 @@ const articleEn = {
     "Possible to review the training for max 15 days after the date of the live",
   event_approved_by: "Certificate included approved by",
   event_details: "Details",
+  is_from_ai: "Translation from AI",
 };
 export default articleEn;
