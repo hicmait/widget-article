@@ -333,6 +333,12 @@
     outline: none;
     box-shadow: none;
   }
+
+  :global {
+    .react-date-picker__wrapper {
+      border: none;
+    }
+  }
 }
 
 @media screen and (max-width: 39.9375em) {

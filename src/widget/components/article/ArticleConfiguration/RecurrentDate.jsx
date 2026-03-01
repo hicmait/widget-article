@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import DatePicker from "react-datepicker";
+import DatePicker from "react-date-picker";
 import moment from "moment";
 import Select from "react-select";
-import "react-datepicker/dist/react-datepicker.css";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 
 import { setArticle } from "../../../redux/actions";
 import styles from "./ArticleConfiguration.module.scss";
@@ -22,7 +23,7 @@ const recurrentOptions = [
 
 export default function RecurrentDate(props) {
   const articleRecurrence = useSelector(
-    (state) => state.articles.article.recurrence
+    (state) => state.articles.article.recurrence,
   );
   const [endDate, setEndDate] = useState(null);
   const [recurrence, setRecurrence] = useState(recurrentOptions[0]);
@@ -33,7 +34,7 @@ export default function RecurrentDate(props) {
   useEffect(() => {
     if (articleRecurrence?.type) {
       const t = recurrentOptions.filter(
-        (i) => i.value == articleRecurrence.type
+        (i) => i.value == articleRecurrence.type,
       );
       if (t?.length > 0) {
         setRecurrence(t[0]);
@@ -57,7 +58,7 @@ export default function RecurrentDate(props) {
       setArticle({
         index: "recurrence",
         value: value,
-      })
+      }),
     );
     return null;
   };
@@ -74,7 +75,7 @@ export default function RecurrentDate(props) {
       setArticle({
         index: "recurrence",
         value: data,
-      })
+      }),
     );
   };
 
@@ -94,13 +95,12 @@ export default function RecurrentDate(props) {
             {_("article.end_recurrence")}
           </label>
           <DatePicker
-            dateFormat="dd/MM/yyyy"
-            selected={endDate}
+            format="d/M/y"
+            value={endDate}
             onChange={handleSelectEndDate}
             className={styles.dateInput}
             minDate={new Date()}
-            isClearable
-            placeholderText={_("article.never")}
+            placeholder={_("article.never")}
           />
         </div>
       )}

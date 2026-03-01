@@ -13,7 +13,7 @@ import { shareArticleOnSocialNetworks } from "Api";
 import { SocialNetworkForm } from "./SocialNetworkForm";
 import styles from "./Sidebar.module.scss";
 import SharingHistory from "./SharingHistory";
-import StaticPickers from "./StaticPickers";
+// import StaticPickers from "./StaticPickers";
 
 class SocialNetworksShare extends React.Component {
   constructor(props) {
@@ -316,7 +316,7 @@ class SocialNetworksShare extends React.Component {
           "facebook",
           "facebook",
           "#4267B2",
-          "Facebook"
+          "Facebook",
         )}
         {this.renderSNSection(type, "twitter", "twitter", "#1DA1F2", "Twitter")}
         {this.renderSNSection(
@@ -325,7 +325,7 @@ class SocialNetworksShare extends React.Component {
           "linkedin",
           "#2867B2",
           "LinkedIn",
-          false
+          false,
         )}
       </div>
     );
@@ -341,7 +341,7 @@ class SocialNetworksShare extends React.Component {
       zIndex: 9999,
       content: (
         <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <StaticPickers selectDate={this.selectDate.bind(this)} />
+          {/* <StaticPickers selectDate={this.selectDate.bind(this)} /> */}
         </div>
       ),
       onOk() {},
@@ -562,7 +562,7 @@ const mapStateToProps = (store, ownProps) => {
     token: store.auth.token,
     lng: store.params.lng,
     userSocialNetworks: convertSocialNetworksToTreeData(
-      store.auth.user.socialNetworks
+      store.auth.user.socialNetworks,
     ),
     communitySocialNetworks: {},
     article: store.tamtamit.article,
