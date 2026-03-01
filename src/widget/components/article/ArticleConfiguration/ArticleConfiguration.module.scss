@@ -337,6 +337,10 @@
   :global {
     .react-date-picker__wrapper {
       border: none;
+
+      input {
+        display: initial !important;
+      }
     }
   }
 }
