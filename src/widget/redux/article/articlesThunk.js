@@ -9,7 +9,7 @@ export const uploadTmpMedia = createAsyncThunk(
       data,
     });
     return response;
-  }
+  },
 );
 
 export const deleteTmpMedias = createAsyncThunk(
@@ -21,7 +21,7 @@ export const deleteTmpMedias = createAsyncThunk(
       token,
     });
     return response;
-  }
+  },
 );
 
 // export const saveArticle = createAsyncThunk(
@@ -48,7 +48,7 @@ export const fetchArticle = createAsyncThunk(
       articleId,
     });
     return response;
-  }
+  },
 );
 
 export const fetchTranslateArticleNoContent = createAsyncThunk(
@@ -62,19 +62,28 @@ export const fetchTranslateArticleNoContent = createAsyncThunk(
       articleId,
     });
     return response;
-  }
+  },
 );
 export const fetchTranslateArticle = createAsyncThunk(
   "articles/fetchTranslateArticle",
   async ({ articleId, translateLanguage }, { getState }) => {
     const { token } = getState().auth;
     const { ttpAiUrl, ttpApiUrl } = getState().params;
+    console.log(
+      "======fetchTranslateArticle",
+      translateLanguage,
+      ttpAiUrl,
+      token,
+    );
 
     const articleResponse = await api.getArticle({
       ttpApiUrl,
       token,
       articleId,
     });
+    console.log("articleResponse", articleResponse);
+    console.log(articleResponse.data.data[0]);
+
     const translationResponse = await api.translateContent({
       ttpAiUrl,
       token,
@@ -84,12 +93,14 @@ export const fetchTranslateArticle = createAsyncThunk(
         articleResponse.data.data[0].content,
       translateLanguage,
     });
+    console.log("=====", translationResponse);
+
     if (translationResponse?.data?.content) {
       articleResponse.data.data[0].content = translationResponse.data.content;
     }
 
     return articleResponse;
-  }
+  },
 );
 export const fetchGeneratedArticle = createAsyncThunk(
   "articles/fetchGeneratedArticle",
@@ -102,7 +113,7 @@ export const fetchGeneratedArticle = createAsyncThunk(
       content,
     });
     return response;
-  }
+  },
 );
 
 export const fetchTitleIA = createAsyncThunk(
@@ -116,7 +127,7 @@ export const fetchTitleIA = createAsyncThunk(
       title,
     });
     return response.data;
-  }
+  },
 );
 export const fetchSuperTagTheme = createAsyncThunk(
   "articles/fetchSuperTagTheme",
@@ -129,5 +140,5 @@ export const fetchSuperTagTheme = createAsyncThunk(
       id: tagId,
     });
     return response;
-  }
+  },
 );

@@ -69,6 +69,8 @@ const initialState = {
     notificationToSentAt: moment().format(DATE_FORMAT),
     notificationStored: "",
     isFromAi: false,
+    originalUrl: "",
+    originalLanguage: "",
   },
 };
 
@@ -338,7 +340,9 @@ export const articlesSlice = createSlice({
         (m) => m.isAttachment && !m.inHistory,
       );
       state.article.attachments = attachments;
-      state.article.isFromAi = article.isFromAi;
+      if (article.aiFrom?.isFromAi) {
+        state.article.isFromAi = true;
+      }
       state.error = null;
     });
     builder.addCase(fetchArticle.rejected, (state, action) => {
@@ -353,6 +357,9 @@ export const articlesSlice = createSlice({
     builder.addCase(fetchTranslateArticle.fulfilled, (state, action) => {
       state.fetching = false;
       const article = action.payload.data.data[0];
+      state.article.isFromAi = true;
+      state.article.originalUrl = article.url;
+      state.article.originalLanguage = article.language;
       const translateContent = article.content.split("~~~~");
       state.article.id = article.id;
       state.article.title = translateContent[0];

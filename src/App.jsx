@@ -8,6 +8,13 @@ function App() {
       <button onClick={() => window.showEditArticle(24959)}>
         Edit Article 24959
       </button>
+      <button onClick={() => window.showTranslateArticle(3497, "nl")}>
+        Translate article 3497
+      </button>
+      <button onClick={() => window.showEditArticle(24965)}>
+        Edit Article 24965
+      </button>
+
       <TamtamArticleWidget
         article
         auth={staticAuth}

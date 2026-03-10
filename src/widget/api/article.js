@@ -334,6 +334,7 @@ export const translateContent = async ({
   token,
   content,
   translateLanguage,
+  ttpAiUrl,
 }) => {
   const requestUrl = `${ttpAiUrl}/article/translate-article`;
 
@@ -436,7 +437,7 @@ export const getArticle = ({ ttpApiUrl, token, articleId }) => {
     "recurrence",
     "recurrentNextDate",
     "mobileNotification",
-    "isFromAi",
+    "aiFrom",
   ];
 
   const requestUrl = `${ttpApiUrl}/blog/article`;
@@ -481,9 +482,12 @@ export const saveArticle = (ttpApiUrl, token, data) => {
   formData.append("publishedAt", data.publishedAt);
   formData.append("comment", data.comment);
   formData.append("isPrivate", data.isPrivate ? 1 : 0);
-  formData.append("isFromAi", data.isFromAi ? 1 : 0);
   formData.append("fffLibrary", data.fffLibrary);
   formData.append("canBeShared", data.canBeShared ? 1 : 0);
+
+  if (data.aiFrom !== undefined) {
+    formData.append("aiFrom", data.aiFrom);
+  }
 
   formData.append("isRecurrent", data.isRecurrent ? 1 : 0);
   formData.append("recurrence", JSON.stringify(data.recurrence));

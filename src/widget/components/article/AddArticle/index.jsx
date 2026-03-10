@@ -188,6 +188,13 @@ export function AddArticle(props) {
   );
   const comment = useSelector((state) => state.articles.article.comment);
   const isFromAi = useSelector((state) => state.articles.article.isFromAi);
+  const originalUrl = useSelector(
+    (state) => state.articles.article.originalUrl,
+  );
+  const originalLanguage = useSelector(
+    (state) => state.articles.article.originalLanguage,
+  );
+
   const isPrivate = useSelector((state) => state.articles.article.isPrivate);
   const privateGroups = useSelector(
     (state) => state.articles.article.privateGroups,
@@ -1182,7 +1189,6 @@ export function AddArticle(props) {
       handleCropping,
       comment,
       isPrivate,
-      isFromAi,
       privateGroups: tabPrivateGroups,
       publishOnWorkflow,
       mediaIsAlbum,
@@ -1236,6 +1242,10 @@ export function AddArticle(props) {
     ) {
       data.id = editArticleId;
       // data.deletedMediasIds = this.getDeletedMediasIdsFromRawContent(rawContent);
+
+      if (!isFromAi) {
+        data.aiFrom = "";
+      }
     }
     if (!imageHasChanged && !translateLanguage && !isCloning) {
       data.mainMediaArticleId = mainMediaArticleId;
@@ -1244,6 +1254,14 @@ export function AddArticle(props) {
       data.relatedArticle = editArticleId;
       if (!imageHasChanged) {
         data.mediaMedia = { id: mainMediaArticleId };
+      }
+      if (isFromAi) {
+        data.aiFrom = JSON.stringify({
+          isFromAi: true,
+          id: editArticleId,
+          url: originalUrl,
+          lng: originalLanguage,
+        });
       }
     }
     if (isCloning) {
